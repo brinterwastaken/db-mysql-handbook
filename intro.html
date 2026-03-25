@@ -219,16 +219,16 @@ window.Quarto = {
   <ul>
   <li><a href="#advantages" id="toc-advantages" class="nav-link active" data-scroll-target="#advantages"><span class="header-section-number">1.1</span> Advantages</a></li>
   <li><a href="#database-models" id="toc-database-models" class="nav-link" data-scroll-target="#database-models"><span class="header-section-number">1.2</span> Database Models</a></li>
-  <li><a href="#the-relational-database-model" id="toc-the-relational-database-model" class="nav-link" data-scroll-target="#the-relational-database-model"><span class="header-section-number">2</span> The Relational Database Model</a>
+  <li><a href="#the-relational-database-model" id="toc-the-relational-database-model" class="nav-link" data-scroll-target="#the-relational-database-model"><span class="header-section-number">1.3</span> The Relational Database Model</a>
   <ul class="collapse">
-  <li><a href="#structure-of-a-relation" id="toc-structure-of-a-relation" class="nav-link" data-scroll-target="#structure-of-a-relation"><span class="header-section-number">2.1</span> Structure of a Relation</a></li>
-  <li><a href="#degree-and-cardinality" id="toc-degree-and-cardinality" class="nav-link" data-scroll-target="#degree-and-cardinality"><span class="header-section-number">2.2</span> Degree and Cardinality</a></li>
-  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys"><span class="header-section-number">2.3</span> Keys</a></li>
-  <li><a href="#relational-database-management-systems-rdbms" id="toc-relational-database-management-systems-rdbms" class="nav-link" data-scroll-target="#relational-database-management-systems-rdbms"><span class="header-section-number">2.4</span> Relational Database Management Systems (RDBMS)</a>
-  <ul class="collapse">
-  <li><a href="#schema" id="toc-schema" class="nav-link" data-scroll-target="#schema"><span class="header-section-number">2.4.1</span> Schema</a></li>
-  <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql"><span class="header-section-number">2.4.2</span> MySQL</a></li>
+  <li><a href="#structure-of-a-relation" id="toc-structure-of-a-relation" class="nav-link" data-scroll-target="#structure-of-a-relation"><span class="header-section-number">1.3.1</span> Structure of a Relation</a></li>
+  <li><a href="#degree-and-cardinality" id="toc-degree-and-cardinality" class="nav-link" data-scroll-target="#degree-and-cardinality"><span class="header-section-number">1.3.2</span> Degree and Cardinality</a></li>
+  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys"><span class="header-section-number">1.3.3</span> Keys</a></li>
   </ul></li>
+  <li><a href="#relational-database-management-systems-rdbms" id="toc-relational-database-management-systems-rdbms" class="nav-link" data-scroll-target="#relational-database-management-systems-rdbms"><span class="header-section-number">1.4</span> Relational Database Management Systems (RDBMS)</a>
+  <ul class="collapse">
+  <li><a href="#schema" id="toc-schema" class="nav-link" data-scroll-target="#schema"><span class="header-section-number">1.4.1</span> Schema</a></li>
+  <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql"><span class="header-section-number">1.4.2</span> MySQL</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -273,8 +273,8 @@ window.Quarto = {
 <li>There are many different database models that are suited for different applications. One of the most widely used is the <strong>relational database model</strong>, which is both simple and versatile.</li>
 </ul>
 </section>
-<section id="the-relational-database-model" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> The Relational Database Model</h1>
+<section id="the-relational-database-model" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-relational-database-model"><span class="header-section-number">1.3</span> The Relational Database Model</h2>
 <ul>
 <li>This model organizes data into <strong>tables</strong>, consisting of <strong>rows</strong> (also called <em>tuples</em>) and <strong>columns</strong> (also called <em>attributes</em>).</li>
 <li>Each column contains values of the same type of information, while each row contains values of different attributes describing a single item.</li>
@@ -323,8 +323,8 @@ window.Quarto = {
 </tbody>
 </table>
 <p>In the above example, each row represents one vehicle, while each column contains a single type of information about the vehicles.</p>
-<section id="structure-of-a-relation" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="structure-of-a-relation"><span class="header-section-number">2.1</span> Structure of a Relation</h2>
+<section id="structure-of-a-relation" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="structure-of-a-relation"><span class="header-section-number">1.3.1</span> Structure of a Relation</h3>
 <ul>
 <li>For any attribute, we can define a <strong>domain</strong> as the set of all possible values that attribute may take.</li>
 <li>Let the domain of attribute <span class="math inline">\(A_n\)</span> be <span class="math inline">\(D_n\)</span>.</li>
@@ -335,13 +335,13 @@ D_1 \times D_2 \times D_3 \times \ldots \times D_n
 \]</span></p>
 <p>Since not every possible combination necessarily appears in the table, the relation itself is a <strong>subset</strong> of this Cartesian product.</p>
 </section>
-<section id="degree-and-cardinality" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="degree-and-cardinality"><span class="header-section-number">2.2</span> Degree and Cardinality</h2>
+<section id="degree-and-cardinality" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="degree-and-cardinality"><span class="header-section-number">1.3.2</span> Degree and Cardinality</h3>
 <p><strong>Degree</strong> - The <strong>number of attributes (columns)</strong> in a relation is called its <strong>degree</strong>. - In the above table the degree is <strong>4</strong>.</p>
 <p><strong>Cardinality</strong> - The <strong>number of tuples (rows)</strong> in a relation is called its <strong>cardinality</strong>. - In the above table the cardinality is <strong>5</strong>.</p>
 </section>
-<section id="keys" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="keys"><span class="header-section-number">2.3</span> Keys</h2>
+<section id="keys" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="keys"><span class="header-section-number">1.3.3</span> Keys</h3>
 <p>Keys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.</p>
 <ol type="1">
 <li><p><strong>Primary Key</strong><br>
@@ -360,28 +360,28 @@ A column (or set of columns) that establishes a relationship between two tables 
 </ul></li>
 </ol>
 </section>
-<section id="relational-database-management-systems-rdbms" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="relational-database-management-systems-rdbms"><span class="header-section-number">2.4</span> Relational Database Management Systems (RDBMS)</h2>
+</section>
+<section id="relational-database-management-systems-rdbms" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="relational-database-management-systems-rdbms"><span class="header-section-number">1.4</span> Relational Database Management Systems (RDBMS)</h2>
 <ul>
 <li>The relational model describes the <em>theoretical structure</em> of relational databases. In practice, databases based on this model are implemented using <strong>Relational Database Management Systems (RDBMS)</strong>.</li>
 <li>An RDBMS is software that allows users to <strong>create, manage, and query relational databases</strong> while enforcing rules such as data integrity, access control, and relationships between tables.</li>
 <li>Some widely used RDBMS implementations include <strong>MySQL, PostgreSQL, SQLite, Oracle Database, and Microsoft SQL Server</strong>.</li>
 </ul>
-<section id="schema" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="schema"><span class="header-section-number">2.4.1</span> Schema</h3>
+<section id="schema" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="schema"><span class="header-section-number">1.4.1</span> Schema</h3>
 <ul>
 <li>In a database management system (DBMS), a <strong>schema</strong> is <u>the skeleton structure or “blueprint” that defines how data is organized</u>. It outlines the logical constraints, relationships, and objects that make up the database, such as tables, views, fields, and indexes.</li>
 </ul>
 </section>
-<section id="mysql" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="mysql"><span class="header-section-number">2.4.2</span> MySQL</h3>
+<section id="mysql" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="mysql"><span class="header-section-number">1.4.2</span> MySQL</h3>
 <ul>
 <li><strong>MySQL</strong> is a widely used <strong>open-source relational database management system</strong>. It is known for its reliability, performance, and ease of use, and is commonly used in web applications.</li>
 <li>In MySQL, data is organized into <strong>databases containing tables</strong>, following the relational model described earlier. Users interact with these databases using <strong>Structured Query Language (SQL)</strong>, which allows them to create tables, insert data, and retrieve information. In the following sections, we will introduce <strong>SQL and its basic commands</strong>.</li>
 </ul>
 
 
-</section>
 </section>
 </section>
 

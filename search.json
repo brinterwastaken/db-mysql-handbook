@@ -70,31 +70,11 @@
     ]
   },
   {
-    "objectID": "intro.html#structure-of-a-relation",
-    "href": "intro.html#structure-of-a-relation",
+    "objectID": "intro.html#the-relational-database-model",
+    "href": "intro.html#the-relational-database-model",
     "title": "1  Introduction to Databases",
-    "section": "2.1 Structure of a Relation",
-    "text": "2.1 Structure of a Relation\n\nFor any attribute, we can define a domain as the set of all possible values that attribute may take.\nLet the domain of attribute \\(A_n\\) be \\(D_n\\).\nA relation consists of tuples with n values corresponding to the n attributes of the relation. Thus, each tuple belongs to\n\n\\[  \nD_1 \\times D_2 \\times D_3 \\times \\ldots \\times D_n  \n\\]\nSince not every possible combination necessarily appears in the table, the relation itself is a subset of this Cartesian product.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#degree-and-cardinality",
-    "href": "intro.html#degree-and-cardinality",
-    "title": "1  Introduction to Databases",
-    "section": "2.2 Degree and Cardinality",
-    "text": "2.2 Degree and Cardinality\nDegree - The number of attributes (columns) in a relation is called its degree. - In the above table the degree is 4.\nCardinality - The number of tuples (rows) in a relation is called its cardinality. - In the above table the cardinality is 5.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#keys",
-    "href": "intro.html#keys",
-    "title": "1  Introduction to Databases",
-    "section": "2.3 Keys",
-    "text": "2.3 Keys\nKeys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.\n\nPrimary Key\nA column or set of columns that uniquely identifies each record in a table.\nPrimary keys cannot contain NULL values.\nUnique Key\nA column or set of columns that ensures all values are unique.\nUnlike a primary key, a unique key may allow a NULL value depending on the database system.\nForeign Key\nA column (or set of columns) that establishes a relationship between two tables by referencing the primary key of another table.\nCandidate and Alternate Keys\n\nCandidate keys are columns or sets of columns that can uniquely identify each record in a table.\nOne candidate key is chosen by the developer as the primary key.\nThe remaining candidate keys are called alternate keys.",
+    "section": "1.3 The Relational Database Model",
+    "text": "1.3 The Relational Database Model\n\nThis model organizes data into tables, consisting of rows (also called tuples) and columns (also called attributes).\nEach column contains values of the same type of information, while each row contains values of different attributes describing a single item.\n\nFor example:\n\n\n\nId\nBrand\nModel\nColor\n\n\n\n\n001\nMaruti Suzuki\nDzire\nWhite\n\n\n002\nTata\nSierra\nYellow\n\n\n003\nHyundai\nCreta\nGrey\n\n\n004\nToyota\nHyrider\nBlack\n\n\n005\nMahindra\nXUV700\nDark Blue\n\n\n\nIn the above example, each row represents one vehicle, while each column contains a single type of information about the vehicles.\n\n1.3.1 Structure of a Relation\n\nFor any attribute, we can define a domain as the set of all possible values that attribute may take.\nLet the domain of attribute \\(A_n\\) be \\(D_n\\).\nA relation consists of tuples with n values corresponding to the n attributes of the relation. Thus, each tuple belongs to\n\n\\[  \nD_1 \\times D_2 \\times D_3 \\times \\ldots \\times D_n  \n\\]\nSince not every possible combination necessarily appears in the table, the relation itself is a subset of this Cartesian product.\n\n\n1.3.2 Degree and Cardinality\nDegree - The number of attributes (columns) in a relation is called its degree. - In the above table the degree is 4.\nCardinality - The number of tuples (rows) in a relation is called its cardinality. - In the above table the cardinality is 5.\n\n\n1.3.3 Keys\nKeys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.\n\nPrimary Key\nA column or set of columns that uniquely identifies each record in a table.\nPrimary keys cannot contain NULL values.\nUnique Key\nA column or set of columns that ensures all values are unique.\nUnlike a primary key, a unique key may allow a NULL value depending on the database system.\nForeign Key\nA column (or set of columns) that establishes a relationship between two tables by referencing the primary key of another table.\nCandidate and Alternate Keys\n\nCandidate keys are columns or sets of columns that can uniquely identify each record in a table.\nOne candidate key is chosen by the developer as the primary key.\nThe remaining candidate keys are called alternate keys.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
     ]
@@ -103,8 +83,8 @@
     "objectID": "intro.html#relational-database-management-systems-rdbms",
     "href": "intro.html#relational-database-management-systems-rdbms",
     "title": "1  Introduction to Databases",
-    "section": "2.4 Relational Database Management Systems (RDBMS)",
-    "text": "2.4 Relational Database Management Systems (RDBMS)\n\nThe relational model describes the theoretical structure of relational databases. In practice, databases based on this model are implemented using Relational Database Management Systems (RDBMS).\nAn RDBMS is software that allows users to create, manage, and query relational databases while enforcing rules such as data integrity, access control, and relationships between tables.\nSome widely used RDBMS implementations include MySQL, PostgreSQL, SQLite, Oracle Database, and Microsoft SQL Server.\n\n\n2.4.1 Schema\n\nIn a database management system (DBMS), a schema is the skeleton structure or “blueprint” that defines how data is organized. It outlines the logical constraints, relationships, and objects that make up the database, such as tables, views, fields, and indexes.\n\n\n\n2.4.2 MySQL\n\nMySQL is a widely used open-source relational database management system. It is known for its reliability, performance, and ease of use, and is commonly used in web applications.\nIn MySQL, data is organized into databases containing tables, following the relational model described earlier. Users interact with these databases using Structured Query Language (SQL), which allows them to create tables, insert data, and retrieve information. In the following sections, we will introduce SQL and its basic commands.",
+    "section": "1.4 Relational Database Management Systems (RDBMS)",
+    "text": "1.4 Relational Database Management Systems (RDBMS)\n\nThe relational model describes the theoretical structure of relational databases. In practice, databases based on this model are implemented using Relational Database Management Systems (RDBMS).\nAn RDBMS is software that allows users to create, manage, and query relational databases while enforcing rules such as data integrity, access control, and relationships between tables.\nSome widely used RDBMS implementations include MySQL, PostgreSQL, SQLite, Oracle Database, and Microsoft SQL Server.\n\n\n1.4.1 Schema\n\nIn a database management system (DBMS), a schema is the skeleton structure or “blueprint” that defines how data is organized. It outlines the logical constraints, relationships, and objects that make up the database, such as tables, views, fields, and indexes.\n\n\n\n1.4.2 MySQL\n\nMySQL is a widely used open-source relational database management system. It is known for its reliability, performance, and ease of use, and is commonly used in web applications.\nIn MySQL, data is organized into databases containing tables, following the relational model described earlier. Users interact with these databases using Structured Query Language (SQL), which allows them to create tables, insert data, and retrieve information. In the following sections, we will introduce SQL and its basic commands.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
     ]
