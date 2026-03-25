@@ -1,0 +1,374 @@
+# Working with Tables
+
+- We can create tables using the `CREATE TABLE` command, specifying the columns according to our requirement.
+- The created tables can also be altered later to edit columns, change constraints, etc.
+- These operations will be focused on in this chapter.
+
+## Creating Tables
+- The `CREATE TABLE` command is used to create a new table.
+
+**Syntax:**
+```sql
+CREATE TABLE tablename (
+	column1,       ┐
+	[column2,]     ├─ Table columns
+	[...]          ┘
+	[constraint1], ┐
+	[constraint2]  ├─ Optional constraints for columns
+	[...]          ┘
+);
+```
+
+- In the above syntax, `column1`, `column2`, etc. refer to column definitions. The syntax for these is outlined below.
+
+**Column definition Syntax:**
+```sql
+column_name datatype [key type] [constraints]
+│           │        │          │
+│           │        │          └── Additional rules applied to the column
+│           │        │              (e.g., NOT NULL, DEFAULT, CHECK)
+│           │        │
+│           │        └───────────── Key specification
+│           │                       (e.g., PRIMARY KEY, UNIQUE, FOREIGN KEY)
+│           │
+│           └────────────────────── Data type of the column
+│                                   (e.g., INT, VARCHAR(50), DATE)
+│
+└────────────────────────────────── Name of the column (identifier)
+```
+
+Example:
+```sql
+CREATE TABLE Customers (
+	CustomerId VARCHAR(20) PRIMARY KEY,
+	CustomerName VARCHAR(50) NOT NULL,
+	Address VARCHAR(150) NOT NULL,
+	PhoneNumber VARCHAR(10),
+	Email VARCHAR(50) NOT NULL,
+	DateOfBirth DATE
+);
+```
+
+## Describing Tables
+- The `DESC` command can be used to describe the structure of an existing table
+- It shows a list of columns along with their datatypes, default values, type of key, and other information about the column.
+**Syntax:**
+```sql
+DESC tablename;
+```
+
+Example:
+```sql
+mysql> DESC Customers;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| CustomerId   | varchar(20)  | NO   | PRI | NULL    |       |
+| CustomerName | varchar(50)  | NO   |     | NULL    |       |
+| Address      | varchar(150) | NO   |     | NULL    |       |
+| PhoneNumber  | varchar(10)  | YES  |     | NULL    |       |
+| Email        | varchar(50)  | NO   |     | NULL    |       |
+| DateOfBirth  | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+```
+
+## Constraints
+In a lot of cases, we require that all values of a column follow a particular set of  rules. These can be enforced using constraints, which prevent insertion of data that do not follow the defined rules.
+
+Constraints can be defined in **two ways** when creating a table:
+
+1. **Column-level constraints** – written directly in the column definition.
+2. **Table-level constraints** – written after all column definitions.
+
+### Column-Level Constraints
+These are specified **immediately after the datatype of the column**. They apply only to that particular column.
+
+Example:
+```sql
+CREATE TABLE Products (
+	ProductId INT PRIMARY KEY,
+	ProductName VARCHAR(100) NOT NULL,
+	Price DECIMAL(10,2) CHECK (Price > 0)
+);
+```
+
+Here:
+
+- `PRIMARY KEY` is applied to `ProductId`
+- `NOT NULL` is applied to `ProductName`
+- `CHECK` ensures that `Price` must be greater than 0
+
+### Table-Level Constraints
+Constraints can also be defined **after the list of columns**, inside the table definition. This is useful when:
+
+- A constraint involves **multiple columns**
+- You want to **separate structure from constraints** for clarity
+
+Example:
+```sql
+CREATE TABLE Products (
+	ProductId INT,
+	ProductName VARCHAR(100),
+	Price DECIMAL(10,2),
+
+	PRIMARY KEY (ProductId)
+);
+```
+
+Here the `PRIMARY KEY` constraint is defined **after the column definitions**, rather than inside the column definition.
+
+### Commonly used onstraints
+
+| Constraint    | Meaning                                                                    | Usage                                              |
+| ------------- | -------------------------------------------------------------------------- | -------------------------------------------------- |
+| `NOT NULL`    | Ensures the column cannot have a null value                                | `age INT NOT NULL`                                 |
+| `UNIQUE`      | Ensures all values in the column are distinct                              | `email VARCHAR(100) UNIQUE`                        |
+| `PRIMARY KEY` | Uniquely identifies each row; implies NOT NULL and UNIQUE                  | `id INT PRIMARY KEY`                               |
+| `DEFAULT`     | Sets a default value if none is provided during insert                     | `city VARCHAR(50) DEFAULT 'Unknown'`               |
+| `CHECK`       | Ensures values in the column satisfy a given condition                     | `age INT CHECK (age >= 18)`                        |
+| `FOREIGN KEY` | Links a column to the primary key of another table, more information below | `FOREIGN KEY (student_id) REFERENCES students(id)` |
+
+### Foreign Keys
+- A **foreign key** is used to create a relationship between two tables. It ensures that values in one table **correspond to existing values in another table**.
+- A foreign key references the **primary key of another table**.
+
+#### Example Tables
+Suppose we have a table of customers:
+```sql
+CREATE TABLE Customers (
+	CustomerId VARCHAR(20) PRIMARY KEY,
+	CustomerName VARCHAR(50)
+);
+```
+
+Now we create another table that refers to customers.
+The foreign key can be specified in one of two ways, similar to other constraints:
+
+**A) Inline with column definition** - using the `REFERENCES` keyword
+```sql
+CREATE TABLE Orders (
+	OrderId INT PRIMARY KEY,
+	CustomerId VARCHAR(20) REFERENCES Customers(CustomerId),
+	OrderDate DATE
+);
+```
+
+**B) Separated from column definition** - using the `FOREIGN KEY` clause
+```sql
+CREATE TABLE Orders (
+	OrderId INT PRIMARY KEY,
+	CustomerId VARCHAR(20),
+	OrderDate DATE,
+
+	FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
+);
+```
+
+This ensures that every `CustomerId` in the `Orders` table **must exist in the `Customers` table**.
+
+### Naming Constraints (Optional)
+- Constraints can also be given **explicit names**, which helps when modifying or removing them later (this will be discussed in further sections).
+- Constraint names are typically specified when constraints are written separately from the column definitions using the `CONSTRAINT` keyword.
+
+Example:
+```sql
+CREATE TABLE Orders (
+	OrderId INT,
+	CustomerId VARCHAR(20),
+
+	CONSTRAINT pk_orders PRIMARY KEY (OrderId),
+	CONSTRAINT fk_customer
+		FOREIGN KEY (CustomerId)
+		REFERENCES Customers(CustomerId)
+);
+```
+
+Here:
+
+- `pk_orders` is the name of the primary key constraint
+- `fk_customer` is the name of the foreign key constraint
+
+## Altering Tables
+
+- The `ALTER TABLE` command is used to **modify the structure of an existing table**.
+
+- It allows operations such as:
+    - adding new columns
+    - removing existing columns
+    - modifying column definitions
+    - adding or removing constraints
+
+**Syntax:**
+```sql
+ALTER TABLE tablename  
+	action1,  ┐  
+	[action2] ├─ One or more modification operations  
+	[...]     ┘  
+;
+```
+
+Each **action** represents a structural change to the table.
+Common actions include:
+- `ADD` – add a new column or constraint
+- `DROP` – remove a column or constraint
+- `MODIFY` – change the datatype or properties of a column
+- `RENAME` – rename a table or column
+
+### Adding and Removing Columns
+
+#### Adding Columns
+New columns can be added to an existing table using the `ADD` clause of the `ALTER TABLE` command.
+
+**Syntax:**
+```sql
+ALTER TABLE tablename  
+ADD column_definition;
+```
+
+Here, `column_definition` follows the same format used when defining columns in a `CREATE TABLE` statement.
+
+Example:
+```sql
+ALTER TABLE Customers  
+ADD PhoneNumber VARCHAR(10);
+```
+
+- This command adds a new column `PhoneNumber` to the `Customers` table.
+
+Multiple columns can also be added in a single statement:
+
+```sql
+ALTER TABLE tablename  
+ADD column1_definition,  
+ADD column2_definition;
+```
+
+#### Removing Columns
+Existing columns can be removed from a table using the `DROP COLUMN` command.
+
+- **Important Note:** Removing a column permanently deletes all data stored in that column. This must be done carefully.
+
+**Syntax:**
+```sql
+ALTER TABLE tablename  
+DROP COLUMN column_name;
+```
+
+Example:
+```sql
+ALTER TABLE Customers  
+DROP COLUMN PhoneNumber;
+```
+
+- This removes the `PhoneNumber` column from the `Customers` table.
+
+Multiple columns can also be removed in a single statement:
+```sql
+ALTER TABLE tablename  
+DROP COLUMN column1,  
+DROP COLUMN column2;
+```
+
+
+### Adding/Removing Constraints
+#### Adding Constraints
+Constraints can be added to existing tables using the `ADD` clause.
+**Syntax:**
+```sql
+ALTER TABLE tablename
+ADD constraint_definition;
+```
+
+Here, `constraint_definition` specifies the type of constraint and the column(s) it applies to.
+
+Example (adding a primary key):
+```sql
+ALTER TABLE Customers
+ADD PRIMARY KEY (CustomerId);
+```
+
+This command adds a **primary key constraint** to the `CustomerId` column of the `Customers` table.
+
+#### Removing Constraints
+Constraints can also be removed from a table using the `DROP` clause.
+
+**Syntax:**
+```sql
+ALTER TABLE tablename
+DROP constraint_type;
+```
+
+Example (removing a primary key):
+```sql
+ALTER TABLE Customers
+DROP PRIMARY KEY;
+```
+
+This command removes the **primary key constraint** from the `Customers` table.
+
+##### Notes
+- A table can have only **one primary key constraint**. Removing it will remove the uniqueness and non-null requirement enforced on the column(s).
+- The **foreign key** constraint can be dropped if it was named using the `DROP FOREIGN KEY` clause:
+  ```sql
+  ALTER TABLE Orders
+  DROP FOREIGN KEY fk_customer;
+  ```
+- In newer versions of MySQL, other named constraints can be dropped using the `DROP CONSTRAINT` clause:
+  ```sql
+  ALTER TABLE Orders  
+  DROP CONSTRAINT pk_orders;
+  ```
+
+### Renaming and Modifying Columns
+The `ALTER TABLE` clause can also be used to rename/modify columns.
+
+#### Renaming a Column
+A column can be renamed using the `RENAME COLUMN` clause.
+
+**Syntax:**
+```sql
+ALTER TABLE tablename  
+RENAME COLUMN old_column_name TO new_column_name;
+```
+
+Example:
+```sql
+ALTER TABLE Customers  
+RENAME COLUMN PhoneNumber TO ContactNumber;
+```
+
+#### Modifying a Column
+The datatype or constraints of a column can be changed using the `MODIFY` clause.
+
+**Syntax:**
+```sql
+ALTER TABLE tablename  
+MODIFY column_definition;
+```
+
+Here, `column_definition` follows the same format used when defining columns in a `CREATE TABLE` statement.
+
+Example:
+
+```sql
+ALTER TABLE Customers  
+MODIFY PhoneNumber VARCHAR(15);
+```
+
+This changes the datatype of `PhoneNumber` to `VARCHAR(15)`.
+
+## Deleting Tables
+A table can be removed from the database using the `DROP TABLE` command. This deletes the **table structure as well as all the data stored in it**.
+
+**Syntax:**
+```sql
+DROP TABLE tablename;
+```
+
+Example:
+```sql
+DROP TABLE Customers;
+```
+
+### Important Note
+Once a table is dropped, its data **cannot be recovered** unless a backup exists.

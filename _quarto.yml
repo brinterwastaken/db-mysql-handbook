@@ -1,0 +1,33 @@
+project:
+  type: book
+  preview:
+    watch-inputs: true
+
+book:
+  title: "Database and MySQL Handbook"
+  author: 
+    - name: "Trinethr N"
+      email: 'trinethr_n@yahoo.com'
+      url: 'https://brin.is-a.dev'
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - sql.qmd
+    - dbcreate.qmd
+    - datatypes.qmd
+    - tables.qmd
+    - datamanip.qmd
+    - simple-queries.qmd
+    - table-queries.qmd
+    - joins.qmd
+    - afterword.qmd
+
+format:
+  html:
+    theme: flatly
+    mainfont: "Arial"
+    monofont: "0xProto"
+    css: main.css
+
+  pdf:
+    documentclass: scrreprt

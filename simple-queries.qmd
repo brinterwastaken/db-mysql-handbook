@@ -1,0 +1,178 @@
+# Introduction to Queries
+
+- Data from a database can be accessed using queries. This is done using the `SELECT` command.
+- Firstly, we will examine how the `SELECT` command can be used **without referencing a table** to perform arithmetic calculations and evaluate expressions. This feature is often used by developers to **test expressions or verify query logic** before applying them to actual table data.
+- In the next chapter, we will deal with simple queries such as accessing all records of a table, as well as complex ones — querying data from multiple tables, which can be handled using different clauses of the `SELECT` command. 
+- MySQL also provides a **dummy table** called `DUAL`. This exists mainly for compatibility with the SQL standard and with other database systems that require a query to select data **from a table**.
+- Any query that can be executed without referencing a table can also be written by selecting from the `DUAL` table using the `FROM` clause.
+
+## Arithmetic and Logical Operations
+
+- The `SELECT` command can evaluate **arithmetic and logical expressions** directly. The result is given in the form of a table having one column and one row.
+- Logical expressions return `1` for true and `0` for false.
+
+Basic operators supported by SQL include:
+
+| Operator     | Meaning                                |
+| ------------ | -------------------------------------- |
+| `+`          | Addition                               |
+| `-`          | Subtraction                            |
+| `*`          | Multiplication                         |
+| `/`          | Division                               |
+| `%`          | Modulus (remainder)                    |
+| `=`          | Is equal to                            |
+| `!=` or `<>` | Is not equal to                        |
+| `>`          | Greater than                           |
+| `<`          | Lesser than                            |
+| `>=`         | Greater than or equal to               |
+| `<=`         | Lesser than or equal to                |
+| `AND`        | True if both conditions are true       |
+| `OR`         | True if at least one condition is true |
+| `NOT`        | Reverses the result of a condition     |
+
+Examples:
+```sql
+mysql> SELECT 6 * 7;
++--------+
+| 6 * 7  |
++--------+
+| 42     |
++--------+
+```
+```sql
+mysql> SELECT 14!=25;
++--------+
+| 14!=25 |
++--------+
+|      1 |
++--------+
+```
+- Multiple operators can be used in an expression, which will be evaluated in the standard mathematical order of precedence. 
+
+	Parentheses can be used to control the evaluation order —
+	e.g. `SELECT 5 + 3 * 2;` results in `11`, and `SELECT (5 + 3) * 2;` results in `16`
+
+To change the column name (which is by default just the expression passed to the `SELECT` command), we can use an **alias**. This will be discussed further later when dealing with tables.
+
+Example:
+```sql
+mysql> SELECT 5 + 3 AS Result;
++--------+
+| Result |
++--------+
+| 8      |
++--------+
+```
+
+Multiple expressions can be evaluated at once by separating them with **commas**. This comma-separated syntax is the same pattern used to select **multiple columns** from a table, which we will explore further sections.
+
+Example:
+```sql
+mysql> SELECT 5 + 3, 10 - 4, 6 * 7;
++-------+--------+--------+
+| 5 + 3 | 10 - 4 | 6 * 7  |
++-------+--------+--------+
+| 8     | 6      | 42     |
++-------+--------+--------+
+```
+
+## Working with Strings
+- Select can also be used to return string values.
+
+Example:
+```sql
+mysql> SELECT 'Hello World';
++-------------+
+| Hello World |
++-------------+
+| Hello World |
++-------------+
+```
+- Generally, this is not very useful, however, we can use built-in functions, that work on text, and other data types to manipulate them as required.
+
+## MySQL's Built-In Functions
+- These are **special predefined command sets**, that perform a **specific operation** on a value or a column, and **return a result for each value**.
+- Using `SELECT` without a table allows the developer to **test the usage of built-in functions**, before applying it on a table.
+- Some commonly used built-in functions for different datatypes are listed below.
+
+### Numeric Functions
+
+| Function         | Description                                               | Example                | Result |
+| ---------------- | --------------------------------------------------------- | ---------------------- | ------ |
+| `ABS(n)`         | Returns the absolute value of `n`                         | `ABS(-15)`             | `15`   |
+| `ROUND(n, d)`    | Rounds `n` to `d` decimal places                          | `ROUND(3.14159, 2)`    | `3.14` |
+| `CEIL(n)`        | Returns the smallest integer greater than or equal to `n` | `CEIL(4.2)`            | `5`    |
+| `FLOOR(n)`       | Returns the largest integer less than or equal to `n`     | `FLOOR(4.9)`           | `4`    |
+| `TRUNCATE(n, d)` | Truncates `n` to `d` decimal places without rounding      | `TRUNCATE(3.14159, 2)` | `3.14` |
+| `MOD(n, m)`      | Returns the remainder when `n` is divided by `m`          | `MOD(17, 5)`           | `2`    |
+| `POWER(n, e)`    | Returns `n` raised to the power `e`                       | `POWER(2, 8)`          | `256`  |
+| `SQRT(n)`        | Returns the square root of `n`                            | `SQRT(144)`            | `12`   |
+
+### Date/Time Functions
+
+| Function                          | Description                                  | Example                                    | Result                |
+| --------------------------------- | -------------------------------------------- | ------------------------------------------ | --------------------- |
+| `NOW()`                           | Returns the current date and time            | `NOW()`                                    | `2026-03-24 10:45:00` |
+| `CURDATE()`                       | Returns the current date                     | `CURDATE()`                                | `2026-03-24`          |
+| `CURTIME()`                       | Returns the current time                     | `CURTIME()`                                | `10:45:00`            |
+| `YEAR(date)`                      | Extracts the year from a date                | `YEAR('2026-03-24')`                       | `2026`                |
+| `MONTH(date)`                     | Extracts the month from a date               | `MONTH('2026-03-24')`                      | `3`                   |
+| `DAY(date)`                       | Extracts the day from a date                 | `DAY('2026-03-24')`                        | `24`                  |
+| `MONTHNAME(date)`                 | Returns the full name of the month           | `MONTHNAME('2026-03-24')`                  | `March`               |
+| `DAYNAME(date)`                   | Returns the name of the weekday              | `DAYNAME('2026-03-24')`                    | `Tuesday`             |
+| `DATEDIFF(d1, d2)`                | Returns the number of days between two dates | `DATEDIFF('2026-12-31', '2026-03-24')`     | `282`                 |
+
+### String Functions
+
+| Function                   | Description                                                       | Example                                  | Result        |
+| -------------------------- | ----------------------------------------------------------------- | ---------------------------------------- | ------------- |
+| `UPPER(str)`               | Converts string to uppercase                                      | `UPPER('hello')`                         | `HELLO`       |
+| `LOWER(str)`               | Converts string to lowercase                                      | `LOWER('HELLO')`                         | `hello`       |
+| `LENGTH(str)`              | Returns the length of the string in bytes                         | `LENGTH('hello')`                        | `5`           |
+| `CONCAT(s1, s2, ...)`      | Joins two or more strings together                                | `CONCAT('Hello', ' ', 'World')`          | `Hello World` |
+| `SUBSTRING(str, pos, len)` | Extracts a substring starting at `pos`, of length `len`           | `SUBSTRING('Hello World', 7, 5)`         | `World`       |
+| `TRIM(str)`                | Removes leading and trailing spaces                               | `TRIM(' hello ')`                        | `hello`       |
+| `LTRIM(str)`               | Removes leading (left) spaces                                     | `LTRIM(' hello')`                        | `hello`       |
+| `RTRIM(str)`               | Removes trailing (right) spaces                                   | `RTRIM('hello ')`                        | `hello`       |
+| `REPLACE(str, from, to)`   | Replaces all occurrences of a substring with another              | `REPLACE('Hello World', 'World', 'SQL')` | `Hello SQL`   |
+| `REVERSE(str)`             | Reverses the string                                               | `REVERSE('hello')`                       | `olleh`       |
+| `INSTR(str, substr)`       | Returns the position of the first occurrence of `substr` in `str` | `INSTR('Hello World', 'World')`          | `7`           |
+| `LEFT(str, n)`             | Returns the leftmost `n` characters                               | `LEFT('Hello World', 5)`                 | `Hello`       |
+| `RIGHT(str, n)`            | Returns the rightmost `n` characters                              | `RIGHT('Hello World', 5)`                | `World`       |
+
+Note: For functions such as `SUBSTRING`, indexing starts at 1, which is different from most programming languages which start indexing at 0.
+
+### Miscellaneous
+
+| Function                  | Description                                             | Example                  | Result    |
+| ------------------------- | ------------------------------------------------------- | ------------------------ | --------- |
+| `IFNULL(value, fallback)` | If the `value` field is null, it returns the `fallback` | `IFNULL(NULL,'nothing')` | `nothing` |
+
+### Using Built-In functions without a table
+- Here are some examples where built-in functions are used without referencing a table.
+
+```sql
+mysql> SELECT ROUND(3.14159, 2);
++-------------------+
+| ROUND(3.14159, 2) |
++-------------------+
+|              3.14 |
++-------------------+
+```
+
+```sql
+mysql> SELECT UPPER('hello'), ROUND(3.14159, 2) AS Rounded, DAYNAME(CURDATE()) AS Today;
++----------------+---------+-----------+
+| UPPER('hello') | Rounded | Today     |
++----------------+---------+-----------+
+| HELLO          |    3.14 | Tuesday   |
++----------------+---------+-----------+
+```
+
+- As seen in the examples above, multiple functions can be combined in a single `SELECT` statement by separating them with commas.
+- Aliases can be used with functions just as with any other expression, using the `AS` keyword, to make the output column names more readable.
+
+### Importance
+
+- These functions become especially powerful **when applied to columns of an actual table** — for instance, using `UPPER()` on a name column, or `DATEDIFF()` to calculate a student's age from a date of birth column. We will see such examples in the upcoming sections.
+

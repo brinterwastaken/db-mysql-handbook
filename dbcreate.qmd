@@ -1,0 +1,28 @@
+# Creating and Using a Database
+
+The `CREATE DATABASE` command is used to create a new database.
+
+**Syntax:**
+```sql
+CREATE DATABASE name;
+```
+
+Here, `name` is a **required** parameter, which gives the newly created database a name.
+
+- Spaces can be put in the database name, but special syntax must be used for this, and this is generally discouraged.
+
+To use the newly created database, we use the `USE` command:
+```sql
+USE name;
+```
+This command sets the current active database to the database specified by `name`.
+
+Most commands outlined in this document are to be executed with an active database, i.e. we must `USE` a database before executing them.
+
+
+## Other Important Commands
+These are commands often used while creating/using databases:
+
+1. `SHOW DATABASES` - Shows a list of databases that are present in a MySQL installation.
+
+2. `SHOW TABLES` - Shows a list of tables within a database. (Requires to be in an active database with `USE` as shown above)

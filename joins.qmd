@@ -1,0 +1,191 @@
+# Querying Multiple Tables — Joins
+
+## Introduction to Joins
+In relational databases, data is often stored across multiple tables to reduce redundancy and maintain data integrity. **Joins** are SQL operations that allow us to combine rows from two or more tables based on related columns between them.
+
+All joins in SQL are fundamentally derived from the **Cartesian product** (cross join) of two tables. Other join types—such as equi-join and natural join—are simply filtered or refined versions of this cross product.
+
+## Cross Join (Cartesian Product)
+- A cross join is the cartesian product of the two tables, i.e. it is a table consisting of all possible combinations of rows of the two tables.
+- If the first table has $n$ rows and $a$ columns, and the second has $m$ rows and $b$ columns, the cross join of the two will have $n\times m$ rows and $a+b$ columns. This will be clearer in the following example.
+
+### Syntax
+```sql
+SELECT * FROM table1 CROSS JOIN table2;
+```
+Or alternatively:
+```sql
+SELECT * FROM table1, table2;
+```
+
+### Example
+
+Consider two tables:
+
+**A) Students:**
+
+| StudentID | StudentName |
+| --------- | ----------- |
+| 1         | Alice       |
+| 2         | Bob         |
+| 3         | Charlie     |
+
+**B) Courses:**
+
+|CourseID|CourseName|
+|---|---|
+|101|Math|
+|102|Science|
+
+
+```sql
+mysql> SELECT * FROM Students CROSS JOIN Courses;
++-----------+-------------+----------+------------+
+| StudentID | StudentName | CourseID | CourseName |
++-----------+-------------+----------+------------+
+|         1 | Alice       |      101 | Math       |
+|         1 | Alice       |      102 | Science    |
+|         2 | Bob         |      101 | Math       |
+|         2 | Bob         |      102 | Science    |
+|         3 | Charlie     |      101 | Math       |
+|         3 | Charlie     |      102 | Science    |
++-----------+-------------+----------+------------+
+```
+
+The result has $3\times2 = 6$ rows and $2 + 2 = 4$ columns. 
+
+- Cross joins are rarely used practically, as they result in large result sets. (e.g. if two tables have 1000 rows each, their cross join would have 1,000,000 rows).
+- They can, however be used for some specific use cases:
+	- Generating all possible combinations
+	- Statistical/Mathematical calculations
+	- Creating large amounts of test data
+
+## Equi-Join — Joining based on an equality condition
+- The equi-join is a fundamental operation in database management. It enables us to **combine data from multiple tables** based on **matching values between their columns**, which is essential for querying relational databases.
+- Equi-join (and other joins) are **subsets of the cross join**, as they are just rows of the cross join result which satisfy the equality condition defined by the developer.
+
+### Classification
+Equi-joins can be classified into two main types:
+
+**1. Inner Join (`INNER JOIN` or `JOIN`)**
+
+  - Returns only the rows where there is a match in **both tables**.
+  - If a row in one table has no matching value in the other table, it is excluded from the result.
+  - This is the most commonly used type of join.
+
+**2. Outer Join**
+
+  - Returns matching rows **plus** unmatched rows from one or both tables.
+  - Unmatched rows are filled with NULL values for columns from the table that has no match.
+  - Outer joins are further divided into:
+    - `LEFT JOIN` - Returns all rows from the left table and matching rows from the right table..
+    - `RIGHT JOIN` - Returns all rows from the right table and matching rows from the left table.
+    - **FULL OUTER JOIN** - Returns all rows from both tables (matching and non-matching).
+
+**Note:** MySQL does **not support FULL OUTER JOIN** natively. However, it can be simulated using a combination of LEFT JOIN and RIGHT JOIN with a UNION operator.
+
+### Syntax
+
+```sql
+SELECT * FROM table1 INNER JOIN table2 ON table1.common_col = table2.common_col;
+```
+
+Here, `INNER JOIN` can be replaced by the type of join that is desired as above. Note: `INNER JOIN` and `JOIN` refer to the same functionality, and can be used interchangeably.
+
+Or alternatively (for inner join):
+```sql
+SELECT * FROM table1, table2 WHERE table1.common_col = table2.common_col;
+```
+
+### Example
+- If we stored a *package ID* for each customer who has ordered a package in a **Customers** table, and we want to retrieve the ***list of customer names*** along with the ***name of the package*** they have ordered, we must query both the **Customers** table for the customer names, and the **Packages** table for the package names. Here, we must only display records where the package ID of the package corresponds to the package that the customer has ordered.
+
+Consider the two tables:
+
+**A) Customers:**
+
+| CustomerID | CustomerName | PackageID |
+| ---------- | ------------ | --------- |
+| 1          | Alice        | 101       |
+| 2          | Bob          | 102       |
+| 3          | Charlie      | 101       |
+| 4          | Diana        | NULL      |
+
+**B) Packages:**
+
+| PackageID | PackageName    |
+| --------- | -------------- |
+| 101       | Basic Plan     |
+| 102       | Premium Plan   |
+| 103       | Enterprise Plan|
+The query can be written as:
+
+```sql
+SELECT Customers.CustomerName, Packages.PackageName
+FROM Customers, Packages
+WHERE Customers.PackageID = Packages.PackageID;
+```
+
+Or using explicit `INNER JOIN` syntax:
+
+```sql
+SELECT Customers.CustomerName, Packages.PackageName
+FROM Customers
+INNER JOIN Packages ON Customers.PackageID = Packages.PackageID;
+```
+
+The result would thus be:
+
+```
++--------------+-----------------+
+| CustomerName | PackageName     |
++--------------+-----------------+
+| Alice        | Basic Plan      |
+| Bob          | Premium Plan    |
+| Charlie      | Basic Plan      |
++--------------+-----------------+
+```
+
+**Note:** Differences that would've been observed when using `LEFT JOIN`
+- Since the customer "Diana" does not have a purchased package, the result does not show her package name. 
+- However, if `LEFT JOIN` was used instead of `INNER JOIN`, the result would include "Diana", with her package name being `NULL`.
+
+### Table Aliases
+- When using equi-joins, while mentioning column names, we must also mention the table the column belongs to, as there may be common column names in the tables (the table name and column name are to be separated by a `.` as seen in the above example).
+- When many columns are to be selected, the command can become unnecessarily long. To prevent this, we can use table aliases, which have a similar syntax to column aliases we saw earlier.
+
+**Syntax:**
+
+```sql
+SELECT t1.col1, t2.col2 FROM table1 AS t1 INNER JOIN table2 AS t2 ON t1.common_col = t2.common_col;
+```
+Note: The `AS` keyword is optional here as well.
+
+
+## Natural Join
+
+A **natural join** is a specialized form of equi-join that automatically joins two tables based on all columns that share the same name in both tables. Unlike a standard equi-join where the join condition must be explicitly specified, a natural join performs the comparison implicitly.
+
+- The database identifies columns with identical names in both tables, and uses the equality operator on the values to join the tables. 
+- The identically named column only appears once in the result.
+- No explicit join condition (ON or WHERE clause) is required
+
+### Syntax
+
+```sql
+SELECT * FROM table1 NATURAL JOIN table2;
+```
+
+### Example
+
+If both the **Students** table and the **Enrollments** table contain a column named "StudentID", MySQL will automatically join the tables on this column and display StudentID only once in the result.
+
+```sql
+SELECT * FROM Students NATURAL JOIN Enrollments;
+```
+
+## Note
+- Since the `JOIN` is evaluated on the raw data on the table, the columns having matching names need not be selected while performing a natural join. i.e., if we did not want to display the StudentID in the above table, only the columns that we want to display can be mentioned, and the join would work as intended.
+- Natural joins can produce unexpected results if tables contain unintended common column names. It is generally recommended to use explicit join conditions for better control and clarity in production queries.
+
+---

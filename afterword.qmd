@@ -1,0 +1,17 @@
+# Afterword
+
+Most of this book, was written by me just a few days before our board exams, as a way to revise the SQL syllabus. I was unable to include a section on Python Connectivity due to time constraints. This may be added in the future, if I find time for it.
+
+## Some More Information
+
+For accurate information about MySQL's functions, datatypes, etc., visit the [MySQL Documentation](https://dev.mysql.com/doc/). Some features  however, may not be a part of the syllabus.
+
+Another prominent RDBMS software is [PostgreSQL](https://www.postgresql.org/), which is used extensively in common applications such as Instagram, Reddit, Spotify, etc. Postgres too is a Relational Database, and uses SQL to query and modify data.
+
+You can learn more about it online, and maybe use it for personal projects. (Do confirm with your teacher whether it can be used for the CBSE Board Project if you want to do that)
+
+Google's [Firebase](https://firebase.google.com/) platform uses a 'NoSQL' database, which has a flexible structure, and can adapt to the application's requirements. Many other database solutions also use 'NoSQL', for different reasons such as performance or flexibility. Some popular ones are [MongoDB](https://www.mongodb.com/) and [Redis](https://redis.io/)
+
+## Errors in the Handbook
+
+If you encounter any errors in the book itself or other issues while accessing the book, do reach out to me at the email address given in the **Preface** section, or create an Issue on GitHub.

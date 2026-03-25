@@ -1,0 +1,266 @@
+# Querying Individual Tables
+
+- The `SELECT` command is used to retrieve data from one or more tables in a database. Its full syntax supports several optional clauses, each serving a specific purpose. Not all clauses are required — a simple query may use only a few of them, while more complex queries may chain several together.
+
+The general structure of a `SELECT` statement is as follows:
+```sql
+SELECT   column1, column2, ...    ← Columns to retrieve. Use * for all.
+FROM     tablename                ← Table to retrieve data from.
+WHERE    condition                ┐
+GROUP BY column                   │
+HAVING   condition                ├ All optional clauses
+ORDER BY column [ASC|DESC]        │
+LIMIT    n;                       ┘
+```
+
+Only the `SELECT` and `FROM`[^1] are mandatory — all other clauses are optional and can be included as needed. The clauses must always be written in the order shown above. In the sections that follow, each clause will be explored in detail.
+
+[^1]: The `FROM` clause is only mandatory when selecting data from a table.
+
+## Selecting Unique Values
+
+- To select unique/distinct values of a column, or select distinct pairs of values across multiple columns, the `SELECT DISTINCT` command can be used.
+
+Syntax:
+```sql
+SELECT DISTINCT column1, column2 ... FROM tablename;
+```
+
+- Note: If multiple columns are specified, the statement evaluates the **unique combination** of all specified columns.
+
+## Specifying Columns
+After the `SELECT` keyword, specify the columns you want to retrieve as a comma-separated list. For example, `SELECT name, age, city` retrieves only those three columns. To retrieve all columns in the table, use an asterisk (`*`) in place of the column list — `SELECT *`. While convenient, using `SELECT *` is generally discouraged in practice as it retrieves unnecessary data; it is better to explicitly name only the columns you need.
+
+Beyond plain column names, `SELECT` can also include:
+
+- **Built-in functions applied to columns** — 
+
+  For example, `SELECT UPPER(name), LENGTH(email)` applies a function to each value in that column as it is retrieved.
+
+- **Arithmetic expressions on columns** — 
+
+  For example, `SELECT price * quantity` computes a value from two columns for each row.
+
+- **Constants and expressions** — 
+
+  For example, `SELECT name, 'Student' AS type` includes a fixed string value alongside a column for every row returned.
+
+These can all be freely mixed in a single `SELECT` statement, separated by commas, and aliases can be used with any of them to give the output column a meaningful name.
+
+> The `IFNULL` function, discussed earlier, can be used to display `NULL` values in a more user friendly way:
+> `SELECT Name, IFNULL(PhoneNumber, 'Unavailable') FROM Contacts`
+> This would display the phone numbers of the contacts, and display 'Unavailable' for those contacts which do not have a phone number.
+
+### Aliases
+- An alias gives a column or expression in the result a custom name, using the `AS` keyword. For example, `SELECT UPPER(name) AS Name, price * quantity AS Total` labels the two output columns as `Name` and `Total` rather than the default, which would just be the expression itself. 
+  
+  The `AS` keyword is optional — `SELECT UPPER(name) Name` works the same way — however, including it makes the query easier to read.
+
+- Note that aliases cannot be used in the `WHERE` clause of the same query, as `WHERE` is evaluated before the `SELECT` columns are processed. However, MySQL does allow aliases to be referenced in `ORDER BY`, `GROUP BY`, and `HAVING` — though this is a MySQL-specific behaviour and is not part of the standard SQL specification.
+
+## The FROM Clause
+- The `FROM` clause specifies the table name from which the data is to be queried. In later sections we will see how `FROM` can also be used to query multiple tables at once using joins.
+
+## The WHERE Clause
+- The `WHERE` clause filters the rows returned by a query, retrieving only those that satisfy a given condition. 
+- The condition is an expression that evaluates to true or false for each row — only rows for which it evaluates to true are included in the result. 
+- Conditions are built using relational operators (`=`, `!=`, `>`, `<`, `>=`, `<=`) to compare column values against other values or expressions, and multiple conditions can be combined using the logical operators `AND`, `OR`, and `NOT`.
+
+Example:
+```sql
+mysql> SELECT name, age FROM students WHERE age > 18;
++---------+-----+
+| name    | age |
++---------+-----+
+| Alice   |  19 |
+| Bob     |  21 |
+| Charlie |  20 |
++---------+-----+
+```
+- The above query selects the name and age of students whose age is greater than 18 from the `students` table.
+
+Multiple conditions can also be combined using logical operators `AND`, `OR` and `NOT`
+
+Example:
+```sql
+mysql> SELECT name, age, city FROM students WHERE age > 18 AND city = 'London';
++---------+-----+--------+
+| name    | age | city   |
++---------+-----+--------+
+| Alice   |  19 | London |
+| Charlie |  20 | London |
++---------+-----+--------+
+2 rows in set (0.00 sec)
+```
+
+These are special conditions used in the `WHERE` clause for cases that cannot be handled with regular relational operators:
+
+| Condition           | Meaning                                           | Example                             |
+| ------------------- | ------------------------------------------------- | ----------------------------------- |
+| `IS NULL`           | True if the column value is null                  | `WHERE email IS NULL`               |
+| `IS NOT NULL`       | True if the column value is not null              | `WHERE email IS NOT NULL`           |
+| `LIKE pattern`      | True if the value matches a pattern               | `WHERE name LIKE 'A_%'`             |
+| `IN (v1, v2, ...)`  | True if the value matches any value in the list   | `WHERE city IN ('London', 'Paris')` |
+| `BETWEEN v1 AND v2` | True if the value is within the range (inclusive) | `WHERE age BETWEEN 18 AND 25`       |
+
+### The LIKE operator
+
+- The `LIKE` operator is used in the `WHERE` clause to filter rows based on a pattern match against a string column, rather than an exact value. It uses two wildcard characters:
+
+|Wildcard|Meaning|
+|---|---|
+|`%`|Matches any sequence of zero or more characters|
+|`_`|Matches exactly one character|
+
+Examples:
+```sql
+mysql> SELECT name FROM students WHERE name LIKE 'A%';
++-------+
+| name  |
++-------+
+| Alice |
+| Aaron |
++-------+
+```
+```sql
+mysql> SELECT name FROM students WHERE name LIKE '_ob';
++------+
+| name |
++------+
+| Bob  |
+| Rob  |
++------+
+```
+
+- The first query returns all students whose name begins with `A`. The second returns all students whose name is exactly three characters long and ends with `ob`. 
+- Patterns can also use both wildcards together — for example, `LIKE '_a%'` would match any name where the second character is `a`.
+
+## Aggregate Functions and the GROUP BY Clause
+- Aggregate functions are functions that accept values of multiple rows and return a single result. Using the `GROUP BY` clause, the rows can be divided into groups and passed to the aggregate function, allowing the result to be displayed for each group of rows.
+
+Syntax:
+```sql
+SELECT column1, AggregateFunction(column2) FROM tablename GROUP BY column1;
+```
+- The columns that do not have aggregate functions applied to them must be grouped using the `GROUP BY` clause.
+- If only the column with an aggregate function applied is selected, only one result is obtained.
+
+Some common aggregate functions of MySQL are:
+
+| Function  | Syntax                             | Description                                                                                     | Example                              |
+| --------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `AVG()`   | `AVG(column_name)`                 | Calculates the average value of a numeric column.                                               | `SELECT AVG(price) FROM products;`   |
+| `COUNT()` | `COUNT(column_name)` or `COUNT(*)` | Returns the number of rows that match a specified criterion (ignores `NULL`s unless using `*`). | `SELECT COUNT(orderid) FROM orders;` |
+| `MAX()`   | `MAX(column_name)`                 | Returns the largest value in the selected column.                                               | `SELECT MAX(amount) FROM orders;`    |
+| `MIN()`   | `MIN(column_name)`                 | Returns the smallest value in the selected column.                                              | `SELECT MIN(amount) FROM orders;`    |
+| `SUM()`   | `SUM(column_name)`                 | Returns the total sum of a numeric column.                                                      | `SELECT SUM(salary) FROM employees;` |
+
+### Notes
+- Most aggregate functions (except `COUNT(*)`) ignore `NULL` values when performing calculations.
+- Distinct Calculation: You can use the `DISTINCT` keyword inside these functions (e.g., `COUNT(DISTINCT column)`) to perform calculations on unique values only.
+- Numeric requirement: Functions like `AVG()` and `SUM()` require numeric data, while `MIN()` and `MAX()` can also work with strings and dates.
+
+### Example
+**Sample Table: Orders**
+
+| OrderId | CustomerName | Category    | Amount |
+| ------- | ------------ | ----------- | ------ |
+| 1       | Alice        | Electronics | 1200   |
+| 2       | Bob          | Clothing    | 50     |
+| 3       | Alice        | Clothing    | 80     |
+| 4       | Charlie      | Electronics | 400    |
+| 5       | Bob          | Clothing    | 30     |
+
+To find out how many orders each customer has made, we can perform the following query:
+```sql
+mysql> SELECT CustomerName, COUNT(OrderId) AS TotalOrders FROM Orders GROUP BY CustomerName;
++--------------+-------------+
+| CustomerName | TotalOrders |
++--------------+-------------+
+| Alice        |           2 |
+| Bob          |           2 |
+| Charlie      |           1 |
++--------------+-------------+
+```
+
+## The HAVING Clause
+- The `HAVING` clause works similarly to the `WHERE` clause, but with one key difference — The `WHERE` clause acts on the **data stored in the table**, while the HAVING clause acts on the **data retrieved after grouping**.
+- Thus, it can be used to further filter the grouped results obtained using the `GROUP BY` clause.
+
+### Example
+Using the same sample table **Orders** from above, we can perform the following query:
+```sql
+mysql> SELECT Category, SUM(Amount) AS TotalAmt FROM Orders GROUP BY Category HAVING TotalAmt < 1000;
++----------+----------+
+| Category | TotalAmt |
++----------+----------+
+| Clothing |      160 |
++----------+----------+
+```
+
+Here, only the category having total amount less than 1000 has been displayed.
+
+### Common Mistakes
+- A common mistake is to use the `WHERE` clause instead of the `HAVING` clause. Remember, the `WHERE` clause cannot act on data after it has been grouped, but can only be used to filter data before grouping.
+### Using both WHERE and HAVING
+- For cases where a developer wants to first filter by some condition, then group the data, then show results where the aggregate function value matches some condition, both `WHERE` and `HAVING` clauses need to be used.
+For example, if a developer wants to find the products having more than 1000 sales in a particular city, the query would be something like:
+```sql
+SELECT ProductName, COUNT(ProductId) as SoldCount FROM SoldProducts WHERE City = "Bengaluru" HAVING SoldCount > 1000;
+```
+
+## The ORDER BY Clause
+- It is used to order data selected in a table in either ascending `ASC` (default) or descending `DESC` order.
+- By default, the `ORDER BY` clause is case insensitive, thus if it is used on a text column, 'apple' and 'Apple' will be displayed in the order that they have been inserted into the column.
+- The `DESC` keyword can be written after the expression for descending order.
+### Examples
+```sql
+SELECT Name FROM Employees ORDER BY LENGTH(Name);
+```
+```sql
+SELECT Name, Price FROM Products ORDER BY Price DESC;
+```
+
+This clause can be used on the result of a `GROUP BY` clause, for example (Sample table **Orders**):
+```sql
+mysql> SELECT CustomerName, SUM(Amount) AS TotalAmt FROM Orders GROUP BY CustomerName ORDER BY TotalAmt DESC;
++---------------+----------+
+| CustomerName  | TotalAmt |
++---------------+----------+
+| Alice         |     1280 |
+| Charlie       |      400 |
+| Bob           |       80 |
++---------------+----------+
+3 rows in set (0.00 sec)
+```
+
+## The LIMIT Clause
+- It is used to limit the number of results of the query.
+### Examples
+To get the top 10 most populated cities:
+```sql
+SELECT State, City, Population FROM Cities ORDER BY Population DESC LIMIT 10;
+```
+To get the least spender from the **Orders** sample table:
+```sql
+mysql> SELECT CustomerName, SUM(Amount) AS TotalAmt FROM Orders GROUP BY CustomerName ORDER BY TotalAmt LIMIT 1;
++--------------+----------+
+| CustomerName | TotalAmt |
++--------------+----------+
+| Bob          |       80 |
++--------------+----------+
+```
+
+## Order of Execution of the SELECT command
+
+The logical order of execution is different from how you write the query. MySQL processes them in this specific sequence:
+
+1. **`FROM`** (and **`JOIN`**): First, the database identifies the table(s) to pull data from.
+2. **`WHERE`**: Filters the raw rows **_before_** any grouping or calculations happen.
+3. **`GROUP BY`**: Collapses the remaining rows into buckets based on the specified columns.
+4. **`HAVING`**: Filters the ***groups*** created in the previous step (can use aggregate results).
+5. **`SELECT`**: Determines which columns to show and calculates any expressions/aliases.
+6. **`ORDER BY`**: Sorts the final result set for display.
+7. **`LIMIT`**: Finally, chops off the results to only show the requested number of rows.
+
+Here, the difference between the `WHERE` and `HAVING` clause is more clear, and it can be understood why they cannot be used interchangeably.

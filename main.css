@@ -1,0 +1,13 @@
+@import "fonts/0xProto.css";
+
+p, li:not(.sidebar-item) {
+  text-align: justify;
+}
+
+#TOC li {
+  text-align: inherit;
+}
+
+code, code span {
+  font-family: '0xProto';
+}

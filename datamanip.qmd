@@ -1,0 +1,155 @@
+# Data Manipulation
+
+- Once we've created tables, we must add the **data**, which forms the primary part of the [data]{.underline}base
+- We should also be able to update and delete data according to our requirements.
+- These operations are handled by the **DML** commands, as discussed earlier.
+
+## Inserting Data
+- Insertion of data into tables is done using the `INSERT` command. This command allows you to add rows having values for *all columns*, or having values for only a *few specified columns*.
+
+### Inserting Values for All Columns
+**Syntax:**
+```sql
+INSERT INTO tablename VALUES tuple1, tuple2 ...
+```
+
+- In the above method, values for all columns **must** be specified, and **in the same order** as the columns are in the table.
+
+Each tuple has to be written as:
+```sql
+(value1, value2, ...)
+```
+
+- String and date values must be enclosed in single `'` or double quotes `"`, while numeric values must be entered as is. `NULL` can be inserted by typing `NULL` without quotes in the tuple.
+
+Example:
+```sql
+INSERT INTO Customers VALUES
+('C001', 'Alice John', '12 Park Street', '9876543210', 'alice@email.com', '1995-04-12'),
+('C002', 'Rahul Sharma', '45 Lake Road', '9123456780', 'rahul@email.com', '1992-11-08');
+```
+
+### Inserting Values for Selected Columns
+- Sometimes it is not necessary to provide values for **all columns**. In such cases, the column names can be specified explicitly.
+- If a column is not listed in the column list, it will **automatically** receive `NULL` or its **default value** if set.
+- Only column names having a **valid default parameter** can be omitted while inserting records, e.g. if the default value for a column `Email` is `NULL`, but the column has a `NOT NULL` constraint, trying to insert a record without the `Email` column will result in an error.
+
+**Syntax:**
+```sql
+INSERT INTO tablename (column1, column2, ...)  
+VALUES (value1, value2, ...);
+```
+
+In this method:
+
+- Only the specified columns receive values.
+- The values must be given **in the same order as the listed columns**, but the order of the listed columns can be different from that of the table.
+
+Example:
+```sql
+INSERT INTO Customers (CustomerId, CustomerName, Email, Address)  
+VALUES ('C003', 'Neha Gupta', 'neha@email.com', '27 Ocean Avenue');
+```
+
+In this case:
+
+- Only `CustomerId`, `CustomerName`, `Email`, and `Address` are given values.
+- The remaining columns will receive **NULL values or their default values**, if defined.
+
+## Updating Data
+
+- Existing records in a table can be modified using the `UPDATE` command.
+- This command changes the values of one or more columns for selected rows.
+
+**Syntax:**
+```sql
+UPDATE tablename
+SET column1 = value1,
+    column2 = value2,
+    ...
+[WHERE condition];
+```
+
+- The `SET` clause specifies **which columns should be updated** and their **new values**.    
+- The `WHERE` clause determines **which rows are affected**.
+
+### Examples
+
+**Single column updation:**
+```sql
+UPDATE Customers
+SET PhoneNumber = '9001234567'
+WHERE CustomerId = 'C001';
+```
+
+This updates the phone number of the customer with ID `C001`.
+
+**Multiple column updation:**
+```sql
+UPDATE Customers
+SET Address = '78 Green Road',
+    PhoneNumber = '9988776655'
+WHERE CustomerId = 'C002';
+```
+
+**Using expressions:**
+```sql
+UPDATE Employees
+SET Salary = Salary + 20000
+WHERE Department = 'AI';
+```
+- Expressions can be used to update columns based on their previous value.
+
+### Important Note
+- If the `WHERE` clause is **omitted**, the update will affect **all rows in the table**.
+
+Example:
+```sql
+UPDATE Customers
+SET Address = 'Unknown';
+```
+
+This changes the `Address` for **every record** in the table.
+
+## Deleting Data
+- Records in a table can be removed using the `DELETE` command.
+- This command deletes **one or more rows** from a table.
+**Syntax:**
+```sql
+DELETE FROM tablename
+[WHERE condition];
+```
+
+### Examples
+#### Single record deletion:
+```sql
+DELETE FROM Customers
+WHERE CustomerId = 'C003';
+```
+This deletes the record of the customer whose ID is `C003`.
+
+#### Multiple record deletion:
+```sql
+DELETE FROM Customers
+WHERE Address = 'Unknown';
+```
+This deletes all customers whose address is `"Unknown"`.
+
+### Important Note
+- If the `WHERE` clause is **not specified**, **all rows in the table will be deleted**.
+
+Example:
+```sql
+DELETE FROM Customers;
+```
+
+- This removes **every record** from the table, but the **table structure remains unchanged**.
+
+Another way of doing the same action is by using the `TRUNCATE` command:
+
+**Syntax:**
+```sql
+TRUNCATE tablename;
+```
+
+- Note: Although the `TRUNCATE` command is manipulating the data, it is classified as a **DDL** command, the reason for this is quite complicated — you can read more about it with a quick google.

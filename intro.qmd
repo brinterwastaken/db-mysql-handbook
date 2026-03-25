@@ -1,0 +1,86 @@
+# Introduction to Databases
+
+A database is a system of organized storage of data that allows easy storage, updating, and retrieval of data according to a specific use case.
+Databases are essential for *storing, managing, and retrieving massive volumes of structured data efficiently*, which is impossible with traditional file systems or spreadsheets.
+They provide data integrity, security, and fast access, enabling applications like social media, banking systems, and online shopping to function reliably.
+
+## Advantages
+- **Efficient Data Management & Storage** - Structured storage of data (e.g. in rows and columns), allowing for easier management.
+- **Fast Information Retrieval** - Many databases use indexing allowing for fast retrieval of specific data from large data sets.
+- **Data Integrity & Consistency** - Databases enforce rules and constraints to prevent data duplication and errors, ensuring that data is accurate and consistent across all applications.
+- **Data Security and Access** - Data can be secured to allow access only for specific users. Simultaneous access of data can also be implemented using databases.
+- **Backup & Recovery** - Databases allow easy setup of backup tools to prevent accidental data losses.
+
+## Database Models
+- A database model is a theoretical framework determining the logical structure of a database, governing how data is stored, organized, and manipulated.
+- There are many different database models that are suited for different applications. One of the most widely used is the **relational database model**, which is both simple and versatile.
+
+# The Relational Database Model
+- This model organizes data into **tables**, consisting of **rows** (also called _tuples_) and **columns** (also called _attributes_).
+- Each column contains values of the same type of information, while each row contains values of different attributes describing a single item.
+
+For example:
+
+| Id  | Brand         | Model   | Color     |
+| --- | ------------- | ------- | --------- |
+| 001 | Maruti Suzuki | Dzire   | White     |
+| 002 | Tata          | Sierra  | Yellow    |
+| 003 | Hyundai       | Creta   | Grey      |
+| 004 | Toyota        | Hyrider | Black     |
+| 005 | Mahindra      | XUV700  | Dark Blue |
+
+In the above example, each row represents one vehicle, while each column contains a single type of information about the vehicles.
+
+## Structure of a Relation
+- For any attribute, we can define a **domain** as the set of all possible values that attribute may take.
+- Let the domain of attribute $A_n$ be $D_n$.
+- A relation consists of tuples with _n_ values corresponding to the _n_ attributes of the relation.
+Thus, each tuple belongs to
+
+$$  
+D_1 \times D_2 \times D_3 \times \ldots \times D_n  
+$$
+
+Since not every possible combination necessarily appears in the table, the relation itself is a **subset** of this Cartesian product.
+
+
+## Degree and Cardinality
+**Degree**
+- The **number of attributes (columns)** in a relation is called its **degree**.
+- In the above table the degree is **4**.
+
+**Cardinality**
+- The **number of tuples (rows)** in a relation is called its **cardinality**.
+- In the above table the cardinality is **5**.
+
+## Keys
+Keys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.
+
+1. **Primary Key**  
+    A column or set of columns that uniquely identifies each record in a table.  
+    Primary keys **cannot contain NULL values**.
+
+2. **Unique Key**  
+    A column or set of columns that ensures all values are unique.  
+    Unlike a primary key, a unique key **may allow a NULL value** depending on the database system.
+
+3. **Foreign Key**  
+    A column (or set of columns) that establishes a relationship between two tables by referencing the **primary key of another table**.
+    
+4. **Candidate and Alternate Keys**
+    - *Candidate keys* are columns or sets of columns that can uniquely identify each record in a table.
+    - One candidate key is chosen by the developer as the *primary key*.
+    - The remaining candidate keys are called *alternate keys*.
+
+## Relational Database Management Systems (RDBMS)
+- The relational model describes the *theoretical structure* of relational databases. In practice, databases based on this model are implemented using **Relational Database Management Systems (RDBMS)**.
+- An RDBMS is software that allows users to **create, manage, and query relational databases** while enforcing rules such as data integrity, access control, and relationships between tables.
+- Some widely used RDBMS implementations include **MySQL, PostgreSQL, SQLite, Oracle Database, and Microsoft SQL Server**.
+
+### Schema
+- In a database management system (DBMS), a **schema** is [the skeleton structure or "blueprint" that defines how data is organized]{.underline}. It outlines the logical constraints, relationships, and objects that make up the database, such as tables, views, fields, and indexes.
+
+### MySQL
+- **MySQL** is a widely used **open-source relational database management system**. It is known for its reliability, performance, and ease of use, and is commonly used in web applications.
+- In MySQL, data is organized into **databases containing tables**, following the relational model described earlier. Users interact with these databases using **Structured Query Language (SQL)**, which allows them to create tables, insert data, and retrieve information.
+In the following sections, we will introduce **SQL and its basic commands**.
