@@ -5,7 +5,9 @@ This book was written with an aim to explain the concepts of Database Management
 It introduces the concept of databases, explaining its advantages over traditional data storage systems, and explains the relational database model. Following this is a comprehensive guide to working with MySQL - including creating databases and tables, adding data, and fetching data with queries.
 
 ::: {.content-visible when-format="html"}
-[Click Here to Download PDF](https://github.com/brinterwastaken/db-mysql-handbook/releases/latest/download/Database-and-MySQL-Handbook.pdf) for offline reading/printing.
+
+<a href="/Database-and-MySQL-Handbook.pdf" download>Click Here to Download a PDF</a> for offline reading/printing.
+
 :::
 
 ## Disclaimer
