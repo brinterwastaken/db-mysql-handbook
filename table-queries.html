@@ -70,6 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./joins.html" rel="next">
 <link href="./simple-queries.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -274,8 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <code>SELECT</code> command is used to retrieve data from one or more tables in a database. Its full syntax supports several optional clauses, each serving a specific purpose. Not all clauses are required — a simple query may use only a few of them, while more complex queries may chain several together.</li>
 </ul>
 <p>The general structure of a <code>SELECT</code> statement is as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>   column1, column2, <span class="op">..</span>.    ← <span class="kw">Columns</span> <span class="kw">to</span> retrieve. <span class="kw">Use</span> <span class="op">*</span> <span class="cf">for</span> <span class="kw">all</span>.</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span>     tablename                ← <span class="kw">Table</span> <span class="kw">to</span> retrieve <span class="kw">data</span> <span class="kw">from</span>.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>   column1, column2, <span class="op">..</span>.    <span class="op">&lt;-</span> <span class="kw">Columns</span> <span class="kw">to</span> retrieve. <span class="kw">Use</span> <span class="op">*</span> <span class="cf">for</span> <span class="kw">all</span>.</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span>     tablename                <span class="op">&lt;-</span> <span class="kw">Table</span> <span class="kw">to</span> retrieve <span class="kw">data</span> <span class="kw">from</span>.</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span>    condition                ┐</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">column</span>                   │</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span>   condition                ├ <span class="kw">All</span> optional clauses</span>
@@ -356,9 +357,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These are special conditions used in the <code>WHERE</code> clause for cases that cannot be handled with regular relational operators:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 47%">
-<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 39%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -453,10 +454,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Some common aggregate functions of MySQL are:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 19%">
-<col style="width: 54%">
-<col style="width: 20%">
+<col style="width: 9%">
+<col style="width: 26%">
+<col style="width: 34%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -476,7 +477,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td><code>COUNT()</code></td>
 <td><code>COUNT(column_name)</code> or <code>COUNT(*)</code></td>
-<td>Returns the number of rows that match a specified criterion (ignores <code>NULL</code>s unless using <code>*</code>).</td>
+<td>Returns the number of rows that match a specified criterion.</td>
 <td><code>SELECT COUNT(orderid) FROM orders;</code></td>
 </tr>
 <tr class="odd">
@@ -502,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="notes"><span class="header-section-number">8.5.1</span> Notes</h3>
 <ul>
-<li>Most aggregate functions (except <code>COUNT(*)</code>) ignore <code>NULL</code> values when performing calculations.</li>
+<li>Most aggregate functions ignore <code>NULL</code> values when performing calculations. <code>COUNT()</code> only counts rows with <code>NULL</code> values when <code>COUNT(*)</code> is used.</li>
 <li>Distinct Calculation: You can use the <code>DISTINCT</code> keyword inside these functions (e.g., <code>COUNT(DISTINCT column)</code>) to perform calculations on unique values only.</li>
 <li>Numeric requirement: Functions like <code>AVG()</code> and <code>SUM()</code> require numeric data, while <code>MIN()</code> and <code>MAX()</code> can also work with strings and dates.</li>
 </ul>

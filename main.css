@@ -11,3 +11,7 @@ p, li:not(.sidebar-item) {
 code, code span {
   font-family: '0xProto';
 }
+
+.quarto-cover-image {
+  max-width: 25%;
+}

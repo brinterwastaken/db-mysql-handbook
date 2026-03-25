@@ -70,6 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./table-queries.html" rel="next">
 <link href="./datamanip.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -399,10 +400,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="numeric-functions"><span class="header-section-number">7.3.1</span> Numeric Functions</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 56%">
 <col style="width: 21%">
-<col style="width: 5%">
+<col style="width: 46%">
+<col style="width: 24%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -417,49 +418,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>ABS(n)</code></td>
 <td>Returns the absolute value of <code>n</code></td>
 <td><code>ABS(-15)</code></td>
-<td><code>15</code></td>
+<td>15</td>
 </tr>
 <tr class="even">
 <td><code>ROUND(n, d)</code></td>
 <td>Rounds <code>n</code> to <code>d</code> decimal places</td>
 <td><code>ROUND(3.14159, 2)</code></td>
-<td><code>3.14</code></td>
+<td>3.14</td>
 </tr>
 <tr class="odd">
 <td><code>CEIL(n)</code></td>
 <td>Returns the smallest integer greater than or equal to <code>n</code></td>
 <td><code>CEIL(4.2)</code></td>
-<td><code>5</code></td>
+<td>5</td>
 </tr>
 <tr class="even">
 <td><code>FLOOR(n)</code></td>
 <td>Returns the largest integer less than or equal to <code>n</code></td>
 <td><code>FLOOR(4.9)</code></td>
-<td><code>4</code></td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td><code>TRUNCATE(n, d)</code></td>
 <td>Truncates <code>n</code> to <code>d</code> decimal places without rounding</td>
 <td><code>TRUNCATE(3.14159, 2)</code></td>
-<td><code>3.14</code></td>
+<td>3.14</td>
 </tr>
 <tr class="even">
 <td><code>MOD(n, m)</code></td>
 <td>Returns the remainder when <code>n</code> is divided by <code>m</code></td>
 <td><code>MOD(17, 5)</code></td>
-<td><code>2</code></td>
+<td>2</td>
 </tr>
 <tr class="odd">
 <td><code>POWER(n, e)</code></td>
 <td>Returns <code>n</code> raised to the power <code>e</code></td>
 <td><code>POWER(2, 8)</code></td>
-<td><code>256</code></td>
+<td>256</td>
 </tr>
 <tr class="even">
 <td><code>SQRT(n)</code></td>
 <td>Returns the square root of <code>n</code></td>
 <td><code>SQRT(144)</code></td>
-<td><code>12</code></td>
+<td>12</td>
 </tr>
 </tbody>
 </table>
@@ -469,9 +470,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 31%">
 <col style="width: 30%">
-<col style="width: 15%">
+<col style="width: 32%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -486,55 +487,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>NOW()</code></td>
 <td>Returns the current date and time</td>
 <td><code>NOW()</code></td>
-<td><code>2026-03-24 10:45:00</code></td>
+<td>2026-03-24 10:45:00</td>
 </tr>
 <tr class="even">
 <td><code>CURDATE()</code></td>
 <td>Returns the current date</td>
 <td><code>CURDATE()</code></td>
-<td><code>2026-03-24</code></td>
+<td>2026-03-24</td>
 </tr>
 <tr class="odd">
 <td><code>CURTIME()</code></td>
 <td>Returns the current time</td>
 <td><code>CURTIME()</code></td>
-<td><code>10:45:00</code></td>
+<td>10:45:00</td>
 </tr>
 <tr class="even">
 <td><code>YEAR(date)</code></td>
 <td>Extracts the year from a date</td>
 <td><code>YEAR('2026-03-24')</code></td>
-<td><code>2026</code></td>
+<td>2026</td>
 </tr>
 <tr class="odd">
 <td><code>MONTH(date)</code></td>
 <td>Extracts the month from a date</td>
 <td><code>MONTH('2026-03-24')</code></td>
-<td><code>3</code></td>
+<td>3</td>
 </tr>
 <tr class="even">
 <td><code>DAY(date)</code></td>
 <td>Extracts the day from a date</td>
 <td><code>DAY('2026-03-24')</code></td>
-<td><code>24</code></td>
+<td>24</td>
 </tr>
 <tr class="odd">
 <td><code>MONTHNAME(date)</code></td>
 <td>Returns the full name of the month</td>
 <td><code>MONTHNAME('2026-03-24')</code></td>
-<td><code>March</code></td>
+<td>March</td>
 </tr>
 <tr class="even">
 <td><code>DAYNAME(date)</code></td>
 <td>Returns the name of the weekday</td>
 <td><code>DAYNAME('2026-03-24')</code></td>
-<td><code>Tuesday</code></td>
+<td>Tuesday</td>
 </tr>
 <tr class="odd">
 <td><code>DATEDIFF(d1, d2)</code></td>
 <td>Returns the number of days between two dates</td>
 <td><code>DATEDIFF('2026-12-31', '2026-03-24')</code></td>
-<td><code>282</code></td>
+<td>282</td>
 </tr>
 </tbody>
 </table>
@@ -543,10 +544,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.3.3" class="anchored" data-anchor-id="string-functions"><span class="header-section-number">7.3.3</span> String Functions</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 45%">
-<col style="width: 27%">
-<col style="width: 9%">
+<col style="width: 19%">
+<col style="width: 39%">
+<col style="width: 30%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -561,79 +562,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>UPPER(str)</code></td>
 <td>Converts string to uppercase</td>
 <td><code>UPPER('hello')</code></td>
-<td><code>HELLO</code></td>
+<td>HELLO</td>
 </tr>
 <tr class="even">
 <td><code>LOWER(str)</code></td>
 <td>Converts string to lowercase</td>
 <td><code>LOWER('HELLO')</code></td>
-<td><code>hello</code></td>
+<td>hello</td>
 </tr>
 <tr class="odd">
 <td><code>LENGTH(str)</code></td>
 <td>Returns the length of the string in bytes</td>
 <td><code>LENGTH('hello')</code></td>
-<td><code>5</code></td>
+<td>5</td>
 </tr>
 <tr class="even">
 <td><code>CONCAT(s1, s2, ...)</code></td>
 <td>Joins two or more strings together</td>
 <td><code>CONCAT('Hello', ' ', 'World')</code></td>
-<td><code>Hello World</code></td>
+<td>Hello World</td>
 </tr>
 <tr class="odd">
 <td><code>SUBSTRING(str, pos, len)</code></td>
 <td>Extracts a substring starting at <code>pos</code>, of length <code>len</code></td>
 <td><code>SUBSTRING('Hello World', 7, 5)</code></td>
-<td><code>World</code></td>
+<td>World</td>
 </tr>
 <tr class="even">
 <td><code>TRIM(str)</code></td>
 <td>Removes leading and trailing spaces</td>
 <td><code>TRIM(' hello ')</code></td>
-<td><code>hello</code></td>
+<td>hello</td>
 </tr>
 <tr class="odd">
 <td><code>LTRIM(str)</code></td>
 <td>Removes leading (left) spaces</td>
 <td><code>LTRIM(' hello')</code></td>
-<td><code>hello</code></td>
+<td>hello</td>
 </tr>
 <tr class="even">
 <td><code>RTRIM(str)</code></td>
 <td>Removes trailing (right) spaces</td>
 <td><code>RTRIM('hello ')</code></td>
-<td><code>hello</code></td>
+<td>hello</td>
 </tr>
 <tr class="odd">
 <td><code>REPLACE(str, from, to)</code></td>
 <td>Replaces all occurrences of a substring with another</td>
 <td><code>REPLACE('Hello World', 'World', 'SQL')</code></td>
-<td><code>Hello SQL</code></td>
+<td>Hello SQL</td>
 </tr>
 <tr class="even">
 <td><code>REVERSE(str)</code></td>
 <td>Reverses the string</td>
 <td><code>REVERSE('hello')</code></td>
-<td><code>olleh</code></td>
+<td>olleh</td>
 </tr>
 <tr class="odd">
 <td><code>INSTR(str, substr)</code></td>
 <td>Returns the position of the first occurrence of <code>substr</code> in <code>str</code></td>
 <td><code>INSTR('Hello World', 'World')</code></td>
-<td><code>7</code></td>
+<td>7</td>
 </tr>
 <tr class="even">
 <td><code>LEFT(str, n)</code></td>
 <td>Returns the leftmost <code>n</code> characters</td>
 <td><code>LEFT('Hello World', 5)</code></td>
-<td><code>Hello</code></td>
+<td>Hello</td>
 </tr>
 <tr class="odd">
 <td><code>RIGHT(str, n)</code></td>
 <td>Returns the rightmost <code>n</code> characters</td>
 <td><code>RIGHT('Hello World', 5)</code></td>
-<td><code>World</code></td>
+<td>World</td>
 </tr>
 </tbody>
 </table>
@@ -644,9 +645,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
-<col style="width: 48%">
-<col style="width: 21%">
-<col style="width: 7%">
+<col style="width: 37%">
+<col style="width: 30%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -661,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>IFNULL(value, fallback)</code></td>
 <td>If the <code>value</code> field is null, it returns the <code>fallback</code></td>
 <td><code>IFNULL(NULL,'nothing')</code></td>
-<td><code>nothing</code></td>
+<td>nothing</td>
 </tr>
 </tbody>
 </table>
