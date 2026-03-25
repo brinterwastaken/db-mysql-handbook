@@ -60,12 +60,3 @@ format:
         \RedeclareSectionCommand[beforeskip=10pt]{chapter}
         \RedeclareSectionCommand[beforeskip=-2ex, afterskip=1ex]{section}
         \RedeclareSectionCommand[beforeskip=-1.5ex, afterskip=0.5ex]{subsection}
-         \usepackage{fancyhdr}
-        \usepackage{graphicx}
-        \usepackage{eso-pic}
-        \usepackage{tikz}
-        \AtBeginDocument{\thispagestyle{empty}\begin{tikzpicture}[remember picture,overlay]
-          \node at (current page.south) [yshift=6cm] {\includegraphics[width=0.25\paperwidth,height=0.25\paperheight,keepaspectratio]{icon.png}};
-          \node at (current page.center) [yshift=4cm] [anchor=north,yshift=-2cm] {\Huge\textbf{Quarto PDF document - Template}};
-          \node at (current page.south) [yshift=5cm] [anchor=north,yshift=-2cm] {\normalsize\textbf{February 2024}};
-          \end{tikzpicture}\clearpage}
