@@ -4,6 +4,10 @@ This book was written with an aim to explain the concepts of Database Management
 
 It introduces the concept of databases, explaining its advantages over traditional data storage systems, and explains the relational database model. Following this is a comprehensive guide to working with MySQL - including creating databases and tables, adding data, and fetching data with queries.
 
+::: {.content-visible when-format="html"}
+[Click Here to Download PDF](https://github.com/brinterwastaken/db-mysql-handbook/releases/latest/download/Database-and-MySQL-Handbook.pdf) for offline reading/printing
+:::
+
 ## Disclaimer
 
 This document has been written in accordance to the [2025-26 CBSE Senior Secondary Computer Science Syllabus](https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Computer_Science_SrSec_2025-26.pdf), to cover topics in *Unit 3: Database Management* (**except 'interfacing an SQL database with Python'**), however it should be used as a supplementary resource alongside the prescribed textbook and other study materials.
