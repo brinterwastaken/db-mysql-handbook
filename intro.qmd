@@ -15,7 +15,7 @@ They provide data integrity, security, and fast access, enabling applications li
 - A database model is a theoretical framework determining the logical structure of a database, governing how data is stored, organized, and manipulated.
 - There are many different database models that are suited for different applications. One of the most widely used is the **relational database model**, which is both simple and versatile.
 
-# The Relational Database Model
+## The Relational Database Model
 - This model organizes data into **tables**, consisting of **rows** (also called _tuples_) and **columns** (also called _attributes_).
 - Each column contains values of the same type of information, while each row contains values of different attributes describing a single item.
 
@@ -31,7 +31,7 @@ For example:
 
 In the above example, each row represents one vehicle, while each column contains a single type of information about the vehicles.
 
-## Structure of a Relation
+### Structure of a Relation
 - For any attribute, we can define a **domain** as the set of all possible values that attribute may take.
 - Let the domain of attribute $A_n$ be $D_n$.
 - A relation consists of tuples with _n_ values corresponding to the _n_ attributes of the relation.
@@ -44,7 +44,7 @@ $$
 Since not every possible combination necessarily appears in the table, the relation itself is a **subset** of this Cartesian product.
 
 
-## Degree and Cardinality
+### Degree and Cardinality
 **Degree**
 - The **number of attributes (columns)** in a relation is called its **degree**.
 - In the above table the degree is **4**.
@@ -53,7 +53,7 @@ Since not every possible combination necessarily appears in the table, the relat
 - The **number of tuples (rows)** in a relation is called its **cardinality**.
 - In the above table the cardinality is **5**.
 
-## Keys
+### Keys
 Keys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.
 
 1. **Primary Key**  

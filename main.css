@@ -8,10 +8,10 @@ p, li:not(.sidebar-item) {
   text-align: inherit;
 }
 
-code, code span {
+pre, code, kbd, samp {
   font-family: '0xProto';
 }
 
 .quarto-cover-image {
-  max-width: 25%;
+  max-width: 30%;
 }

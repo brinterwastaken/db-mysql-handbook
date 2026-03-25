@@ -2,6 +2,9 @@ project:
   type: book
   preview:
     watch-inputs: true
+  resources:
+    - "fonts/"
+    - main.css
 
 book:
   favicon: favicon.png
