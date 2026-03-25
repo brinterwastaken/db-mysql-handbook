@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Introduction to Queries – Database and MySQL Handbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./table-queries.html" rel="next">
+<link href="./datamanip.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-527d7be6a69381a91f154d81cf33f55a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="main.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-queries.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction to Queries</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Database and MySQL Handbook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Databases</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dbcreate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Creating and Using a Database</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datatypes in MySQL</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datamanip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-queries.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction to Queries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./table-queries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Querying Individual Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Querying Multiple Tables — Joins</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./afterword.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Afterword</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arithmetic-and-logical-operations" id="toc-arithmetic-and-logical-operations" class="nav-link active" data-scroll-target="#arithmetic-and-logical-operations"><span class="header-section-number">7.1</span> Arithmetic and Logical Operations</a></li>
+  <li><a href="#working-with-strings" id="toc-working-with-strings" class="nav-link" data-scroll-target="#working-with-strings"><span class="header-section-number">7.2</span> Working with Strings</a></li>
+  <li><a href="#mysqls-built-in-functions" id="toc-mysqls-built-in-functions" class="nav-link" data-scroll-target="#mysqls-built-in-functions"><span class="header-section-number">7.3</span> MySQL’s Built-In Functions</a>
+  <ul class="collapse">
+  <li><a href="#numeric-functions" id="toc-numeric-functions" class="nav-link" data-scroll-target="#numeric-functions"><span class="header-section-number">7.3.1</span> Numeric Functions</a></li>
+  <li><a href="#datetime-functions" id="toc-datetime-functions" class="nav-link" data-scroll-target="#datetime-functions"><span class="header-section-number">7.3.2</span> Date/Time Functions</a></li>
+  <li><a href="#string-functions" id="toc-string-functions" class="nav-link" data-scroll-target="#string-functions"><span class="header-section-number">7.3.3</span> String Functions</a></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous"><span class="header-section-number">7.3.4</span> Miscellaneous</a></li>
+  <li><a href="#using-built-in-functions-without-a-table" id="toc-using-built-in-functions-without-a-table" class="nav-link" data-scroll-target="#using-built-in-functions-without-a-table"><span class="header-section-number">7.3.5</span> Using Built-In functions without a table</a></li>
+  <li><a href="#importance" id="toc-importance" class="nav-link" data-scroll-target="#importance"><span class="header-section-number">7.3.6</span> Importance</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction to Queries</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ul>
+<li>Data from a database can be accessed using queries. This is done using the <code>SELECT</code> command.</li>
+<li>Firstly, we will examine how the <code>SELECT</code> command can be used <strong>without referencing a table</strong> to perform arithmetic calculations and evaluate expressions. This feature is often used by developers to <strong>test expressions or verify query logic</strong> before applying them to actual table data.</li>
+<li>In the next chapter, we will deal with simple queries such as accessing all records of a table, as well as complex ones — querying data from multiple tables, which can be handled using different clauses of the <code>SELECT</code> command.</li>
+<li>MySQL also provides a <strong>dummy table</strong> called <code>DUAL</code>. This exists mainly for compatibility with the SQL standard and with other database systems that require a query to select data <strong>from a table</strong>.</li>
+<li>Any query that can be executed without referencing a table can also be written by selecting from the <code>DUAL</code> table using the <code>FROM</code> clause.</li>
+</ul>
+<section id="arithmetic-and-logical-operations" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="arithmetic-and-logical-operations"><span class="header-section-number">7.1</span> Arithmetic and Logical Operations</h2>
+<ul>
+<li>The <code>SELECT</code> command can evaluate <strong>arithmetic and logical expressions</strong> directly. The result is given in the form of a table having one column and one row.</li>
+<li>Logical expressions return <code>1</code> for true and <code>0</code> for false.</li>
+</ul>
+<p>Basic operators supported by SQL include:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Addition</td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>Subtraction</td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>Multiplication</td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>Division</td>
+</tr>
+<tr class="odd">
+<td><code>%</code></td>
+<td>Modulus (remainder)</td>
+</tr>
+<tr class="even">
+<td><code>=</code></td>
+<td>Is equal to</td>
+</tr>
+<tr class="odd">
+<td><code>!=</code> or <code>&lt;&gt;</code></td>
+<td>Is not equal to</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>Lesser than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>Greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;=</code></td>
+<td>Lesser than or equal to</td>
+</tr>
+<tr class="even">
+<td><code>AND</code></td>
+<td>True if both conditions are true</td>
+</tr>
+<tr class="odd">
+<td><code>OR</code></td>
+<td>True if at least one condition is true</td>
+</tr>
+<tr class="even">
+<td><code>NOT</code></td>
+<td>Reverses the result of a condition</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="dv">6</span> <span class="op">*</span> <span class="dv">7</span>;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>| <span class="dv">6</span> <span class="op">*</span> <span class="dv">7</span>  |</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">42</span>     |</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="dv">14</span><span class="op">!=</span><span class="dv">25</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>| <span class="dv">14</span><span class="op">!=</span><span class="dv">25</span> |</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>|      <span class="dv">1</span> |</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>Multiple operators can be used in an expression, which will be evaluated in the standard mathematical order of precedence.</p>
+<p>Parentheses can be used to control the evaluation order — e.g.&nbsp;<code>SELECT 5 + 3 * 2;</code> results in <code>11</code>, and <code>SELECT (5 + 3) * 2;</code> results in <code>16</code></p></li>
+</ul>
+<p>To change the column name (which is by default just the expression passed to the <code>SELECT</code> command), we can use an <strong>alias</strong>. This will be discussed further later when dealing with tables.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span> <span class="kw">AS</span> Result;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>| Result |</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">8</span>      |</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Multiple expressions can be evaluated at once by separating them with <strong>commas</strong>. This comma-separated syntax is the same pattern used to select <strong>multiple columns</strong> from a table, which we will explore further sections.</p>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span>, <span class="dv">10</span> <span class="op">-</span> <span class="dv">4</span>, <span class="dv">6</span> <span class="op">*</span> <span class="dv">7</span>;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------+--------+--------+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>| <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span> | <span class="dv">10</span> <span class="op">-</span> <span class="dv">4</span> | <span class="dv">6</span> <span class="op">*</span> <span class="dv">7</span>  |</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------+--------+--------+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>| <span class="dv">8</span>     | <span class="dv">6</span>      | <span class="dv">42</span>     |</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------+--------+--------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="working-with-strings" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="working-with-strings"><span class="header-section-number">7.2</span> Working with Strings</h2>
+<ul>
+<li>Select can also be used to return string values.</li>
+</ul>
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="st">'Hello World'</span>;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>| Hello World |</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>| Hello World |</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Generally, this is not very useful, however, we can use built-in functions, that work on text, and other data types to manipulate them as required.</li>
+</ul>
+</section>
+<section id="mysqls-built-in-functions" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="mysqls-built-in-functions"><span class="header-section-number">7.3</span> MySQL’s Built-In Functions</h2>
+<ul>
+<li>These are <strong>special predefined command sets</strong>, that perform a <strong>specific operation</strong> on a value or a column, and <strong>return a result for each value</strong>.</li>
+<li>Using <code>SELECT</code> without a table allows the developer to <strong>test the usage of built-in functions</strong>, before applying it on a table.</li>
+<li>Some commonly used built-in functions for different datatypes are listed below.</li>
+</ul>
+<section id="numeric-functions" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="numeric-functions"><span class="header-section-number">7.3.1</span> Numeric Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 56%">
+<col style="width: 21%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ABS(n)</code></td>
+<td>Returns the absolute value of <code>n</code></td>
+<td><code>ABS(-15)</code></td>
+<td><code>15</code></td>
+</tr>
+<tr class="even">
+<td><code>ROUND(n, d)</code></td>
+<td>Rounds <code>n</code> to <code>d</code> decimal places</td>
+<td><code>ROUND(3.14159, 2)</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="odd">
+<td><code>CEIL(n)</code></td>
+<td>Returns the smallest integer greater than or equal to <code>n</code></td>
+<td><code>CEIL(4.2)</code></td>
+<td><code>5</code></td>
+</tr>
+<tr class="even">
+<td><code>FLOOR(n)</code></td>
+<td>Returns the largest integer less than or equal to <code>n</code></td>
+<td><code>FLOOR(4.9)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr class="odd">
+<td><code>TRUNCATE(n, d)</code></td>
+<td>Truncates <code>n</code> to <code>d</code> decimal places without rounding</td>
+<td><code>TRUNCATE(3.14159, 2)</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="even">
+<td><code>MOD(n, m)</code></td>
+<td>Returns the remainder when <code>n</code> is divided by <code>m</code></td>
+<td><code>MOD(17, 5)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr class="odd">
+<td><code>POWER(n, e)</code></td>
+<td>Returns <code>n</code> raised to the power <code>e</code></td>
+<td><code>POWER(2, 8)</code></td>
+<td><code>256</code></td>
+</tr>
+<tr class="even">
+<td><code>SQRT(n)</code></td>
+<td>Returns the square root of <code>n</code></td>
+<td><code>SQRT(144)</code></td>
+<td><code>12</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datetime-functions" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="datetime-functions"><span class="header-section-number">7.3.2</span> Date/Time Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 31%">
+<col style="width: 30%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NOW()</code></td>
+<td>Returns the current date and time</td>
+<td><code>NOW()</code></td>
+<td><code>2026-03-24 10:45:00</code></td>
+</tr>
+<tr class="even">
+<td><code>CURDATE()</code></td>
+<td>Returns the current date</td>
+<td><code>CURDATE()</code></td>
+<td><code>2026-03-24</code></td>
+</tr>
+<tr class="odd">
+<td><code>CURTIME()</code></td>
+<td>Returns the current time</td>
+<td><code>CURTIME()</code></td>
+<td><code>10:45:00</code></td>
+</tr>
+<tr class="even">
+<td><code>YEAR(date)</code></td>
+<td>Extracts the year from a date</td>
+<td><code>YEAR('2026-03-24')</code></td>
+<td><code>2026</code></td>
+</tr>
+<tr class="odd">
+<td><code>MONTH(date)</code></td>
+<td>Extracts the month from a date</td>
+<td><code>MONTH('2026-03-24')</code></td>
+<td><code>3</code></td>
+</tr>
+<tr class="even">
+<td><code>DAY(date)</code></td>
+<td>Extracts the day from a date</td>
+<td><code>DAY('2026-03-24')</code></td>
+<td><code>24</code></td>
+</tr>
+<tr class="odd">
+<td><code>MONTHNAME(date)</code></td>
+<td>Returns the full name of the month</td>
+<td><code>MONTHNAME('2026-03-24')</code></td>
+<td><code>March</code></td>
+</tr>
+<tr class="even">
+<td><code>DAYNAME(date)</code></td>
+<td>Returns the name of the weekday</td>
+<td><code>DAYNAME('2026-03-24')</code></td>
+<td><code>Tuesday</code></td>
+</tr>
+<tr class="odd">
+<td><code>DATEDIFF(d1, d2)</code></td>
+<td>Returns the number of days between two dates</td>
+<td><code>DATEDIFF('2026-12-31', '2026-03-24')</code></td>
+<td><code>282</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="string-functions" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="string-functions"><span class="header-section-number">7.3.3</span> String Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 45%">
+<col style="width: 27%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>UPPER(str)</code></td>
+<td>Converts string to uppercase</td>
+<td><code>UPPER('hello')</code></td>
+<td><code>HELLO</code></td>
+</tr>
+<tr class="even">
+<td><code>LOWER(str)</code></td>
+<td>Converts string to lowercase</td>
+<td><code>LOWER('HELLO')</code></td>
+<td><code>hello</code></td>
+</tr>
+<tr class="odd">
+<td><code>LENGTH(str)</code></td>
+<td>Returns the length of the string in bytes</td>
+<td><code>LENGTH('hello')</code></td>
+<td><code>5</code></td>
+</tr>
+<tr class="even">
+<td><code>CONCAT(s1, s2, ...)</code></td>
+<td>Joins two or more strings together</td>
+<td><code>CONCAT('Hello', ' ', 'World')</code></td>
+<td><code>Hello World</code></td>
+</tr>
+<tr class="odd">
+<td><code>SUBSTRING(str, pos, len)</code></td>
+<td>Extracts a substring starting at <code>pos</code>, of length <code>len</code></td>
+<td><code>SUBSTRING('Hello World', 7, 5)</code></td>
+<td><code>World</code></td>
+</tr>
+<tr class="even">
+<td><code>TRIM(str)</code></td>
+<td>Removes leading and trailing spaces</td>
+<td><code>TRIM(' hello ')</code></td>
+<td><code>hello</code></td>
+</tr>
+<tr class="odd">
+<td><code>LTRIM(str)</code></td>
+<td>Removes leading (left) spaces</td>
+<td><code>LTRIM(' hello')</code></td>
+<td><code>hello</code></td>
+</tr>
+<tr class="even">
+<td><code>RTRIM(str)</code></td>
+<td>Removes trailing (right) spaces</td>
+<td><code>RTRIM('hello ')</code></td>
+<td><code>hello</code></td>
+</tr>
+<tr class="odd">
+<td><code>REPLACE(str, from, to)</code></td>
+<td>Replaces all occurrences of a substring with another</td>
+<td><code>REPLACE('Hello World', 'World', 'SQL')</code></td>
+<td><code>Hello SQL</code></td>
+</tr>
+<tr class="even">
+<td><code>REVERSE(str)</code></td>
+<td>Reverses the string</td>
+<td><code>REVERSE('hello')</code></td>
+<td><code>olleh</code></td>
+</tr>
+<tr class="odd">
+<td><code>INSTR(str, substr)</code></td>
+<td>Returns the position of the first occurrence of <code>substr</code> in <code>str</code></td>
+<td><code>INSTR('Hello World', 'World')</code></td>
+<td><code>7</code></td>
+</tr>
+<tr class="even">
+<td><code>LEFT(str, n)</code></td>
+<td>Returns the leftmost <code>n</code> characters</td>
+<td><code>LEFT('Hello World', 5)</code></td>
+<td><code>Hello</code></td>
+</tr>
+<tr class="odd">
+<td><code>RIGHT(str, n)</code></td>
+<td>Returns the rightmost <code>n</code> characters</td>
+<td><code>RIGHT('Hello World', 5)</code></td>
+<td><code>World</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note: For functions such as <code>SUBSTRING</code>, indexing starts at 1, which is different from most programming languages which start indexing at 0.</p>
+</section>
+<section id="miscellaneous" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="miscellaneous"><span class="header-section-number">7.3.4</span> Miscellaneous</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 48%">
+<col style="width: 21%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>IFNULL(value, fallback)</code></td>
+<td>If the <code>value</code> field is null, it returns the <code>fallback</code></td>
+<td><code>IFNULL(NULL,'nothing')</code></td>
+<td><code>nothing</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-built-in-functions-without-a-table" class="level3" data-number="7.3.5">
+<h3 data-number="7.3.5" class="anchored" data-anchor-id="using-built-in-functions-without-a-table"><span class="header-section-number">7.3.5</span> Using Built-In functions without a table</h3>
+<ul>
+<li>Here are some examples where built-in functions are used without referencing a table.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="fu">ROUND</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>);</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>| <span class="fu">ROUND</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>) |</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>|              <span class="fl">3.14</span> |</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">-------------------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> <span class="fu">UPPER</span>(<span class="st">'hello'</span>), <span class="fu">ROUND</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>) <span class="kw">AS</span> Rounded, DAYNAME(CURDATE()) <span class="kw">AS</span> Today;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------+---------+-----------+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>| <span class="fu">UPPER</span>(<span class="st">'hello'</span>) | Rounded | Today     |</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------+---------+-----------+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>| HELLO          |    <span class="fl">3.14</span> | Tuesday   |</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------------+---------+-----------+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>As seen in the examples above, multiple functions can be combined in a single <code>SELECT</code> statement by separating them with commas.</li>
+<li>Aliases can be used with functions just as with any other expression, using the <code>AS</code> keyword, to make the output column names more readable.</li>
+</ul>
+</section>
+<section id="importance" class="level3" data-number="7.3.6">
+<h3 data-number="7.3.6" class="anchored" data-anchor-id="importance"><span class="header-section-number">7.3.6</span> Importance</h3>
+<ul>
+<li>These functions become especially powerful <strong>when applied to columns of an actual table</strong> — for instance, using <code>UPPER()</code> on a name column, or <code>DATEDIFF()</code> to calculate a student’s age from a date of birth column. We will see such examples in the upcoming sections.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./datamanip.html" class="pagination-link" aria-label="Data Manipulation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./table-queries.html" class="pagination-link" aria-label="Querying Individual Tables">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Querying Individual Tables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

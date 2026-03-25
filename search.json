@@ -1,0 +1,532 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Database and MySQL Handbook",
+    "section": "",
+    "text": "Preface\nThis book was written with an aim to explain the concepts of Database Management with MySQL, according to the CBSE Syllabus, in a concise manner with good flow of topics.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#disclaimer",
+    "href": "index.html#disclaimer",
+    "title": "Database and MySQL Handbook",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nThis document has been written in accordance to the 2025-26 CBSE Senior Secondary Computer Science Syllabus, to cover topics in Unit 3: Database Management (except ‘interfacing an SQL database with Python’), however it should be used as a supplementary resource alongside the prescribed textbook and other study materials.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#ai-usage-disclosure",
+    "href": "index.html#ai-usage-disclosure",
+    "title": "Database and MySQL Handbook",
+    "section": "AI Usage Disclosure",
+    "text": "AI Usage Disclosure\nAI tools have been used to edit some parts of the book, such as some examples and descriptions, to en.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#feedback",
+    "href": "index.html#feedback",
+    "title": "Database and MySQL Handbook",
+    "section": "Feedback",
+    "text": "Feedback\nYou can write your feedback regarding the handbook to me at trinethr_n@yahoo.com. Alternatively, if you have corrections or suggestions that you would like to implement, fork the github repository at brinterwastaken/db-mysql-handbook and open a pull request.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction to Databases",
+    "section": "",
+    "text": "1.1 Advantages\nA database is a system of organized storage of data that allows easy storage, updating, and retrieval of data according to a specific use case. Databases are essential for storing, managing, and retrieving massive volumes of structured data efficiently, which is impossible with traditional file systems or spreadsheets. They provide data integrity, security, and fast access, enabling applications like social media, banking systems, and online shopping to function reliably.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#advantages",
+    "href": "intro.html#advantages",
+    "title": "1  Introduction to Databases",
+    "section": "",
+    "text": "Efficient Data Management & Storage - Structured storage of data (e.g. in rows and columns), allowing for easier management.\nFast Information Retrieval - Many databases use indexing allowing for fast retrieval of specific data from large data sets.\nData Integrity & Consistency - Databases enforce rules and constraints to prevent data duplication and errors, ensuring that data is accurate and consistent across all applications.\nData Security and Access - Data can be secured to allow access only for specific users. Simultaneous access of data can also be implemented using databases.\nBackup & Recovery - Databases allow easy setup of backup tools to prevent accidental data losses.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#database-models",
+    "href": "intro.html#database-models",
+    "title": "1  Introduction to Databases",
+    "section": "1.2 Database Models",
+    "text": "1.2 Database Models\n\nA database model is a theoretical framework determining the logical structure of a database, governing how data is stored, organized, and manipulated.\nThere are many different database models that are suited for different applications. One of the most widely used is the relational database model, which is both simple and versatile.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#structure-of-a-relation",
+    "href": "intro.html#structure-of-a-relation",
+    "title": "1  Introduction to Databases",
+    "section": "2.1 Structure of a Relation",
+    "text": "2.1 Structure of a Relation\n\nFor any attribute, we can define a domain as the set of all possible values that attribute may take.\nLet the domain of attribute \\(A_n\\) be \\(D_n\\).\nA relation consists of tuples with n values corresponding to the n attributes of the relation. Thus, each tuple belongs to\n\n\\[  \nD_1 \\times D_2 \\times D_3 \\times \\ldots \\times D_n  \n\\]\nSince not every possible combination necessarily appears in the table, the relation itself is a subset of this Cartesian product.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#degree-and-cardinality",
+    "href": "intro.html#degree-and-cardinality",
+    "title": "1  Introduction to Databases",
+    "section": "2.2 Degree and Cardinality",
+    "text": "2.2 Degree and Cardinality\nDegree - The number of attributes (columns) in a relation is called its degree. - In the above table the degree is 4.\nCardinality - The number of tuples (rows) in a relation is called its cardinality. - In the above table the cardinality is 5.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#keys",
+    "href": "intro.html#keys",
+    "title": "1  Introduction to Databases",
+    "section": "2.3 Keys",
+    "text": "2.3 Keys\nKeys are an essential part of the relational model, as they allow rows in a table to be uniquely identified. A key may consist of a single column or a combination of columns whose values satisfy specific constraints.\n\nPrimary Key\nA column or set of columns that uniquely identifies each record in a table.\nPrimary keys cannot contain NULL values.\nUnique Key\nA column or set of columns that ensures all values are unique.\nUnlike a primary key, a unique key may allow a NULL value depending on the database system.\nForeign Key\nA column (or set of columns) that establishes a relationship between two tables by referencing the primary key of another table.\nCandidate and Alternate Keys\n\nCandidate keys are columns or sets of columns that can uniquely identify each record in a table.\nOne candidate key is chosen by the developer as the primary key.\nThe remaining candidate keys are called alternate keys.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#relational-database-management-systems-rdbms",
+    "href": "intro.html#relational-database-management-systems-rdbms",
+    "title": "1  Introduction to Databases",
+    "section": "2.4 Relational Database Management Systems (RDBMS)",
+    "text": "2.4 Relational Database Management Systems (RDBMS)\n\nThe relational model describes the theoretical structure of relational databases. In practice, databases based on this model are implemented using Relational Database Management Systems (RDBMS).\nAn RDBMS is software that allows users to create, manage, and query relational databases while enforcing rules such as data integrity, access control, and relationships between tables.\nSome widely used RDBMS implementations include MySQL, PostgreSQL, SQLite, Oracle Database, and Microsoft SQL Server.\n\n\n2.4.1 Schema\n\nIn a database management system (DBMS), a schema is the skeleton structure or “blueprint” that defines how data is organized. It outlines the logical constraints, relationships, and objects that make up the database, such as tables, views, fields, and indexes.\n\n\n\n2.4.2 MySQL\n\nMySQL is a widely used open-source relational database management system. It is known for its reliability, performance, and ease of use, and is commonly used in web applications.\nIn MySQL, data is organized into databases containing tables, following the relational model described earlier. Users interact with these databases using Structured Query Language (SQL), which allows them to create tables, insert data, and retrieve information. In the following sections, we will introduce SQL and its basic commands.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Databases</span>"
+    ]
+  },
+  {
+    "objectID": "sql.html",
+    "href": "sql.html",
+    "title": "2  Structured Query Language (SQL)",
+    "section": "",
+    "text": "2.1 Categories of SQL Commands",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Structured Query Language (SQL)</span>"
+    ]
+  },
+  {
+    "objectID": "sql.html#categories-of-sql-commands",
+    "href": "sql.html#categories-of-sql-commands",
+    "title": "2  Structured Query Language (SQL)",
+    "section": "",
+    "text": "SQL commands are generally categorized into several groups:\n\nData Definition Language (DDL) - Commands used to define or modify the structure of the database. Example commands include CREATE, ALTER and DROP. Other commands such as GRANT, REVOKE modify the permissions users have to access tables, and are grouped as a subcategory called Data Control Language (DCL).\nData Manipulation Language (DML) - Commands used to insert, modify, and delete data stored in tables. Example commands include INSERT, UPDATE and DELETE.\nData Query Language (DQL) - The SELECT command is used to query data from tables of the database.\nTransaction Control Language (TCL) - Commands used to manage database transactions, ensuring data integrity during multiple operations. Example commands include COMMIT, ROLLBACK, and SAVEPOINT.\n\nSQL keywords are case insensitive, but developers often write these keywords in UPPERCASE, to distinguish them from identifiers such as table names or column names. This document will follow the uppercase convention.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Structured Query Language (SQL)</span>"
+    ]
+  },
+  {
+    "objectID": "sql.html#structure-of-a-command",
+    "href": "sql.html#structure-of-a-command",
+    "title": "2  Structured Query Language (SQL)",
+    "section": "2.2 Structure of a command",
+    "text": "2.2 Structure of a command\nAn SQL command generally consists of keywords, identifiers, and values arranged in a specific order to perform an operation on the database.\n\nKeywords are reserved words that define the operation to be performed, such as SELECT, INSERT, UPDATE, DELETE, and FROM.\nIdentifiers are the names of database objects such as tables, columns, or databases.\nValues/Literals are the actual data being inserted, updated, or compared in a query.\nClauses are sections of a command that perform specific roles, such as WHERE, ORDER BY, or GROUP BY.\n\nExample:\nSELECT Brand, Model FROM Vehicles WHERE Color = \"Black\";\n\n/* This can be broken down into clauses as: */\nSELECT Brand, Model\n│      │      │\n│      │      └── column name (identifier)\n│      └───────── column name (identifier)\n└──────────────── keyword\nFROM Vehicles\n│    │\n│    └────────── table name (identifier)\n└─────────────── keyword\nWHERE Color = 'Black';\n│     │      │\n│     │      └── value\n│     └───────── column name (identifier)\n└─────────────── keyword (clause)\n\nEach SQL command must be terminated by a semicolon ;.\nComments (statements ignored by the RDBMS) can be entered in commands by using -- Comment or /* Comment */. The latter can be used for multi line comments.\n\nThese commands should be supplied to the RDBMS’s command line client. MySQL’s command line client has a prompt mysql&gt; which indicates where the command is to be entered. Thus the above command when entered in the command line client looks like:\nmysql&gt; SELECT Brand, Model FROM Vehicles WHERE Color = \"Black\";\nIn this document, when we mention a command without its output, we only show the command itself, but when the output is also given, the mysql&gt; prompt is also shown to highlight the command executed.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Structured Query Language (SQL)</span>"
+    ]
+  },
+  {
+    "objectID": "dbcreate.html",
+    "href": "dbcreate.html",
+    "title": "3  Creating and Using a Database",
+    "section": "",
+    "text": "3.1 Other Important Commands\nThe CREATE DATABASE command is used to create a new database.\nSyntax:\nHere, name is a required parameter, which gives the newly created database a name.\nTo use the newly created database, we use the USE command:\nThis command sets the current active database to the database specified by name.\nMost commands outlined in this document are to be executed with an active database, i.e. we must USE a database before executing them.\nThese are commands often used while creating/using databases:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Creating and Using a Database</span>"
+    ]
+  },
+  {
+    "objectID": "dbcreate.html#other-important-commands",
+    "href": "dbcreate.html#other-important-commands",
+    "title": "3  Creating and Using a Database",
+    "section": "",
+    "text": "SHOW DATABASES - Shows a list of databases that are present in a MySQL installation.\nSHOW TABLES - Shows a list of tables within a database. (Requires to be in an active database with USE as shown above)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Creating and Using a Database</span>"
+    ]
+  },
+  {
+    "objectID": "datatypes.html",
+    "href": "datatypes.html",
+    "title": "4  Datatypes in MySQL",
+    "section": "",
+    "text": "4.1 Numeric Types",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Datatypes in MySQL</span>"
+    ]
+  },
+  {
+    "objectID": "datatypes.html#numeric-types",
+    "href": "datatypes.html#numeric-types",
+    "title": "4  Datatypes in MySQL",
+    "section": "",
+    "text": "Data Type\nStorage\nRange (Signed)\nRange (Unsigned)\nDescription\n\n\n\n\nTINYINT\n1 byte (8 bits)\n−2⁷ to 2⁷ − 1\n0 to 2⁸ − 1\nVery small integers\n\n\nSMALLINT\n2 bytes (16 bits)\n−2¹⁵ to 2¹⁵ − 1\n0 to 2¹⁶ − 1\nSmall integers\n\n\nMEDIUMINT\n3 bytes (24 bits)\n−2²³ to 2²³ − 1\n0 to 2²⁴ − 1\nMedium-sized integers\n\n\nINT / INTEGER\n4 bytes (32 bits)\n−2³¹ to 2³¹ − 1\n0 to 2³² − 1\nStandard integer type\n\n\nBIGINT\n8 bytes (64 bits)\n−2⁶³ to 2⁶³ − 1\n0 to 2⁶⁴ − 1\nLarge integers\n\n\nFLOAT\n4\nApprox. ±3.4 × 10³⁸\nSame\nSingle-precision floating-point numbers\n\n\nDOUBLE\n8\nApprox. ±1.7 × 10³⁰⁸\nSame\nDouble-precision floating-point numbers\n\n\nDECIMAL(M,D)\nVariable\nDepends on precision\nDepends on precision\nExact fixed-point numbers (often used for financial data)\n\n\nBIT(M)\n1–8\nDepends on M\nDepends on M\nBit-value type for storing binary values\n\n\n\n\n4.1.1 Notes\n\nM: Precision - total number of digits\nD: Scale - number of digits after the decimal point Default (M,D) = (10,0) for DECIMAL type.\nNumeric datatypes are signed by default (can hold negative values), but they can be specified to be unsigned (if negative values are not required to be stored in the column), which also doubles the range as shown above.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Datatypes in MySQL</span>"
+    ]
+  },
+  {
+    "objectID": "datatypes.html#datetime-types",
+    "href": "datatypes.html#datetime-types",
+    "title": "4  Datatypes in MySQL",
+    "section": "4.2 Date/Time Types",
+    "text": "4.2 Date/Time Types\n\n\n\n\n\n\n\n\n\n\nData Type\nStorage (Bytes)\nFormat\nRange\nDescription\n\n\n\n\nDATE\n3\nYYYY-MM-DD\n1000-01-01 to 9999-12-31\nStores a calendar date without time\n\n\nTIME\n3\nHH:MM:SS\n-838:59:59 to 838:59:59\nStores a time of day or time interval\n\n\nDATETIME\n8\nYYYY-MM-DD HH:MM:SS\n1000-01-01 00:00:00 to 9999-12-31 23:59:59\nStores both date and time\n\n\nTIMESTAMP\n4\nYYYY-MM-DD HH:MM:SS\n1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC\nStores date and time relative to Unix epoch\n\n\nYEAR\n1\nYYYY\n1901 to 2155 (and 0000)\nStores a year value\n\n\n\n\n4.2.1 Notes\n\nDATETIME vs TIMESTAMP:\n\nDATETIME stores the value exactly as given.\nTIMESTAMP is stored internally as Unix time and is automatically converted based on time zones.\n\nTIMESTAMP is commonly used for columns storing record creation/updation times.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Datatypes in MySQL</span>"
+    ]
+  },
+  {
+    "objectID": "datatypes.html#text-types",
+    "href": "datatypes.html#text-types",
+    "title": "4  Datatypes in MySQL",
+    "section": "4.3 Text Types",
+    "text": "4.3 Text Types\n\n\n\n\n\n\n\n\n\nData Type\nStorage\nRange\nDescription\n\n\n\n\nCHAR(n)\nFixed-length\n0–255 characters\nStores fixed-length strings; unused space is padded\n\n\nVARCHAR(n)\nVariable-length\nUp to 65,535 bytes (row limit applies)\nStores variable-length strings\n\n\nTINYTEXT\nVariable\n255 bytes\nVery small text strings\n\n\nTEXT\nVariable\n65,535 bytes (~64 KB)\nStandard text storage\n\n\nMEDIUMTEXT\nVariable\n16,777,215 bytes (~16 MB)\nMedium-sized text data\n\n\nLONGTEXT\nVariable\n4,294,967,295 bytes (~4 GB)\nVery large text data\n\n\n\n\n4.3.1 Notes\n\nCHAR(n)\n\nUses fixed storage size.\nIf the stored string is shorter than n, MySQL pads it with spaces.\nBy default, n is 1 (if written as CHAR).\n\nVARCHAR(n)\n\nUses only as much storage as needed, making it more efficient for most text fields.\nThe n parameter must be specified for the VARCHAR type.\n\nTEXT types\n\nUsed for storing large blocks of text, such as articles, descriptions, or logs.\nUnlike CHAR and VARCHAR, they usually cannot have default values in many MySQL versions.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Datatypes in MySQL</span>"
+    ]
+  },
+  {
+    "objectID": "datatypes.html#other-types",
+    "href": "datatypes.html#other-types",
+    "title": "4  Datatypes in MySQL",
+    "section": "4.4 Other Types",
+    "text": "4.4 Other Types\n\n\n\n\n\n\n\n\nData Type\nStorage\nDescription\n\n\n\n\nENUM\n1–2 bytes\nA string object that can take one value from a predefined list\n\n\nBINARY(n)\nFixed-length\nStores fixed-length binary data\n\n\nTINYBLOB\nUp to 255 bytes\nUsed for storing very small binary data, such as small files or binary identifiers\n\n\nBLOB\nUp to 65,535 bytes (~64 KB)\nUsed for storing binary data such as images, files, or encoded data\n\n\nMEDIUMBLOB\nUp to 16,777,215 bytes (~16 MB)\nUsed for storing larger binary objects, such as medium-sized media files\n\n\nLONGBLOB\nUp to 4,294,967,295 bytes (~4 GB)\nUsed for storing very large binary data, such as large files or multimedia content\n\n\n\n\n4.4.1 Notes\n\nEnum is useful for fields with a small fixed set of options, e.g. a status column having possible values — pending, approved or rejected.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Datatypes in MySQL</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html",
+    "href": "tables.html",
+    "title": "5  Working with Tables",
+    "section": "",
+    "text": "5.1 Creating Tables\nSyntax:\nColumn definition Syntax:\nExample:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html#creating-tables",
+    "href": "tables.html#creating-tables",
+    "title": "5  Working with Tables",
+    "section": "",
+    "text": "The CREATE TABLE command is used to create a new table.\n\n\nCREATE TABLE tablename (\n    column1,       ┐\n    [column2,]     ├─ Table columns\n    [...]          ┘\n    [constraint1], ┐\n    [constraint2]  ├─ Optional constraints for columns\n    [...]          ┘\n);\n\nIn the above syntax, column1, column2, etc. refer to column definitions. The syntax for these is outlined below.\n\n\ncolumn_name datatype [key type] [constraints]\n│           │        │          │\n│           │        │          └── Additional rules applied to the column\n│           │        │              (e.g., NOT NULL, DEFAULT, CHECK)\n│           │        │\n│           │        └───────────── Key specification\n│           │                       (e.g., PRIMARY KEY, UNIQUE, FOREIGN KEY)\n│           │\n│           └────────────────────── Data type of the column\n│                                   (e.g., INT, VARCHAR(50), DATE)\n│\n└────────────────────────────────── Name of the column (identifier)\n\nCREATE TABLE Customers (\n    CustomerId VARCHAR(20) PRIMARY KEY,\n    CustomerName VARCHAR(50) NOT NULL,\n    Address VARCHAR(150) NOT NULL,\n    PhoneNumber VARCHAR(10),\n    Email VARCHAR(50) NOT NULL,\n    DateOfBirth DATE\n);",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html#describing-tables",
+    "href": "tables.html#describing-tables",
+    "title": "5  Working with Tables",
+    "section": "5.2 Describing Tables",
+    "text": "5.2 Describing Tables\n\nThe DESC command can be used to describe the structure of an existing table\nIt shows a list of columns along with their datatypes, default values, type of key, and other information about the column. Syntax:\n\nDESC tablename;\nExample:\nmysql&gt; DESC Customers;\n+--------------+--------------+------+-----+---------+-------+\n| Field        | Type         | Null | Key | Default | Extra |\n+--------------+--------------+------+-----+---------+-------+\n| CustomerId   | varchar(20)  | NO   | PRI | NULL    |       |\n| CustomerName | varchar(50)  | NO   |     | NULL    |       |\n| Address      | varchar(150) | NO   |     | NULL    |       |\n| PhoneNumber  | varchar(10)  | YES  |     | NULL    |       |\n| Email        | varchar(50)  | NO   |     | NULL    |       |\n| DateOfBirth  | date         | YES  |     | NULL    |       |\n+--------------+--------------+------+-----+---------+-------+",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html#constraints",
+    "href": "tables.html#constraints",
+    "title": "5  Working with Tables",
+    "section": "5.3 Constraints",
+    "text": "5.3 Constraints\nIn a lot of cases, we require that all values of a column follow a particular set of rules. These can be enforced using constraints, which prevent insertion of data that do not follow the defined rules.\nConstraints can be defined in two ways when creating a table:\n\nColumn-level constraints – written directly in the column definition.\nTable-level constraints – written after all column definitions.\n\n\n5.3.1 Column-Level Constraints\nThese are specified immediately after the datatype of the column. They apply only to that particular column.\nExample:\nCREATE TABLE Products (\n    ProductId INT PRIMARY KEY,\n    ProductName VARCHAR(100) NOT NULL,\n    Price DECIMAL(10,2) CHECK (Price &gt; 0)\n);\nHere:\n\nPRIMARY KEY is applied to ProductId\nNOT NULL is applied to ProductName\nCHECK ensures that Price must be greater than 0\n\n\n\n5.3.2 Table-Level Constraints\nConstraints can also be defined after the list of columns, inside the table definition. This is useful when:\n\nA constraint involves multiple columns\nYou want to separate structure from constraints for clarity\n\nExample:\nCREATE TABLE Products (\n    ProductId INT,\n    ProductName VARCHAR(100),\n    Price DECIMAL(10,2),\n\n    PRIMARY KEY (ProductId)\n);\nHere the PRIMARY KEY constraint is defined after the column definitions, rather than inside the column definition.\n\n\n5.3.3 Commonly used onstraints\n\n\n\n\n\n\n\n\nConstraint\nMeaning\nUsage\n\n\n\n\nNOT NULL\nEnsures the column cannot have a null value\nage INT NOT NULL\n\n\nUNIQUE\nEnsures all values in the column are distinct\nemail VARCHAR(100) UNIQUE\n\n\nPRIMARY KEY\nUniquely identifies each row; implies NOT NULL and UNIQUE\nid INT PRIMARY KEY\n\n\nDEFAULT\nSets a default value if none is provided during insert\ncity VARCHAR(50) DEFAULT 'Unknown'\n\n\nCHECK\nEnsures values in the column satisfy a given condition\nage INT CHECK (age &gt;= 18)\n\n\nFOREIGN KEY\nLinks a column to the primary key of another table, more information below\nFOREIGN KEY (student_id) REFERENCES students(id)\n\n\n\n\n\n5.3.4 Foreign Keys\n\nA foreign key is used to create a relationship between two tables. It ensures that values in one table correspond to existing values in another table.\nA foreign key references the primary key of another table.\n\n\n5.3.4.1 Example Tables\nSuppose we have a table of customers:\nCREATE TABLE Customers (\n    CustomerId VARCHAR(20) PRIMARY KEY,\n    CustomerName VARCHAR(50)\n);\nNow we create another table that refers to customers. The foreign key can be specified in one of two ways, similar to other constraints:\nA) Inline with column definition - using the REFERENCES keyword\nCREATE TABLE Orders (\n    OrderId INT PRIMARY KEY,\n    CustomerId VARCHAR(20) REFERENCES Customers(CustomerId),\n    OrderDate DATE\n);\nB) Separated from column definition - using the FOREIGN KEY clause\nCREATE TABLE Orders (\n    OrderId INT PRIMARY KEY,\n    CustomerId VARCHAR(20),\n    OrderDate DATE,\n\n    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)\n);\nThis ensures that every CustomerId in the Orders table must exist in the Customers table.\n\n\n\n5.3.5 Naming Constraints (Optional)\n\nConstraints can also be given explicit names, which helps when modifying or removing them later (this will be discussed in further sections).\nConstraint names are typically specified when constraints are written separately from the column definitions using the CONSTRAINT keyword.\n\nExample:\nCREATE TABLE Orders (\n    OrderId INT,\n    CustomerId VARCHAR(20),\n\n    CONSTRAINT pk_orders PRIMARY KEY (OrderId),\n    CONSTRAINT fk_customer\n        FOREIGN KEY (CustomerId)\n        REFERENCES Customers(CustomerId)\n);\nHere:\n\npk_orders is the name of the primary key constraint\nfk_customer is the name of the foreign key constraint",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html#altering-tables",
+    "href": "tables.html#altering-tables",
+    "title": "5  Working with Tables",
+    "section": "5.4 Altering Tables",
+    "text": "5.4 Altering Tables\n\nThe ALTER TABLE command is used to modify the structure of an existing table.\nIt allows operations such as:\n\nadding new columns\nremoving existing columns\nmodifying column definitions\nadding or removing constraints\n\n\nSyntax:\nALTER TABLE tablename  \n    action1,  ┐  \n    [action2] ├─ One or more modification operations  \n    [...]     ┘  \n;\nEach action represents a structural change to the table. Common actions include: - ADD – add a new column or constraint - DROP – remove a column or constraint - MODIFY – change the datatype or properties of a column - RENAME – rename a table or column\n\n5.4.1 Adding and Removing Columns\n\n5.4.1.1 Adding Columns\nNew columns can be added to an existing table using the ADD clause of the ALTER TABLE command.\nSyntax:\nALTER TABLE tablename  \nADD column_definition;\nHere, column_definition follows the same format used when defining columns in a CREATE TABLE statement.\nExample:\nALTER TABLE Customers  \nADD PhoneNumber VARCHAR(10);\n\nThis command adds a new column PhoneNumber to the Customers table.\n\nMultiple columns can also be added in a single statement:\nALTER TABLE tablename  \nADD column1_definition,  \nADD column2_definition;\n\n\n5.4.1.2 Removing Columns\nExisting columns can be removed from a table using the DROP COLUMN command.\n\nImportant Note: Removing a column permanently deletes all data stored in that column. This must be done carefully.\n\nSyntax:\nALTER TABLE tablename  \nDROP COLUMN column_name;\nExample:\nALTER TABLE Customers  \nDROP COLUMN PhoneNumber;\n\nThis removes the PhoneNumber column from the Customers table.\n\nMultiple columns can also be removed in a single statement:\nALTER TABLE tablename  \nDROP COLUMN column1,  \nDROP COLUMN column2;\n\n\n\n5.4.2 Adding/Removing Constraints\n\n5.4.2.1 Adding Constraints\nConstraints can be added to existing tables using the ADD clause. Syntax:\nALTER TABLE tablename\nADD constraint_definition;\nHere, constraint_definition specifies the type of constraint and the column(s) it applies to.\nExample (adding a primary key):\nALTER TABLE Customers\nADD PRIMARY KEY (CustomerId);\nThis command adds a primary key constraint to the CustomerId column of the Customers table.\n\n\n5.4.2.2 Removing Constraints\nConstraints can also be removed from a table using the DROP clause.\nSyntax:\nALTER TABLE tablename\nDROP constraint_type;\nExample (removing a primary key):\nALTER TABLE Customers\nDROP PRIMARY KEY;\nThis command removes the primary key constraint from the Customers table.\n\n5.4.2.2.1 Notes\n\nA table can have only one primary key constraint. Removing it will remove the uniqueness and non-null requirement enforced on the column(s).\nThe foreign key constraint can be dropped if it was named using the DROP FOREIGN KEY clause:\nALTER TABLE Orders\nDROP FOREIGN KEY fk_customer;\nIn newer versions of MySQL, other named constraints can be dropped using the DROP CONSTRAINT clause:\nALTER TABLE Orders  \nDROP CONSTRAINT pk_orders;\n\n\n\n\n\n5.4.3 Renaming and Modifying Columns\nThe ALTER TABLE clause can also be used to rename/modify columns.\n\n5.4.3.1 Renaming a Column\nA column can be renamed using the RENAME COLUMN clause.\nSyntax:\nALTER TABLE tablename  \nRENAME COLUMN old_column_name TO new_column_name;\nExample:\nALTER TABLE Customers  \nRENAME COLUMN PhoneNumber TO ContactNumber;\n\n\n5.4.3.2 Modifying a Column\nThe datatype or constraints of a column can be changed using the MODIFY clause.\nSyntax:\nALTER TABLE tablename  \nMODIFY column_definition;\nHere, column_definition follows the same format used when defining columns in a CREATE TABLE statement.\nExample:\nALTER TABLE Customers  \nMODIFY PhoneNumber VARCHAR(15);\nThis changes the datatype of PhoneNumber to VARCHAR(15).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html#deleting-tables",
+    "href": "tables.html#deleting-tables",
+    "title": "5  Working with Tables",
+    "section": "5.5 Deleting Tables",
+    "text": "5.5 Deleting Tables\nA table can be removed from the database using the DROP TABLE command. This deletes the table structure as well as all the data stored in it.\nSyntax:\nDROP TABLE tablename;\nExample:\nDROP TABLE Customers;\n\n5.5.1 Important Note\nOnce a table is dropped, its data cannot be recovered unless a backup exists.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with Tables</span>"
+    ]
+  },
+  {
+    "objectID": "datamanip.html",
+    "href": "datamanip.html",
+    "title": "6  Data Manipulation",
+    "section": "",
+    "text": "6.1 Inserting Data",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "datamanip.html#inserting-data",
+    "href": "datamanip.html#inserting-data",
+    "title": "6  Data Manipulation",
+    "section": "",
+    "text": "Insertion of data into tables is done using the INSERT command. This command allows you to add rows having values for all columns, or having values for only a few specified columns.\n\n\n6.1.1 Inserting Values for All Columns\nSyntax:\nINSERT INTO tablename VALUES tuple1, tuple2 ...\n\nIn the above method, values for all columns must be specified, and in the same order as the columns are in the table.\n\nEach tuple has to be written as:\n(value1, value2, ...)\n\nString and date values must be enclosed in single ' or double quotes \", while numeric values must be entered as is. NULL can be inserted by typing NULL without quotes in the tuple.\n\nExample:\nINSERT INTO Customers VALUES\n('C001', 'Alice John', '12 Park Street', '9876543210', 'alice@email.com', '1995-04-12'),\n('C002', 'Rahul Sharma', '45 Lake Road', '9123456780', 'rahul@email.com', '1992-11-08');\n\n\n6.1.2 Inserting Values for Selected Columns\n\nSometimes it is not necessary to provide values for all columns. In such cases, the column names can be specified explicitly.\nIf a column is not listed in the column list, it will automatically receive NULL or its default value if set.\nOnly column names having a valid default parameter can be omitted while inserting records, e.g. if the default value for a column Email is NULL, but the column has a NOT NULL constraint, trying to insert a record without the Email column will result in an error.\n\nSyntax:\nINSERT INTO tablename (column1, column2, ...)  \nVALUES (value1, value2, ...);\nIn this method:\n\nOnly the specified columns receive values.\nThe values must be given in the same order as the listed columns, but the order of the listed columns can be different from that of the table.\n\nExample:\nINSERT INTO Customers (CustomerId, CustomerName, Email, Address)  \nVALUES ('C003', 'Neha Gupta', 'neha@email.com', '27 Ocean Avenue');\nIn this case:\n\nOnly CustomerId, CustomerName, Email, and Address are given values.\nThe remaining columns will receive NULL values or their default values, if defined.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "datamanip.html#updating-data",
+    "href": "datamanip.html#updating-data",
+    "title": "6  Data Manipulation",
+    "section": "6.2 Updating Data",
+    "text": "6.2 Updating Data\n\nExisting records in a table can be modified using the UPDATE command.\nThis command changes the values of one or more columns for selected rows.\n\nSyntax:\nUPDATE tablename\nSET column1 = value1,\n    column2 = value2,\n    ...\n[WHERE condition];\n\nThe SET clause specifies which columns should be updated and their new values.\n\nThe WHERE clause determines which rows are affected.\n\n\n6.2.1 Examples\nSingle column updation:\nUPDATE Customers\nSET PhoneNumber = '9001234567'\nWHERE CustomerId = 'C001';\nThis updates the phone number of the customer with ID C001.\nMultiple column updation:\nUPDATE Customers\nSET Address = '78 Green Road',\n    PhoneNumber = '9988776655'\nWHERE CustomerId = 'C002';\nUsing expressions:\nUPDATE Employees\nSET Salary = Salary + 20000\nWHERE Department = 'AI';\n\nExpressions can be used to update columns based on their previous value.\n\n\n\n6.2.2 Important Note\n\nIf the WHERE clause is omitted, the update will affect all rows in the table.\n\nExample:\nUPDATE Customers\nSET Address = 'Unknown';\nThis changes the Address for every record in the table.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "datamanip.html#deleting-data",
+    "href": "datamanip.html#deleting-data",
+    "title": "6  Data Manipulation",
+    "section": "6.3 Deleting Data",
+    "text": "6.3 Deleting Data\n\nRecords in a table can be removed using the DELETE command.\nThis command deletes one or more rows from a table. Syntax:\n\nDELETE FROM tablename\n[WHERE condition];\n\n6.3.1 Examples\n\n6.3.1.1 Single record deletion:\nDELETE FROM Customers\nWHERE CustomerId = 'C003';\nThis deletes the record of the customer whose ID is C003.\n\n\n6.3.1.2 Multiple record deletion:\nDELETE FROM Customers\nWHERE Address = 'Unknown';\nThis deletes all customers whose address is \"Unknown\".\n\n\n\n6.3.2 Important Note\n\nIf the WHERE clause is not specified, all rows in the table will be deleted.\n\nExample:\nDELETE FROM Customers;\n\nThis removes every record from the table, but the table structure remains unchanged.\n\nAnother way of doing the same action is by using the TRUNCATE command:\nSyntax:\nTRUNCATE tablename;\n\nNote: Although the TRUNCATE command is manipulating the data, it is classified as a DDL command, the reason for this is quite complicated — you can read more about it with a quick google.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "simple-queries.html",
+    "href": "simple-queries.html",
+    "title": "7  Introduction to Queries",
+    "section": "",
+    "text": "7.1 Arithmetic and Logical Operations\nBasic operators supported by SQL include:\nExamples:\nTo change the column name (which is by default just the expression passed to the SELECT command), we can use an alias. This will be discussed further later when dealing with tables.\nExample:\nMultiple expressions can be evaluated at once by separating them with commas. This comma-separated syntax is the same pattern used to select multiple columns from a table, which we will explore further sections.\nExample:",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introduction to Queries</span>"
+    ]
+  },
+  {
+    "objectID": "simple-queries.html#arithmetic-and-logical-operations",
+    "href": "simple-queries.html#arithmetic-and-logical-operations",
+    "title": "7  Introduction to Queries",
+    "section": "",
+    "text": "The SELECT command can evaluate arithmetic and logical expressions directly. The result is given in the form of a table having one column and one row.\nLogical expressions return 1 for true and 0 for false.\n\n\n\n\n\nOperator\nMeaning\n\n\n\n\n+\nAddition\n\n\n-\nSubtraction\n\n\n*\nMultiplication\n\n\n/\nDivision\n\n\n%\nModulus (remainder)\n\n\n=\nIs equal to\n\n\n!= or &lt;&gt;\nIs not equal to\n\n\n&gt;\nGreater than\n\n\n&lt;\nLesser than\n\n\n&gt;=\nGreater than or equal to\n\n\n&lt;=\nLesser than or equal to\n\n\nAND\nTrue if both conditions are true\n\n\nOR\nTrue if at least one condition is true\n\n\nNOT\nReverses the result of a condition\n\n\n\n\nmysql&gt; SELECT 6 * 7;\n+--------+\n| 6 * 7  |\n+--------+\n| 42     |\n+--------+\nmysql&gt; SELECT 14!=25;\n+--------+\n| 14!=25 |\n+--------+\n|      1 |\n+--------+\n\nMultiple operators can be used in an expression, which will be evaluated in the standard mathematical order of precedence.\nParentheses can be used to control the evaluation order — e.g. SELECT 5 + 3 * 2; results in 11, and SELECT (5 + 3) * 2; results in 16\n\n\n\nmysql&gt; SELECT 5 + 3 AS Result;\n+--------+\n| Result |\n+--------+\n| 8      |\n+--------+\n\n\nmysql&gt; SELECT 5 + 3, 10 - 4, 6 * 7;\n+-------+--------+--------+\n| 5 + 3 | 10 - 4 | 6 * 7  |\n+-------+--------+--------+\n| 8     | 6      | 42     |\n+-------+--------+--------+",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introduction to Queries</span>"
+    ]
+  },
+  {
+    "objectID": "simple-queries.html#working-with-strings",
+    "href": "simple-queries.html#working-with-strings",
+    "title": "7  Introduction to Queries",
+    "section": "7.2 Working with Strings",
+    "text": "7.2 Working with Strings\n\nSelect can also be used to return string values.\n\nExample:\nmysql&gt; SELECT 'Hello World';\n+-------------+\n| Hello World |\n+-------------+\n| Hello World |\n+-------------+\n\nGenerally, this is not very useful, however, we can use built-in functions, that work on text, and other data types to manipulate them as required.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introduction to Queries</span>"
+    ]
+  },
+  {
+    "objectID": "simple-queries.html#mysqls-built-in-functions",
+    "href": "simple-queries.html#mysqls-built-in-functions",
+    "title": "7  Introduction to Queries",
+    "section": "7.3 MySQL’s Built-In Functions",
+    "text": "7.3 MySQL’s Built-In Functions\n\nThese are special predefined command sets, that perform a specific operation on a value or a column, and return a result for each value.\nUsing SELECT without a table allows the developer to test the usage of built-in functions, before applying it on a table.\nSome commonly used built-in functions for different datatypes are listed below.\n\n\n7.3.1 Numeric Functions\n\n\n\n\n\n\n\n\n\nFunction\nDescription\nExample\nResult\n\n\n\n\nABS(n)\nReturns the absolute value of n\nABS(-15)\n15\n\n\nROUND(n, d)\nRounds n to d decimal places\nROUND(3.14159, 2)\n3.14\n\n\nCEIL(n)\nReturns the smallest integer greater than or equal to n\nCEIL(4.2)\n5\n\n\nFLOOR(n)\nReturns the largest integer less than or equal to n\nFLOOR(4.9)\n4\n\n\nTRUNCATE(n, d)\nTruncates n to d decimal places without rounding\nTRUNCATE(3.14159, 2)\n3.14\n\n\nMOD(n, m)\nReturns the remainder when n is divided by m\nMOD(17, 5)\n2\n\n\nPOWER(n, e)\nReturns n raised to the power e\nPOWER(2, 8)\n256\n\n\nSQRT(n)\nReturns the square root of n\nSQRT(144)\n12\n\n\n\n\n\n7.3.2 Date/Time Functions\n\n\n\n\n\n\n\n\n\nFunction\nDescription\nExample\nResult\n\n\n\n\nNOW()\nReturns the current date and time\nNOW()\n2026-03-24 10:45:00\n\n\nCURDATE()\nReturns the current date\nCURDATE()\n2026-03-24\n\n\nCURTIME()\nReturns the current time\nCURTIME()\n10:45:00\n\n\nYEAR(date)\nExtracts the year from a date\nYEAR('2026-03-24')\n2026\n\n\nMONTH(date)\nExtracts the month from a date\nMONTH('2026-03-24')\n3\n\n\nDAY(date)\nExtracts the day from a date\nDAY('2026-03-24')\n24\n\n\nMONTHNAME(date)\nReturns the full name of the month\nMONTHNAME('2026-03-24')\nMarch\n\n\nDAYNAME(date)\nReturns the name of the weekday\nDAYNAME('2026-03-24')\nTuesday\n\n\nDATEDIFF(d1, d2)\nReturns the number of days between two dates\nDATEDIFF('2026-12-31', '2026-03-24')\n282\n\n\n\n\n\n7.3.3 String Functions\n\n\n\n\n\n\n\n\n\nFunction\nDescription\nExample\nResult\n\n\n\n\nUPPER(str)\nConverts string to uppercase\nUPPER('hello')\nHELLO\n\n\nLOWER(str)\nConverts string to lowercase\nLOWER('HELLO')\nhello\n\n\nLENGTH(str)\nReturns the length of the string in bytes\nLENGTH('hello')\n5\n\n\nCONCAT(s1, s2, ...)\nJoins two or more strings together\nCONCAT('Hello', ' ', 'World')\nHello World\n\n\nSUBSTRING(str, pos, len)\nExtracts a substring starting at pos, of length len\nSUBSTRING('Hello World', 7, 5)\nWorld\n\n\nTRIM(str)\nRemoves leading and trailing spaces\nTRIM(' hello ')\nhello\n\n\nLTRIM(str)\nRemoves leading (left) spaces\nLTRIM(' hello')\nhello\n\n\nRTRIM(str)\nRemoves trailing (right) spaces\nRTRIM('hello ')\nhello\n\n\nREPLACE(str, from, to)\nReplaces all occurrences of a substring with another\nREPLACE('Hello World', 'World', 'SQL')\nHello SQL\n\n\nREVERSE(str)\nReverses the string\nREVERSE('hello')\nolleh\n\n\nINSTR(str, substr)\nReturns the position of the first occurrence of substr in str\nINSTR('Hello World', 'World')\n7\n\n\nLEFT(str, n)\nReturns the leftmost n characters\nLEFT('Hello World', 5)\nHello\n\n\nRIGHT(str, n)\nReturns the rightmost n characters\nRIGHT('Hello World', 5)\nWorld\n\n\n\nNote: For functions such as SUBSTRING, indexing starts at 1, which is different from most programming languages which start indexing at 0.\n\n\n7.3.4 Miscellaneous\n\n\n\n\n\n\n\n\n\nFunction\nDescription\nExample\nResult\n\n\n\n\nIFNULL(value, fallback)\nIf the value field is null, it returns the fallback\nIFNULL(NULL,'nothing')\nnothing\n\n\n\n\n\n7.3.5 Using Built-In functions without a table\n\nHere are some examples where built-in functions are used without referencing a table.\n\nmysql&gt; SELECT ROUND(3.14159, 2);\n+-------------------+\n| ROUND(3.14159, 2) |\n+-------------------+\n|              3.14 |\n+-------------------+\nmysql&gt; SELECT UPPER('hello'), ROUND(3.14159, 2) AS Rounded, DAYNAME(CURDATE()) AS Today;\n+----------------+---------+-----------+\n| UPPER('hello') | Rounded | Today     |\n+----------------+---------+-----------+\n| HELLO          |    3.14 | Tuesday   |\n+----------------+---------+-----------+\n\nAs seen in the examples above, multiple functions can be combined in a single SELECT statement by separating them with commas.\nAliases can be used with functions just as with any other expression, using the AS keyword, to make the output column names more readable.\n\n\n\n7.3.6 Importance\n\nThese functions become especially powerful when applied to columns of an actual table — for instance, using UPPER() on a name column, or DATEDIFF() to calculate a student’s age from a date of birth column. We will see such examples in the upcoming sections.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introduction to Queries</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html",
+    "href": "table-queries.html",
+    "title": "8  Querying Individual Tables",
+    "section": "",
+    "text": "8.1 Selecting Unique Values\nThe general structure of a SELECT statement is as follows:\nOnly the SELECT and FROM1 are mandatory — all other clauses are optional and can be included as needed. The clauses must always be written in the order shown above. In the sections that follow, each clause will be explored in detail.\nSyntax:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#selecting-unique-values",
+    "href": "table-queries.html#selecting-unique-values",
+    "title": "8  Querying Individual Tables",
+    "section": "",
+    "text": "To select unique/distinct values of a column, or select distinct pairs of values across multiple columns, the SELECT DISTINCT command can be used.\n\n\nSELECT DISTINCT column1, column2 ... FROM tablename;\n\nNote: If multiple columns are specified, the statement evaluates the unique combination of all specified columns.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#specifying-columns",
+    "href": "table-queries.html#specifying-columns",
+    "title": "8  Querying Individual Tables",
+    "section": "8.2 Specifying Columns",
+    "text": "8.2 Specifying Columns\nAfter the SELECT keyword, specify the columns you want to retrieve as a comma-separated list. For example, SELECT name, age, city retrieves only those three columns. To retrieve all columns in the table, use an asterisk (*) in place of the column list — SELECT *. While convenient, using SELECT * is generally discouraged in practice as it retrieves unnecessary data; it is better to explicitly name only the columns you need.\nBeyond plain column names, SELECT can also include:\n\nBuilt-in functions applied to columns —\nFor example, SELECT UPPER(name), LENGTH(email) applies a function to each value in that column as it is retrieved.\nArithmetic expressions on columns —\nFor example, SELECT price * quantity computes a value from two columns for each row.\nConstants and expressions —\nFor example, SELECT name, 'Student' AS type includes a fixed string value alongside a column for every row returned.\n\nThese can all be freely mixed in a single SELECT statement, separated by commas, and aliases can be used with any of them to give the output column a meaningful name.\n\nThe IFNULL function, discussed earlier, can be used to display NULL values in a more user friendly way: SELECT Name, IFNULL(PhoneNumber, 'Unavailable') FROM Contacts This would display the phone numbers of the contacts, and display ‘Unavailable’ for those contacts which do not have a phone number.\n\n\n8.2.1 Aliases\n\nAn alias gives a column or expression in the result a custom name, using the AS keyword. For example, SELECT UPPER(name) AS Name, price * quantity AS Total labels the two output columns as Name and Total rather than the default, which would just be the expression itself.\nThe AS keyword is optional — SELECT UPPER(name) Name works the same way — however, including it makes the query easier to read.\nNote that aliases cannot be used in the WHERE clause of the same query, as WHERE is evaluated before the SELECT columns are processed. However, MySQL does allow aliases to be referenced in ORDER BY, GROUP BY, and HAVING — though this is a MySQL-specific behaviour and is not part of the standard SQL specification.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#the-from-clause",
+    "href": "table-queries.html#the-from-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.3 The FROM Clause",
+    "text": "8.3 The FROM Clause\n\nThe FROM clause specifies the table name from which the data is to be queried. In later sections we will see how FROM can also be used to query multiple tables at once using joins.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#the-where-clause",
+    "href": "table-queries.html#the-where-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.4 The WHERE Clause",
+    "text": "8.4 The WHERE Clause\n\nThe WHERE clause filters the rows returned by a query, retrieving only those that satisfy a given condition.\nThe condition is an expression that evaluates to true or false for each row — only rows for which it evaluates to true are included in the result.\nConditions are built using relational operators (=, !=, &gt;, &lt;, &gt;=, &lt;=) to compare column values against other values or expressions, and multiple conditions can be combined using the logical operators AND, OR, and NOT.\n\nExample:\nmysql&gt; SELECT name, age FROM students WHERE age &gt; 18;\n+---------+-----+\n| name    | age |\n+---------+-----+\n| Alice   |  19 |\n| Bob     |  21 |\n| Charlie |  20 |\n+---------+-----+\n\nThe above query selects the name and age of students whose age is greater than 18 from the students table.\n\nMultiple conditions can also be combined using logical operators AND, OR and NOT\nExample:\nmysql&gt; SELECT name, age, city FROM students WHERE age &gt; 18 AND city = 'London';\n+---------+-----+--------+\n| name    | age | city   |\n+---------+-----+--------+\n| Alice   |  19 | London |\n| Charlie |  20 | London |\n+---------+-----+--------+\n2 rows in set (0.00 sec)\nThese are special conditions used in the WHERE clause for cases that cannot be handled with regular relational operators:\n\n\n\n\n\n\n\n\nCondition\nMeaning\nExample\n\n\n\n\nIS NULL\nTrue if the column value is null\nWHERE email IS NULL\n\n\nIS NOT NULL\nTrue if the column value is not null\nWHERE email IS NOT NULL\n\n\nLIKE pattern\nTrue if the value matches a pattern\nWHERE name LIKE 'A_%'\n\n\nIN (v1, v2, ...)\nTrue if the value matches any value in the list\nWHERE city IN ('London', 'Paris')\n\n\nBETWEEN v1 AND v2\nTrue if the value is within the range (inclusive)\nWHERE age BETWEEN 18 AND 25\n\n\n\n\n8.4.1 The LIKE operator\n\nThe LIKE operator is used in the WHERE clause to filter rows based on a pattern match against a string column, rather than an exact value. It uses two wildcard characters:\n\n\n\n\nWildcard\nMeaning\n\n\n\n\n%\nMatches any sequence of zero or more characters\n\n\n_\nMatches exactly one character\n\n\n\nExamples:\nmysql&gt; SELECT name FROM students WHERE name LIKE 'A%';\n+-------+\n| name  |\n+-------+\n| Alice |\n| Aaron |\n+-------+\nmysql&gt; SELECT name FROM students WHERE name LIKE '_ob';\n+------+\n| name |\n+------+\n| Bob  |\n| Rob  |\n+------+\n\nThe first query returns all students whose name begins with A. The second returns all students whose name is exactly three characters long and ends with ob.\nPatterns can also use both wildcards together — for example, LIKE '_a%' would match any name where the second character is a.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#aggregate-functions-and-the-group-by-clause",
+    "href": "table-queries.html#aggregate-functions-and-the-group-by-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.5 Aggregate Functions and the GROUP BY Clause",
+    "text": "8.5 Aggregate Functions and the GROUP BY Clause\n\nAggregate functions are functions that accept values of multiple rows and return a single result. Using the GROUP BY clause, the rows can be divided into groups and passed to the aggregate function, allowing the result to be displayed for each group of rows.\n\nSyntax:\nSELECT column1, AggregateFunction(column2) FROM tablename GROUP BY column1;\n\nThe columns that do not have aggregate functions applied to them must be grouped using the GROUP BY clause.\nIf only the column with an aggregate function applied is selected, only one result is obtained.\n\nSome common aggregate functions of MySQL are:\n\n\n\n\n\n\n\n\n\nFunction\nSyntax\nDescription\nExample\n\n\n\n\nAVG()\nAVG(column_name)\nCalculates the average value of a numeric column.\nSELECT AVG(price) FROM products;\n\n\nCOUNT()\nCOUNT(column_name) or COUNT(*)\nReturns the number of rows that match a specified criterion (ignores NULLs unless using *).\nSELECT COUNT(orderid) FROM orders;\n\n\nMAX()\nMAX(column_name)\nReturns the largest value in the selected column.\nSELECT MAX(amount) FROM orders;\n\n\nMIN()\nMIN(column_name)\nReturns the smallest value in the selected column.\nSELECT MIN(amount) FROM orders;\n\n\nSUM()\nSUM(column_name)\nReturns the total sum of a numeric column.\nSELECT SUM(salary) FROM employees;\n\n\n\n\n8.5.1 Notes\n\nMost aggregate functions (except COUNT(*)) ignore NULL values when performing calculations.\nDistinct Calculation: You can use the DISTINCT keyword inside these functions (e.g., COUNT(DISTINCT column)) to perform calculations on unique values only.\nNumeric requirement: Functions like AVG() and SUM() require numeric data, while MIN() and MAX() can also work with strings and dates.\n\n\n\n8.5.2 Example\nSample Table: Orders\n\n\n\nOrderId\nCustomerName\nCategory\nAmount\n\n\n\n\n1\nAlice\nElectronics\n1200\n\n\n2\nBob\nClothing\n50\n\n\n3\nAlice\nClothing\n80\n\n\n4\nCharlie\nElectronics\n400\n\n\n5\nBob\nClothing\n30\n\n\n\nTo find out how many orders each customer has made, we can perform the following query:\nmysql&gt; SELECT CustomerName, COUNT(OrderId) AS TotalOrders FROM Orders GROUP BY CustomerName;\n+--------------+-------------+\n| CustomerName | TotalOrders |\n+--------------+-------------+\n| Alice        |           2 |\n| Bob          |           2 |\n| Charlie      |           1 |\n+--------------+-------------+",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#the-having-clause",
+    "href": "table-queries.html#the-having-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.6 The HAVING Clause",
+    "text": "8.6 The HAVING Clause\n\nThe HAVING clause works similarly to the WHERE clause, but with one key difference — The WHERE clause acts on the data stored in the table, while the HAVING clause acts on the data retrieved after grouping.\nThus, it can be used to further filter the grouped results obtained using the GROUP BY clause.\n\n\n8.6.1 Example\nUsing the same sample table Orders from above, we can perform the following query:\nmysql&gt; SELECT Category, SUM(Amount) AS TotalAmt FROM Orders GROUP BY Category HAVING TotalAmt &lt; 1000;\n+----------+----------+\n| Category | TotalAmt |\n+----------+----------+\n| Clothing |      160 |\n+----------+----------+\nHere, only the category having total amount less than 1000 has been displayed.\n\n\n8.6.2 Common Mistakes\n\nA common mistake is to use the WHERE clause instead of the HAVING clause. Remember, the WHERE clause cannot act on data after it has been grouped, but can only be used to filter data before grouping. ### Using both WHERE and HAVING\nFor cases where a developer wants to first filter by some condition, then group the data, then show results where the aggregate function value matches some condition, both WHERE and HAVING clauses need to be used. For example, if a developer wants to find the products having more than 1000 sales in a particular city, the query would be something like:\n\nSELECT ProductName, COUNT(ProductId) as SoldCount FROM SoldProducts WHERE City = \"Bengaluru\" HAVING SoldCount &gt; 1000;",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#the-order-by-clause",
+    "href": "table-queries.html#the-order-by-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.7 The ORDER BY Clause",
+    "text": "8.7 The ORDER BY Clause\n\nIt is used to order data selected in a table in either ascending ASC (default) or descending DESC order.\nBy default, the ORDER BY clause is case insensitive, thus if it is used on a text column, ‘apple’ and ‘Apple’ will be displayed in the order that they have been inserted into the column.\nThe DESC keyword can be written after the expression for descending order. ### Examples\n\nSELECT Name FROM Employees ORDER BY LENGTH(Name);\nSELECT Name, Price FROM Products ORDER BY Price DESC;\nThis clause can be used on the result of a GROUP BY clause, for example (Sample table Orders):\nmysql&gt; SELECT CustomerName, SUM(Amount) AS TotalAmt FROM Orders GROUP BY CustomerName ORDER BY TotalAmt DESC;\n+---------------+----------+\n| CustomerName  | TotalAmt |\n+---------------+----------+\n| Alice         |     1280 |\n| Charlie       |      400 |\n| Bob           |       80 |\n+---------------+----------+\n3 rows in set (0.00 sec)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#the-limit-clause",
+    "href": "table-queries.html#the-limit-clause",
+    "title": "8  Querying Individual Tables",
+    "section": "8.8 The LIMIT Clause",
+    "text": "8.8 The LIMIT Clause\n\nIt is used to limit the number of results of the query. ### Examples To get the top 10 most populated cities:\n\nSELECT State, City, Population FROM Cities ORDER BY Population DESC LIMIT 10;\nTo get the least spender from the Orders sample table:\nmysql&gt; SELECT CustomerName, SUM(Amount) AS TotalAmt FROM Orders GROUP BY CustomerName ORDER BY TotalAmt LIMIT 1;\n+--------------+----------+\n| CustomerName | TotalAmt |\n+--------------+----------+\n| Bob          |       80 |\n+--------------+----------+",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#order-of-execution-of-the-select-command",
+    "href": "table-queries.html#order-of-execution-of-the-select-command",
+    "title": "8  Querying Individual Tables",
+    "section": "8.9 Order of Execution of the SELECT command",
+    "text": "8.9 Order of Execution of the SELECT command\nThe logical order of execution is different from how you write the query. MySQL processes them in this specific sequence:\n\nFROM (and JOIN): First, the database identifies the table(s) to pull data from.\nWHERE: Filters the raw rows before any grouping or calculations happen.\nGROUP BY: Collapses the remaining rows into buckets based on the specified columns.\nHAVING: Filters the groups created in the previous step (can use aggregate results).\nSELECT: Determines which columns to show and calculates any expressions/aliases.\nORDER BY: Sorts the final result set for display.\nLIMIT: Finally, chops off the results to only show the requested number of rows.\n\nHere, the difference between the WHERE and HAVING clause is more clear, and it can be understood why they cannot be used interchangeably.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "table-queries.html#footnotes",
+    "href": "table-queries.html#footnotes",
+    "title": "8  Querying Individual Tables",
+    "section": "",
+    "text": "The FROM clause is only mandatory when selecting data from a table.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Querying Individual Tables</span>"
+    ]
+  },
+  {
+    "objectID": "joins.html",
+    "href": "joins.html",
+    "title": "9  Querying Multiple Tables — Joins",
+    "section": "",
+    "text": "9.1 Introduction to Joins\nIn relational databases, data is often stored across multiple tables to reduce redundancy and maintain data integrity. Joins are SQL operations that allow us to combine rows from two or more tables based on related columns between them.\nAll joins in SQL are fundamentally derived from the Cartesian product (cross join) of two tables. Other join types—such as equi-join and natural join—are simply filtered or refined versions of this cross product.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Querying Multiple Tables — Joins</span>"
+    ]
+  },
+  {
+    "objectID": "joins.html#cross-join-cartesian-product",
+    "href": "joins.html#cross-join-cartesian-product",
+    "title": "9  Querying Multiple Tables — Joins",
+    "section": "9.2 Cross Join (Cartesian Product)",
+    "text": "9.2 Cross Join (Cartesian Product)\n\nA cross join is the cartesian product of the two tables, i.e. it is a table consisting of all possible combinations of rows of the two tables.\nIf the first table has \\(n\\) rows and \\(a\\) columns, and the second has \\(m\\) rows and \\(b\\) columns, the cross join of the two will have \\(n\\times m\\) rows and \\(a+b\\) columns. This will be clearer in the following example.\n\n\n9.2.1 Syntax\nSELECT * FROM table1 CROSS JOIN table2;\nOr alternatively:\nSELECT * FROM table1, table2;\n\n\n9.2.2 Example\nConsider two tables:\nA) Students:\n\n\n\nStudentID\nStudentName\n\n\n\n\n1\nAlice\n\n\n2\nBob\n\n\n3\nCharlie\n\n\n\nB) Courses:\n\n\n\nCourseID\nCourseName\n\n\n\n\n101\nMath\n\n\n102\nScience\n\n\n\nmysql&gt; SELECT * FROM Students CROSS JOIN Courses;\n+-----------+-------------+----------+------------+\n| StudentID | StudentName | CourseID | CourseName |\n+-----------+-------------+----------+------------+\n|         1 | Alice       |      101 | Math       |\n|         1 | Alice       |      102 | Science    |\n|         2 | Bob         |      101 | Math       |\n|         2 | Bob         |      102 | Science    |\n|         3 | Charlie     |      101 | Math       |\n|         3 | Charlie     |      102 | Science    |\n+-----------+-------------+----------+------------+\nThe result has \\(3\\times2 = 6\\) rows and \\(2 + 2 = 4\\) columns.\n\nCross joins are rarely used practically, as they result in large result sets. (e.g. if two tables have 1000 rows each, their cross join would have 1,000,000 rows).\nThey can, however be used for some specific use cases:\n\nGenerating all possible combinations\nStatistical/Mathematical calculations\nCreating large amounts of test data",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Querying Multiple Tables — Joins</span>"
+    ]
+  },
+  {
+    "objectID": "joins.html#equi-join-joining-based-on-an-equality-condition",
+    "href": "joins.html#equi-join-joining-based-on-an-equality-condition",
+    "title": "9  Querying Multiple Tables — Joins",
+    "section": "9.3 Equi-Join — Joining based on an equality condition",
+    "text": "9.3 Equi-Join — Joining based on an equality condition\n\nThe equi-join is a fundamental operation in database management. It enables us to combine data from multiple tables based on matching values between their columns, which is essential for querying relational databases.\nEqui-join (and other joins) are subsets of the cross join, as they are just rows of the cross join result which satisfy the equality condition defined by the developer.\n\n\n9.3.1 Classification\nEqui-joins can be classified into two main types:\n1. Inner Join (INNER JOIN or JOIN)\n\nReturns only the rows where there is a match in both tables.\nIf a row in one table has no matching value in the other table, it is excluded from the result.\nThis is the most commonly used type of join.\n\n2. Outer Join\n\nReturns matching rows plus unmatched rows from one or both tables.\nUnmatched rows are filled with NULL values for columns from the table that has no match.\nOuter joins are further divided into:\n\nLEFT JOIN - Returns all rows from the left table and matching rows from the right table..\nRIGHT JOIN - Returns all rows from the right table and matching rows from the left table.\nFULL OUTER JOIN - Returns all rows from both tables (matching and non-matching).\n\n\nNote: MySQL does not support FULL OUTER JOIN natively. However, it can be simulated using a combination of LEFT JOIN and RIGHT JOIN with a UNION operator.\n\n\n9.3.2 Syntax\nSELECT * FROM table1 INNER JOIN table2 ON table1.common_col = table2.common_col;\nHere, INNER JOIN can be replaced by the type of join that is desired as above. Note: INNER JOIN and JOIN refer to the same functionality, and can be used interchangeably.\nOr alternatively (for inner join):\nSELECT * FROM table1, table2 WHERE table1.common_col = table2.common_col;\n\n\n9.3.3 Example\n\nIf we stored a package ID for each customer who has ordered a package in a Customers table, and we want to retrieve the list of customer names along with the name of the package they have ordered, we must query both the Customers table for the customer names, and the Packages table for the package names. Here, we must only display records where the package ID of the package corresponds to the package that the customer has ordered.\n\nConsider the two tables:\nA) Customers:\n\n\n\nCustomerID\nCustomerName\nPackageID\n\n\n\n\n1\nAlice\n101\n\n\n2\nBob\n102\n\n\n3\nCharlie\n101\n\n\n4\nDiana\nNULL\n\n\n\nB) Packages:\n\n\n\nPackageID\nPackageName\n\n\n\n\n101\nBasic Plan\n\n\n102\nPremium Plan\n\n\n103\nEnterprise Plan\n\n\n\nThe query can be written as:\nSELECT Customers.CustomerName, Packages.PackageName\nFROM Customers, Packages\nWHERE Customers.PackageID = Packages.PackageID;\nOr using explicit INNER JOIN syntax:\nSELECT Customers.CustomerName, Packages.PackageName\nFROM Customers\nINNER JOIN Packages ON Customers.PackageID = Packages.PackageID;\nThe result would thus be:\n+--------------+-----------------+\n| CustomerName | PackageName     |\n+--------------+-----------------+\n| Alice        | Basic Plan      |\n| Bob          | Premium Plan    |\n| Charlie      | Basic Plan      |\n+--------------+-----------------+\nNote: Differences that would’ve been observed when using LEFT JOIN - Since the customer “Diana” does not have a purchased package, the result does not show her package name. - However, if LEFT JOIN was used instead of INNER JOIN, the result would include “Diana”, with her package name being NULL.\n\n\n9.3.4 Table Aliases\n\nWhen using equi-joins, while mentioning column names, we must also mention the table the column belongs to, as there may be common column names in the tables (the table name and column name are to be separated by a . as seen in the above example).\nWhen many columns are to be selected, the command can become unnecessarily long. To prevent this, we can use table aliases, which have a similar syntax to column aliases we saw earlier.\n\nSyntax:\nSELECT t1.col1, t2.col2 FROM table1 AS t1 INNER JOIN table2 AS t2 ON t1.common_col = t2.common_col;\nNote: The AS keyword is optional here as well.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Querying Multiple Tables — Joins</span>"
+    ]
+  },
+  {
+    "objectID": "joins.html#natural-join",
+    "href": "joins.html#natural-join",
+    "title": "9  Querying Multiple Tables — Joins",
+    "section": "9.4 Natural Join",
+    "text": "9.4 Natural Join\nA natural join is a specialized form of equi-join that automatically joins two tables based on all columns that share the same name in both tables. Unlike a standard equi-join where the join condition must be explicitly specified, a natural join performs the comparison implicitly.\n\nThe database identifies columns with identical names in both tables, and uses the equality operator on the values to join the tables.\nThe identically named column only appears once in the result.\nNo explicit join condition (ON or WHERE clause) is required\n\n\n9.4.1 Syntax\nSELECT * FROM table1 NATURAL JOIN table2;\n\n\n9.4.2 Example\nIf both the Students table and the Enrollments table contain a column named “StudentID”, MySQL will automatically join the tables on this column and display StudentID only once in the result.\nSELECT * FROM Students NATURAL JOIN Enrollments;",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Querying Multiple Tables — Joins</span>"
+    ]
+  },
+  {
+    "objectID": "joins.html#note",
+    "href": "joins.html#note",
+    "title": "9  Querying Multiple Tables — Joins",
+    "section": "9.5 Note",
+    "text": "9.5 Note\n\nSince the JOIN is evaluated on the raw data on the table, the columns having matching names need not be selected while performing a natural join. i.e., if we did not want to display the StudentID in the above table, only the columns that we want to display can be mentioned, and the join would work as intended.\nNatural joins can produce unexpected results if tables contain unintended common column names. It is generally recommended to use explicit join conditions for better control and clarity in production queries.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Querying Multiple Tables — Joins</span>"
+    ]
+  },
+  {
+    "objectID": "afterword.html",
+    "href": "afterword.html",
+    "title": "10  Afterword",
+    "section": "",
+    "text": "10.1 Some More Information\nMost of this book, was written by me just a few days before our board exams, as a way to revise the SQL syllabus. I was unable to include a section on Python Connectivity due to time constraints. This may be added in the future, if I find time for it.\nFor accurate information about MySQL’s functions, datatypes, etc., visit the MySQL Documentation. Some features however, may not be a part of the syllabus.\nAnother prominent RDBMS software is PostgreSQL, which is used extensively in common applications such as Instagram, Reddit, Spotify, etc. Postgres too is a Relational Database, and uses SQL to query and modify data.\nYou can learn more about it online, and maybe use it for personal projects. (Do confirm with your teacher whether it can be used for the CBSE Board Project if you want to do that)\nGoogle’s Firebase platform uses a ‘NoSQL’ database, which has a flexible structure, and can adapt to the application’s requirements. Many other database solutions also use ‘NoSQL’, for different reasons such as performance or flexibility. Some popular ones are MongoDB and Redis",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Afterword</span>"
+    ]
+  },
+  {
+    "objectID": "afterword.html#errors-in-the-handbook",
+    "href": "afterword.html#errors-in-the-handbook",
+    "title": "10  Afterword",
+    "section": "10.2 Errors in the Handbook",
+    "text": "10.2 Errors in the Handbook\nIf you encounter any errors in the book itself or other issues while accessing the book, do reach out to me at the email address given in the Preface section, or create an Issue on GitHub.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Afterword</span>"
+    ]
+  }
+]
