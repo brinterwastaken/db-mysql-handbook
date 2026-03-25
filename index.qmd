@@ -8,7 +8,7 @@ This document has been written in accordance to the [2025-26 CBSE Senior Seconda
 
 ## AI Usage Disclosure
 
-*AI tools have been used to edit some parts of the book, such as some examples and descriptions, to en.*
+*AI tools have been used to edit some parts of the book, such as some examples and descriptions, to enhance their clarity and structure.*
 
 ## Feedback
 You can write your feedback regarding the handbook to me at <trinethr_n@yahoo.com>. Alternatively, if you have corrections or suggestions that you would like to implement, fork the github repository at [brinterwastaken/db-mysql-handbook](https://github.com/brinterwastaken/db-mysql-handbook) and open a pull request.
