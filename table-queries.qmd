@@ -4,8 +4,8 @@
 
 The general structure of a `SELECT` statement is as follows:
 ```sql
-SELECT   column1, column2, ...    ← Columns to retrieve. Use * for all.
-FROM     tablename                ← Table to retrieve data from.
+SELECT   column1, column2, ...    <- Columns to retrieve. Use * for all.
+FROM     tablename                <- Table to retrieve data from.
 WHERE    condition                ┐
 GROUP BY column                   │
 HAVING   condition                ├ All optional clauses
@@ -95,13 +95,13 @@ mysql> SELECT name, age, city FROM students WHERE age > 18 AND city = 'London';
 
 These are special conditions used in the `WHERE` clause for cases that cannot be handled with regular relational operators:
 
-| Condition           | Meaning                                           | Example                             |
-| ------------------- | ------------------------------------------------- | ----------------------------------- |
-| `IS NULL`           | True if the column value is null                  | `WHERE email IS NULL`               |
-| `IS NOT NULL`       | True if the column value is not null              | `WHERE email IS NOT NULL`           |
-| `LIKE pattern`      | True if the value matches a pattern               | `WHERE name LIKE 'A_%'`             |
-| `IN (v1, v2, ...)`  | True if the value matches any value in the list   | `WHERE city IN ('London', 'Paris')` |
-| `BETWEEN v1 AND v2` | True if the value is within the range (inclusive) | `WHERE age BETWEEN 18 AND 25`       |
+| Condition                    | Meaning                                           | Example                                          |
+| ---------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+| `IS NULL`                    | True if the column value is null                  | `WHERE email IS NULL`                            |
+| `IS NOT NULL`                | True if the column value is not null              | `WHERE email IS NOT NULL`                        |
+| `LIKE pattern`               | True if the value matches a pattern               | `WHERE name LIKE 'A_%'`                          |
+| `IN (v1, v2, ...)`           | True if the value matches any value in the list   | `WHERE city IN ('London', 'Paris')`              |
+| `BETWEEN v1 AND v2`          | True if the value is within the range (inclusive) | `WHERE age BETWEEN 18 AND 25`                    |
 
 ### The LIKE operator
 
@@ -147,16 +147,16 @@ SELECT column1, AggregateFunction(column2) FROM tablename GROUP BY column1;
 
 Some common aggregate functions of MySQL are:
 
-| Function  | Syntax                             | Description                                                                                     | Example                              |
-| --------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |
-| `AVG()`   | `AVG(column_name)`                 | Calculates the average value of a numeric column.                                               | `SELECT AVG(price) FROM products;`   |
-| `COUNT()` | `COUNT(column_name)` or `COUNT(*)` | Returns the number of rows that match a specified criterion (ignores `NULL`s unless using `*`). | `SELECT COUNT(orderid) FROM orders;` |
-| `MAX()`   | `MAX(column_name)`                 | Returns the largest value in the selected column.                                               | `SELECT MAX(amount) FROM orders;`    |
-| `MIN()`   | `MIN(column_name)`                 | Returns the smallest value in the selected column.                                              | `SELECT MIN(amount) FROM orders;`    |
-| `SUM()`   | `SUM(column_name)`                 | Returns the total sum of a numeric column.                                                      | `SELECT SUM(salary) FROM employees;` |
+| Function          | Syntax                                         | Description                                                  | Example                                               |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| `AVG()`           | `AVG(column_name)`                             | Calculates the average value of a numeric column.            | `SELECT AVG(price) FROM products;`                    |
+| `COUNT()`         | `COUNT(column_name)` or `COUNT(*)`             | Returns the number of rows that match a specified criterion. | `SELECT COUNT(orderid) FROM orders;`                  |
+| `MAX()`           | `MAX(column_name)`                             | Returns the largest value in the selected column.            | `SELECT MAX(amount) FROM orders;`                     |
+| `MIN()`           | `MIN(column_name)`                             | Returns the smallest value in the selected column.           | `SELECT MIN(amount) FROM orders;`                     |
+| `SUM()`           | `SUM(column_name)`                             | Returns the total sum of a numeric column.                   | `SELECT SUM(salary) FROM employees;`                  |
 
 ### Notes
-- Most aggregate functions (except `COUNT(*)`) ignore `NULL` values when performing calculations.
+- Most aggregate functions ignore `NULL` values when performing calculations. `COUNT()` only counts rows with `NULL` values when `COUNT(*)` is used.
 - Distinct Calculation: You can use the `DISTINCT` keyword inside these functions (e.g., `COUNT(DISTINCT column)`) to perform calculations on unique values only.
 - Numeric requirement: Functions like `AVG()` and `SUM()` require numeric data, while `MIN()` and `MAX()` can also work with strings and dates.
 

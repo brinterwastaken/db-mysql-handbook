@@ -13,22 +13,22 @@
 
 Basic operators supported by SQL include:
 
-| Operator     | Meaning                                |
-| ------------ | -------------------------------------- |
-| `+`          | Addition                               |
-| `-`          | Subtraction                            |
-| `*`          | Multiplication                         |
-| `/`          | Division                               |
-| `%`          | Modulus (remainder)                    |
-| `=`          | Is equal to                            |
-| `!=` or `<>` | Is not equal to                        |
-| `>`          | Greater than                           |
-| `<`          | Lesser than                            |
-| `>=`         | Greater than or equal to               |
-| `<=`         | Lesser than or equal to                |
-| `AND`        | True if both conditions are true       |
-| `OR`         | True if at least one condition is true |
-| `NOT`        | Reverses the result of a condition     |
+| Operator        | Meaning                                |
+| --------------- | -------------------------------------- |
+| `+`             | Addition                               |
+| `-`             | Subtraction                            |
+| `*`             | Multiplication                         |
+| `/`             | Division                               |
+| `%`             | Modulus (remainder)                    |
+| `=`             | Is equal to                            |          
+| `!=` or `<>`    | Is not equal to                        |
+| `>`             | Greater than                           |
+| `<`             | Lesser than                            |
+| `>=`            | Greater than or equal to               |
+| `<=`            | Lesser than or equal to                |
+| `AND`           | True if both conditions are true       |
+| `OR`            | True if at least one condition is true |
+| `NOT`           | Reverses the result of a condition     |
 
 Examples:
 ```sql
@@ -97,56 +97,56 @@ mysql> SELECT 'Hello World';
 
 ### Numeric Functions
 
-| Function         | Description                                               | Example                | Result |
-| ---------------- | --------------------------------------------------------- | ---------------------- | ------ |
-| `ABS(n)`         | Returns the absolute value of `n`                         | `ABS(-15)`             | `15`   |
-| `ROUND(n, d)`    | Rounds `n` to `d` decimal places                          | `ROUND(3.14159, 2)`    | `3.14` |
-| `CEIL(n)`        | Returns the smallest integer greater than or equal to `n` | `CEIL(4.2)`            | `5`    |
-| `FLOOR(n)`       | Returns the largest integer less than or equal to `n`     | `FLOOR(4.9)`           | `4`    |
-| `TRUNCATE(n, d)` | Truncates `n` to `d` decimal places without rounding      | `TRUNCATE(3.14159, 2)` | `3.14` |
-| `MOD(n, m)`      | Returns the remainder when `n` is divided by `m`          | `MOD(17, 5)`           | `2`    |
-| `POWER(n, e)`    | Returns `n` raised to the power `e`                       | `POWER(2, 8)`          | `256`  |
-| `SQRT(n)`        | Returns the square root of `n`                            | `SQRT(144)`            | `12`   |
+| Function                   | Description                                               | Example                        | Result     |
+| -------------------------- | --------------------------------------------------------- | ------------------------------ | ---------- |
+| `ABS(n)`                   | Returns the absolute value of `n`                         | `ABS(-15)`                     | 15         |
+| `ROUND(n, d)`              | Rounds `n` to `d` decimal places                          | `ROUND(3.14159, 2)`            | 3.14       |
+| `CEIL(n)`                  | Returns the smallest integer greater than or equal to `n` | `CEIL(4.2)`                    | 5          |
+| `FLOOR(n)`                 | Returns the largest integer less than or equal to `n`     | `FLOOR(4.9)`                   | 4          |
+| `TRUNCATE(n, d)`           | Truncates `n` to `d` decimal places without rounding      | `TRUNCATE(3.14159, 2)`         | 3.14       |
+| `MOD(n, m)`                | Returns the remainder when `n` is divided by `m`          | `MOD(17, 5)`                   | 2          |
+| `POWER(n, e)`              | Returns `n` raised to the power `e`                       | `POWER(2, 8)`                  | 256        |
+| `SQRT(n)`                  | Returns the square root of `n`                            | `SQRT(144)`                    | 12         |
 
 ### Date/Time Functions
 
-| Function                          | Description                                  | Example                                    | Result                |
-| --------------------------------- | -------------------------------------------- | ------------------------------------------ | --------------------- |
-| `NOW()`                           | Returns the current date and time            | `NOW()`                                    | `2026-03-24 10:45:00` |
-| `CURDATE()`                       | Returns the current date                     | `CURDATE()`                                | `2026-03-24`          |
-| `CURTIME()`                       | Returns the current time                     | `CURTIME()`                                | `10:45:00`            |
-| `YEAR(date)`                      | Extracts the year from a date                | `YEAR('2026-03-24')`                       | `2026`                |
-| `MONTH(date)`                     | Extracts the month from a date               | `MONTH('2026-03-24')`                      | `3`                   |
-| `DAY(date)`                       | Extracts the day from a date                 | `DAY('2026-03-24')`                        | `24`                  |
-| `MONTHNAME(date)`                 | Returns the full name of the month           | `MONTHNAME('2026-03-24')`                  | `March`               |
-| `DAYNAME(date)`                   | Returns the name of the weekday              | `DAYNAME('2026-03-24')`                    | `Tuesday`             |
-| `DATEDIFF(d1, d2)`                | Returns the number of days between two dates | `DATEDIFF('2026-12-31', '2026-03-24')`     | `282`                 |
+| Function                          | Description                                  | Example                                        | Result              |
+| --------------------------------- | -------------------------------------------- | ---------------------------------------------- | ------------------- |
+| `NOW()`                           | Returns the current date and time            | `NOW()`                                        | 2026-03-24 10:45:00 |
+| `CURDATE()`                       | Returns the current date                     | `CURDATE()`                                    | 2026-03-24          |
+| `CURTIME()`                       | Returns the current time                     | `CURTIME()`                                    | 10:45:00            |
+| `YEAR(date)`                      | Extracts the year from a date                | `YEAR('2026-03-24')`                           | 2026                |
+| `MONTH(date)`                     | Extracts the month from a date               | `MONTH('2026-03-24')`                          | 3                   |
+| `DAY(date)`                       | Extracts the day from a date                 | `DAY('2026-03-24')`                            | 24                  |
+| `MONTHNAME(date)`                 | Returns the full name of the month           | `MONTHNAME('2026-03-24')`                      | March               |
+| `DAYNAME(date)`                   | Returns the name of the weekday              | `DAYNAME('2026-03-24')`                        | Tuesday             |
+| `DATEDIFF(d1, d2)`                | Returns the number of days between two dates | `DATEDIFF('2026-12-31', '2026-03-24')`         | 282                 |
 
 ### String Functions
 
-| Function                   | Description                                                       | Example                                  | Result        |
-| -------------------------- | ----------------------------------------------------------------- | ---------------------------------------- | ------------- |
-| `UPPER(str)`               | Converts string to uppercase                                      | `UPPER('hello')`                         | `HELLO`       |
-| `LOWER(str)`               | Converts string to lowercase                                      | `LOWER('HELLO')`                         | `hello`       |
-| `LENGTH(str)`              | Returns the length of the string in bytes                         | `LENGTH('hello')`                        | `5`           |
-| `CONCAT(s1, s2, ...)`      | Joins two or more strings together                                | `CONCAT('Hello', ' ', 'World')`          | `Hello World` |
-| `SUBSTRING(str, pos, len)` | Extracts a substring starting at `pos`, of length `len`           | `SUBSTRING('Hello World', 7, 5)`         | `World`       |
-| `TRIM(str)`                | Removes leading and trailing spaces                               | `TRIM(' hello ')`                        | `hello`       |
-| `LTRIM(str)`               | Removes leading (left) spaces                                     | `LTRIM(' hello')`                        | `hello`       |
-| `RTRIM(str)`               | Removes trailing (right) spaces                                   | `RTRIM('hello ')`                        | `hello`       |
-| `REPLACE(str, from, to)`   | Replaces all occurrences of a substring with another              | `REPLACE('Hello World', 'World', 'SQL')` | `Hello SQL`   |
-| `REVERSE(str)`             | Reverses the string                                               | `REVERSE('hello')`                       | `olleh`       |
-| `INSTR(str, substr)`       | Returns the position of the first occurrence of `substr` in `str` | `INSTR('Hello World', 'World')`          | `7`           |
-| `LEFT(str, n)`             | Returns the leftmost `n` characters                               | `LEFT('Hello World', 5)`                 | `Hello`       |
-| `RIGHT(str, n)`            | Returns the rightmost `n` characters                              | `RIGHT('Hello World', 5)`                | `World`       |
+| Function                            | Description                                                             | Example                                                | Result             |
+| ----------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ | ------------------ |
+| `UPPER(str)`                        | Converts string to uppercase                                            | `UPPER('hello')`                                       | HELLO              |
+| `LOWER(str)`                        | Converts string to lowercase                                            | `LOWER('HELLO')`                                       | hello              |
+| `LENGTH(str)`                       | Returns the length of the string in bytes                               | `LENGTH('hello')`                                      | 5                  |
+| `CONCAT(s1, s2, ...)`               | Joins two or more strings together                                      | `CONCAT('Hello', ' ', 'World')`                        | Hello World        |
+| `SUBSTRING(str, pos, len)`          | Extracts a substring starting at `pos`, of length `len`                 | `SUBSTRING('Hello World', 7, 5)`                       | World              |
+| `TRIM(str)`                         | Removes leading and trailing spaces                                     | `TRIM(' hello ')`                                      | hello              |
+| `LTRIM(str)`                        | Removes leading (left) spaces                                           | `LTRIM(' hello')`                                      | hello              |
+| `RTRIM(str)`                        | Removes trailing (right) spaces                                         | `RTRIM('hello ')`                                      | hello              |
+| `REPLACE(str, from, to)`            | Replaces all occurrences of a substring with another                    | `REPLACE('Hello World', 'World', 'SQL')`               | Hello SQL          |
+| `REVERSE(str)`                      | Reverses the string                                                     | `REVERSE('hello')`                                     | olleh              |
+| `INSTR(str, substr)`                | Returns the position of the first occurrence of `substr` in `str`       | `INSTR('Hello World', 'World')`                        | 7                  |
+| `LEFT(str, n)`                      | Returns the leftmost `n` characters                                     | `LEFT('Hello World', 5)`                               | Hello              |
+| `RIGHT(str, n)`                     | Returns the rightmost `n` characters                                    | `RIGHT('Hello World', 5)`                              | World              |
 
 Note: For functions such as `SUBSTRING`, indexing starts at 1, which is different from most programming languages which start indexing at 0.
 
 ### Miscellaneous
 
-| Function                  | Description                                             | Example                  | Result    |
-| ------------------------- | ------------------------------------------------------- | ------------------------ | --------- |
-| `IFNULL(value, fallback)` | If the `value` field is null, it returns the `fallback` | `IFNULL(NULL,'nothing')` | `nothing` |
+| Function                          | Description                                             | Example                                      | Result        |
+| --------------------------------- | ------------------------------------------------------- | -------------------------------------------- | ------------- |
+| `IFNULL(value, fallback)`         | If the `value` field is null, it returns the `fallback` | `IFNULL(NULL,'nothing')`                     | nothing       |
 
 ### Using Built-In functions without a table
 - Here are some examples where built-in functions are used without referencing a table.

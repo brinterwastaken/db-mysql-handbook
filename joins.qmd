@@ -32,10 +32,10 @@ Consider two tables:
 
 **B) Courses:**
 
-|CourseID|CourseName|
-|---|---|
-|101|Math|
-|102|Science|
+| CourseID |CourseName|
+| -------- | -------- |
+| 101      | Math     |
+| 102      | Science  |
 
 
 ```sql

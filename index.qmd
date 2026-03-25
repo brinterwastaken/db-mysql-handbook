@@ -1,6 +1,8 @@
 # Preface {.unnumbered}
 
-This book was written with an aim to explain the concepts of Database Management with MySQL, according to the CBSE Syllabus, in a concise manner with good flow of topics.
+This book was written with an aim to explain the concepts of Database Management with MySQL, according to the CBSE Syllabus, in a concise manner with good flow of topics. 
+
+It introduces the concept of databases, explaining its advantages over traditional data storage systems, and explains the relational database model. Following this is a comprehensive guide to working with MySQL.
 
 ## Disclaimer
 
