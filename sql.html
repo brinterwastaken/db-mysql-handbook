@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Clauses</strong> are sections of a command that perform specific roles, such as <code>WHERE</code>, <code>ORDER BY</code>, or <code>GROUP BY</code>.</li>
 </ul>
 <p>Example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Brand, Model <span class="kw">FROM</span> Vehicles <span class="kw">WHERE</span> Color <span class="op">=</span> <span class="ot">"Black"</span>;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Brand, Model <span class="kw">FROM</span> Vehicles <span class="kw">WHERE</span> Color <span class="op">=</span> <span class="st">'Black'</span>;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* This can be broken down into clauses as: */</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Brand, Model</span>
@@ -495,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Comments (statements ignored by the RDBMS) can be entered in commands by using <code>-- Comment</code> or <code>/* Comment */</code>. The latter can be used for multi line comments.</li>
 </ul>
 <p>These commands should be supplied to the RDBMS’s command line client. MySQL’s command line client has a prompt <code>mysql&gt;</code> which indicates where the command is to be entered. Thus the above command when entered in the command line client looks like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> Brand, Model <span class="kw">FROM</span> Vehicles <span class="kw">WHERE</span> Color <span class="op">=</span> <span class="ot">"Black"</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> Brand, Model <span class="kw">FROM</span> Vehicles <span class="kw">WHERE</span> Color <span class="op">=</span> <span class="st">'Black'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this document, when we mention a command without its output, we only show the command itself, but when the output is also given, the <code>mysql&gt;</code> prompt is also shown to highlight the command executed.</p>
 
 
