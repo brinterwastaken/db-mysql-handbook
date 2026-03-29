@@ -50,6 +50,9 @@ format:
     mainfont: "Arial"
     monofont: "0xProto"
     css: main.css
+    include-in-header: 
+      text: |
+        <meta name="google-site-verification" content="E2IjgLpsup0krpIu0F24kKujuLAN88b79BQCm2hC8fA" />
     
 
   pdf:
