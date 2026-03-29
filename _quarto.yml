@@ -77,7 +77,12 @@ format:
     include-in-header:
       text: |
         \usepackage{fvextra}
+        \usepackage{tikz}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
         \RedeclareSectionCommand[beforeskip=10pt]{chapter}
         \RedeclareSectionCommand[beforeskip=-2ex, afterskip=1ex]{section}
         \RedeclareSectionCommand[beforeskip=-1.5ex, afterskip=0.5ex]{subsection}
+        \AtBeginDocument{\thispagestyle{empty}
+        \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{cover.png}};
+        \end{tikzpicture}\clearpage}
