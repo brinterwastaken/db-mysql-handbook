@@ -26,7 +26,7 @@ An SQL command generally consists of **keywords, identifiers, and values** arran
 
 Example:
 ```sql
-SELECT Brand, Model FROM Vehicles WHERE Color = "Black";
+SELECT Brand, Model FROM Vehicles WHERE Color = 'Black';
 
 /* This can be broken down into clauses as: */
 SELECT Brand, Model
@@ -51,7 +51,7 @@ WHERE Color = 'Black';
 These commands should be supplied to the RDBMS's command line client. 
 MySQL's command line client has a prompt `mysql>` which indicates where the command is to be entered. Thus the above command when entered in the command line client looks like:
 ```sql
-mysql> SELECT Brand, Model FROM Vehicles WHERE Color = "Black";
+mysql> SELECT Brand, Model FROM Vehicles WHERE Color = 'Black';
 ```
 
 In this document, when we mention a command without its output, we only show the command itself, but when the output is also given, the `mysql>` prompt is also shown to highlight the command executed.

@@ -202,17 +202,22 @@ Here, only the category having total amount less than 1000 has been displayed.
 
 ### Common Mistakes
 - A common mistake is to use the `WHERE` clause instead of the `HAVING` clause. Remember, the `WHERE` clause cannot act on data after it has been grouped, but can only be used to filter data before grouping.
+
 ### Using both WHERE and HAVING
 - For cases where a developer wants to first filter by some condition, then group the data, then show results where the aggregate function value matches some condition, both `WHERE` and `HAVING` clauses need to be used.
 For example, if a developer wants to find the products having more than 1000 sales in a particular city, the query would be something like:
 ```sql
-SELECT ProductName, COUNT(ProductId) as SoldCount FROM SoldProducts WHERE City = "Bengaluru" HAVING SoldCount > 1000;
+SELECT ProductName, COUNT(ProductId) as SoldCount 
+FROM SoldProducts 
+WHERE City = 'Bengaluru' 
+HAVING SoldCount > 1000;
 ```
 
 ## The ORDER BY Clause
 - It is used to order data selected in a table in either ascending `ASC` (default) or descending `DESC` order.
 - By default, the `ORDER BY` clause is case insensitive, thus if it is used on a text column, 'apple' and 'Apple' will be displayed in the order that they have been inserted into the column.
 - The `DESC` keyword can be written after the expression for descending order.
+
 ### Examples
 ```sql
 SELECT Name FROM Employees ORDER BY LENGTH(Name);
@@ -236,6 +241,7 @@ mysql> SELECT CustomerName, SUM(Amount) AS TotalAmt FROM Orders GROUP BY Custome
 
 ## The LIMIT Clause
 - It is used to limit the number of results of the query.
+
 ### Examples
 To get the top 10 most populated cities:
 ```sql
