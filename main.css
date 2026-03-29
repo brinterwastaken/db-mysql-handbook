@@ -15,3 +15,37 @@ pre, code, kbd, samp {
 .quarto-cover-image {
   max-width: 30%;
 }
+
+.sidebar-logo-link {
+  margin: 0 20%;
+}
+
+.sidebar-logo {
+  max-width: 60%;
+}
+
+.sidebar-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  text-align: center;
+  align-items: center;
+}
+
+.quarto-color-scheme-toggle i.bi::before {
+  height: 1.2rem;
+  width: 1.2rem;
+  background-size: 1.2rem;
+  vertical-align: -0.3rem;
+} 
+
+.quarto-color-scheme-toggle {
+  text-decoration: none;
+}
+
+.quarto-color-scheme-toggle::before {
+  content: "Dark Theme";
+  font-size: 0.8rem;
+  padding-right: 0.5rem;
+}

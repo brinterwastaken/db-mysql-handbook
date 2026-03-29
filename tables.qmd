@@ -52,6 +52,7 @@ CREATE TABLE Customers (
 ## Describing Tables
 - The `DESC` command can be used to describe the structure of an existing table
 - It shows a list of columns along with their datatypes, default values, type of key, and other information about the column.
+
 **Syntax:**
 ```sql
 DESC tablename;
@@ -273,6 +274,7 @@ DROP COLUMN column2;
 ### Adding/Removing Constraints
 #### Adding Constraints
 Constraints can be added to existing tables using the `ADD` clause.
+
 **Syntax:**
 ```sql
 ALTER TABLE tablename

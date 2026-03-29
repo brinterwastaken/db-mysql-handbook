@@ -8,6 +8,7 @@
 - Insertion of data into tables is done using the `INSERT` command. This command allows you to add rows having values for *all columns*, or having values for only a *few specified columns*.
 
 ### Inserting Values for All Columns
+
 **Syntax:**
 ```sql
 INSERT INTO tablename VALUES tuple1, tuple2 ...
@@ -114,6 +115,7 @@ This changes the `Address` for **every record** in the table.
 ## Deleting Data
 - Records in a table can be removed using the `DELETE` command.
 - This command deletes **one or more rows** from a table.
+
 **Syntax:**
 ```sql
 DELETE FROM tablename

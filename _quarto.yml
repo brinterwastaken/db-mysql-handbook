@@ -9,6 +9,8 @@ project:
 book:
   favicon: favicon.png
   title: "Database and MySQL Handbook"
+  description: "A handbook to quickly understand Relational Databases and the basics of SQL with MySQL"
+  site-url: https://brin.is-a.dev/db-mysql-handbook/
   author: 
     - name: "Trinethr N"
       email: 'trinethr_n@yahoo.com'
@@ -25,14 +27,30 @@ book:
     - table-queries.qmd
     - joins.qmd
     - afterword.qmd
+  sidebar:
+    logo: 
+      light: icon.png
+      dark: icon-dark.png
+  image: banner.png
+  twitter-card: 
+    card-style: summary_large_image
+  open-graph: 
+    locale: en_US
+
 
 format:
   html:
-    theme: flatly
+    theme: 
+      light: flatly
+      dark: darkly
+    respect-user-color-scheme: true
+    highlight-style:
+      light: arrow
+      dark: atom-one-dark
     mainfont: "Arial"
     monofont: "0xProto"
     css: main.css
-    cover-image: icon.png
+    
 
   pdf:
     documentclass: scrbook

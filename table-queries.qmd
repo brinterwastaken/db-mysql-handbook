@@ -21,7 +21,7 @@ Only the `SELECT` and `FROM`[^1] are mandatory — all other clauses are optiona
 
 - To select unique/distinct values of a column, or select distinct pairs of values across multiple columns, the `SELECT DISTINCT` command can be used.
 
-Syntax:
+**Syntax:**
 ```sql
 SELECT DISTINCT column1, column2 ... FROM tablename;
 ```
@@ -138,7 +138,7 @@ mysql> SELECT name FROM students WHERE name LIKE '_ob';
 ## Aggregate Functions and the GROUP BY Clause
 - Aggregate functions are functions that accept values of multiple rows and return a single result. Using the `GROUP BY` clause, the rows can be divided into groups and passed to the aggregate function, allowing the result to be displayed for each group of rows.
 
-Syntax:
+**Syntax:**
 ```sql
 SELECT column1, AggregateFunction(column2) FROM tablename GROUP BY column1;
 ```
