@@ -104,6 +104,8 @@ Consider the two tables:
 
 **A) Customers:**
 
+::: {.table-responsive}
+
 | CustomerID | CustomerName | PackageID |
 | ---------- | ------------ | --------- |
 | 1          | Alice        | 101       |
@@ -111,7 +113,11 @@ Consider the two tables:
 | 3          | Charlie      | 101       |
 | 4          | Diana        | NULL      |
 
+:::
+
 **B) Packages:**
+
+::: {.table-responsive}
 
 | PackageID | PackageName    |
 | --------- | -------------- |
@@ -119,6 +125,8 @@ Consider the two tables:
 | 102       | Premium Plan   |
 | 103       | Enterprise Plan|
 The query can be written as:
+
+:::
 
 ```sql
 SELECT Customers.CustomerName, Packages.PackageName

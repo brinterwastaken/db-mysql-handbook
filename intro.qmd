@@ -21,6 +21,8 @@ They provide data integrity, security, and fast access, enabling applications li
 
 For example:
 
+::: {.table-responsive}
+
 | Id  | Brand         | Model   | Color     |
 | --- | ------------- | ------- | --------- |
 | 001 | Maruti Suzuki | Dzire   | White     |
@@ -28,6 +30,8 @@ For example:
 | 003 | Hyundai       | Creta   | Grey      |
 | 004 | Toyota        | Hyrider | Black     |
 | 005 | Mahindra      | XUV700  | Dark Blue |
+
+:::
 
 In the above example, each row represents one vehicle, while each column contains a single type of information about the vehicles.
 

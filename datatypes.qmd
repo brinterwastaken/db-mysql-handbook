@@ -5,6 +5,8 @@
 
 ## Numeric Types
 
+::: {.table-responsive}
+
 | Data Type              | Storage           | Range (Signed)       | Range (Unsigned)     | Description                                               |
 | ---------------------- | ----------------- | -------------------- | -------------------- | --------------------------------------------------------- |
 | `TINYINT`              | 1 byte (8 bits)   | −2⁷ to 2⁷ − 1        | 0 to 2⁸ − 1          | Very small integers                                       |
@@ -17,6 +19,8 @@
 | `DECIMAL(M,D)`         | Variable          | Depends on precision | Depends on precision | Exact fixed-point numbers (often used for financial data) |
 | `BIT(M)`               | 1–8               | Depends on M         | Depends on M         | Bit-value type for storing binary values                  |
 
+:::
+
 ### Notes
 - `M`: Precision - total number of digits
 - `D`: Scale - number of digits after the decimal point
@@ -26,6 +30,8 @@
 
 ## Date/Time Types
 
+::: {.table-responsive}
+
 | Data Type          | Storage (Bytes) | Format                | Range                                              | Description                                 |
 | ------------------ | --------------- | --------------------- | -------------------------------------------------- | ------------------------------------------- |
 | `DATE`             | 3               | `YYYY-MM-DD`          | 1000-01-01 to 9999-12-31                           | Stores a calendar date without time         |
@@ -33,6 +39,8 @@
 | `DATETIME`         | 8               | `YYYY-MM-DD HH:MM:SS` | 1000-01-01 00:00:00 to 9999-12-31 23:59:59         | Stores both date and time                   |
 | `TIMESTAMP`        | 4               | `YYYY-MM-DD HH:MM:SS` | 1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC | Stores date and time relative to Unix epoch |
 | `YEAR`             | 1               | `YYYY`                | 1901 to 2155 (and 0000)                            | Stores a year value                         |
+
+:::
 
 ### Notes
 - **`DATETIME` vs `TIMESTAMP`**:
@@ -43,6 +51,8 @@
 
 ## Text Types
 
+::: {.table-responsive}
+
 | Data Type          | Storage         | Range                                  | Description                                         |
 | ------------------ | --------------- | -------------------------------------- | --------------------------------------------------- |
 | `CHAR(n)`          | Fixed-length    | 0–255 characters                       | Stores fixed-length strings; unused space is padded |
@@ -51,6 +61,8 @@
 | `TEXT`             | Variable        | 65,535 bytes (~64 KB)                  | Standard text storage                               |
 | `MEDIUMTEXT`       | Variable        | 16,777,215 bytes (~16 MB)              | Medium-sized text data                              |
 | `LONGTEXT`         | Variable        | 4,294,967,295 bytes (~4 GB)            | Very large text data                                |
+
+::: 
 
 ### Notes
 
@@ -68,6 +80,8 @@
 
 ## Other Types
 
+::: {.table-responsive}
+
 | Data Type          | Storage                           | Description                                                                              |
 | ------------------ | --------------------------------- | ---------------------------------------------------------------------------------------- |
 | `ENUM`             | 1–2 bytes                         | A string object that can take **one value from a predefined list**                       |
@@ -76,6 +90,8 @@
 | `BLOB`             | Up to 65,535 bytes (~64 KB)       | Used for storing **binary data** such as *images, files, or encoded data*                |
 | `MEDIUMBLOB`       | Up to 16,777,215 bytes (~16 MB)   | Used for storing **larger binary objects**, such as *medium-sized media files*           |
 | `LONGBLOB`         | Up to 4,294,967,295 bytes (~4 GB) | Used for storing **very large binary data**, such as *large files or multimedia content* |
+
+::: 
 
 ### Notes
 - Enum is useful for **fields with a small fixed set of options**, e.g. a status column having possible values — `pending`, `approved` or `rejected`.

@@ -147,6 +147,8 @@ SELECT column1, AggregateFunction(column2) FROM tablename GROUP BY column1;
 
 Some common aggregate functions of MySQL are:
 
+::: {.table-responsive}
+
 | Function          | Syntax                                         | Description                                                  | Example                                               |
 | ----------------- | ---------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
 | `AVG()`           | `AVG(column_name)`                             | Calculates the average value of a numeric column.            | `SELECT AVG(price) FROM products;`                    |
@@ -154,6 +156,8 @@ Some common aggregate functions of MySQL are:
 | `MAX()`           | `MAX(column_name)`                             | Returns the largest value in the selected column.            | `SELECT MAX(amount) FROM orders;`                     |
 | `MIN()`           | `MIN(column_name)`                             | Returns the smallest value in the selected column.           | `SELECT MIN(amount) FROM orders;`                     |
 | `SUM()`           | `SUM(column_name)`                             | Returns the total sum of a numeric column.                   | `SELECT SUM(salary) FROM employees;`                  |
+
+:::
 
 ### Notes
 - Most aggregate functions ignore `NULL` values when performing calculations. `COUNT()` only counts rows with `NULL` values when `COUNT(*)` is used.
@@ -163,6 +167,8 @@ Some common aggregate functions of MySQL are:
 ### Example
 **Sample Table: Orders**
 
+::: {.table-responsive}
+
 | OrderId | CustomerName | Category    | Amount |
 | ------- | ------------ | ----------- | ------ |
 | 1       | Alice        | Electronics | 1200   |
@@ -170,6 +176,8 @@ Some common aggregate functions of MySQL are:
 | 3       | Alice        | Clothing    | 80     |
 | 4       | Charlie      | Electronics | 400    |
 | 5       | Bob          | Clothing    | 30     |
+
+:::
 
 To find out how many orders each customer has made, we can perform the following query:
 ```sql
