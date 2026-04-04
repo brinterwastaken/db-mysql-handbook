@@ -657,6 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If only the column with an aggregate function applied is selected, only one result is obtained.</li>
 </ul>
 <p>Some common aggregate functions of MySQL are:</p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
@@ -705,6 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+</div>
 <section id="notes" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="notes"><span class="header-section-number">8.5.1</span> Notes</h3>
 <ul>
@@ -716,6 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="example" class="level3" data-number="8.5.2">
 <h3 data-number="8.5.2" class="anchored" data-anchor-id="example"><span class="header-section-number">8.5.2</span> Example</h3>
 <p><strong>Sample Table: Orders</strong></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -758,6 +761,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+</div>
 <p>To find out how many orders each customer has made, we can perform the following query:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mysql<span class="op">&gt;</span> <span class="kw">SELECT</span> CustomerName, <span class="fu">COUNT</span>(OrderId) <span class="kw">AS</span> TotalOrders <span class="kw">FROM</span> Orders <span class="kw">GROUP</span> <span class="kw">BY</span> CustomerName;</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------------+-------------+</span></span>

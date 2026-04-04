@@ -621,6 +621,7 @@ window.Quarto = {
 </ul>
 <p>Consider the two tables:</p>
 <p><strong>A) Customers:</strong></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -652,7 +653,9 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>B) Packages:</strong></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -676,6 +679,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>The query can be written as:</p>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Customers.CustomerName, <span class="kw">Packages</span>.PackageName</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Customers, <span class="kw">Packages</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Customers.PackageID <span class="op">=</span> <span class="kw">Packages</span>.PackageID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
