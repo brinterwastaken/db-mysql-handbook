@@ -72,6 +72,7 @@ format:
       - BoldItalicFont='Arial Bold Italic'
     monofont: "0xProto"
     geometry:
+      - a4paper
       - top=25mm
       - bottom=30mm
       - left=20mm
