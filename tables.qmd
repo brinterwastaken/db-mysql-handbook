@@ -29,7 +29,7 @@ column_name datatype [key type] [constraints]
 │           │        │              (e.g., NOT NULL, DEFAULT, CHECK)
 │           │        │
 │           │        └───────────── Key specification
-│           │                       (e.g., PRIMARY KEY, UNIQUE, FOREIGN KEY)
+│           │                       (e.g., PRIMARY KEY, UNIQUE)
 │           │
 │           └────────────────────── Data type of the column
 │                                   (e.g., INT, VARCHAR(50), DATE)
