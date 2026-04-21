@@ -680,13 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="5.4" class="anchored" data-anchor-id="altering-tables"><span class="header-section-number">5.4</span> Altering Tables</h2>
 <ul>
 <li><p>The <code>ALTER TABLE</code> command is used to <strong>modify the structure of an existing table</strong>.</p></li>
-<li><p>It allows operations such as:</p>
-<ul>
-<li>adding new columns</li>
-<li>removing existing columns</li>
-<li>modifying column definitions</li>
-<li>adding or removing constraints</li>
-</ul></li>
+<li><p>It allows operations such as adding/removing columns, modifying column definitions and adding/removing constraints.</p></li>
 </ul>
 <p><strong>Syntax:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> tablename  </span>
@@ -694,7 +688,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    [action2] ├─ One <span class="kw">or</span> more modification operations  </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    [<span class="op">..</span>.]     ┘  </span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Each <strong>action</strong> represents a structural change to the table. Common actions include: - <code>ADD</code> – add a new column or constraint - <code>DROP</code> – remove a column or constraint - <code>MODIFY</code> – change the datatype or properties of a column - <code>RENAME</code> – rename a table or column</p>
+<p>Each <strong>action</strong> represents a structural change to the table.</p>
+<p>Common actions include:</p>
+<ul>
+<li><code>ADD</code> – add a new column or constraint</li>
+<li><code>DROP</code> – remove a column or constraint</li>
+<li><code>MODIFY</code> – change the datatype or properties of a column</li>
+<li><code>RENAME</code> – rename a table or column</li>
+</ul>
 <section id="adding-and-removing-columns" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="adding-and-removing-columns"><span class="header-section-number">5.4.1</span> Adding and Removing Columns</h3>
 <section id="adding-columns" class="level4" data-number="5.4.1.1">
