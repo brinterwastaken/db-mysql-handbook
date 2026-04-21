@@ -193,11 +193,7 @@ Here:
 
 - The `ALTER TABLE` command is used to **modify the structure of an existing table**.
 
-- It allows operations such as:
-    - adding new columns
-    - removing existing columns
-    - modifying column definitions
-    - adding or removing constraints
+- It allows operations such as adding/removing columns, modifying column definitions and adding/removing constraints.
 
 **Syntax:**
 ```sql
@@ -209,7 +205,9 @@ ALTER TABLE tablename
 ```
 
 Each **action** represents a structural change to the table.
+
 Common actions include:
+
 - `ADD` – add a new column or constraint
 - `DROP` – remove a column or constraint
 - `MODIFY` – change the datatype or properties of a column
