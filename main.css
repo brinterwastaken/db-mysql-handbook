@@ -1,5 +1,19 @@
 @import "fonts/0xProto.css";
 
+body:not(.quarto-dark) {
+  --bs-link-color: #12856e;
+  --bs-link-color-rgb: 18, 133, 110;
+  --bs-link-hover-color: rgb(33, 167, 138);
+}
+
+.sidebar nav[role="doc-toc"] .nav-link.active {
+  color: var(--bs-link-color) !important;
+}
+
+.sidebar nav[role="doc-toc"] .nav-link:hover {
+  color: var(--bs-link-hover-color) !important;
+}
+
 p, li:not(.sidebar-item) {
   text-align: justify;
 }
